@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p class="menu-seleccionado">Mantenedor de clientes</p></a>
+            <a href="/empresa-de-transporte"><p class="menu-seleccionado">Mantenedor de empresas de transporte</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de clientes</h2>
-                        <a href="/nuevo-cliente" class="btn-contenido-inicio">
-                            <p>Crear nuevo cliente</p>
+                        <h2>Mantenedor de empresas de transporte</h2>
+                        <a href="/nueva-empresa-de-transporte" class="btn-contenido-inicio">
+                            <p>Crear empresa de transporte</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                         </div>  
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del cliente</label>
+                                <label for="">Razón social</label>
                                 <input type="text">
                             </div>
                             <div class="label-input-n">
@@ -175,12 +175,6 @@
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
-                            <div class="ocultar-detalles-n">
-                                <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
-                                </div>
-                            </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
@@ -209,13 +203,6 @@
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
-                            <div class="ocultar-detalles-n">
-                                <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
-                                </div>
-                            </div>
-        
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Nombre</span>

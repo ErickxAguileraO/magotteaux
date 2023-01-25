@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p class="menu-seleccionado">Mantenedor de clientes</p></a>
+            <a href="/plantas"><p class="menu-seleccionado">Mantenedor de plantas</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de clientes</h2>
-                        <a href="/nuevo-cliente" class="btn-contenido-inicio">
-                            <p>Crear nuevo cliente</p>
+                        <h2>Mantenedor de plantas</h2>
+                        <a href="/nueva-planta" class="btn-contenido-inicio">
+                            <p>Crear nueva planta</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                         </div>  
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del cliente</label>
+                                <label for="">Nombre de planta</label>
                                 <input type="text">
                             </div>
                             <div class="label-input-n">
@@ -177,13 +177,6 @@
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
-                                </div>
-                            </div>
-        
-                            <div class="ocultar-detalles-n">
-                                <div>
                                     <span>Nombre</span>
                                     <p>BHP Mineral</p>
                                 </div>
@@ -209,13 +202,6 @@
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
-                            <div class="ocultar-detalles-n">
-                                <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
-                                </div>
-                            </div>
-        
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Nombre</span>

@@ -57,24 +57,26 @@
                     </div>
 
                     <div class="label-input-n">
-                        <label for="">Fecha fin despacho</label>
+                        <label for="">Rango de fecha inicio despacho</label>
                         <input type="date" class="input-fecha">
                     </div>
 
                     <div class="label-input-n">
-                        <label for="">Fecha inicio despacho</label>
+                        <label for="">Rango de fecha fin despacho </label>
                         <input type="date" class="input-fecha">
-                    </div>
+                    </div> 
                     <div class="label-input-n">
-                        <label for="">Tipo de carga</label>
+                        <label for="">Empresa de transportes</label>
                         <select name="" id="">
                             <option value="">Aeurus</option>
                         </select>
                     </div>
 
                     <div class="label-input-n">
-                        <label for="">Cliente destino</label>
-                        <input type="date" class="input-fecha">
+                        <label for="">Tipo de carga</label>
+                        <select name="" id="">
+                            <option value="">Aeurus</option>
+                        </select>
                     </div>
                 </div>
                 <div class="div-contenido-inicio-2-movil">
@@ -103,39 +105,35 @@
                 <div class="sub-contenido2">
                     <table>
                         <tr>
-                            <th><input type="checkbox" id="selectAll"> Patente</th>
+                            <th>Patente</th>
                             <th>Tipo de carga</th>
                             <th>Cliente destino</th>
                             <th>Planta</th>
                             <th>Tipo de bola</th>
-                            <th>Tipo de carga</th>
                             <th>Empresa de transporte</th>
-                            <th>Fecha de despacho</th>
-                            <th>Usuario MGTX</th>
+                            <th>Fecha y hora de salida a destino</th>
+                            {{-- <th>Usuario MGTX</th> --}}
                             <th></th>
                         </tr>
                         <tr>
-                            <td><input type="checkbox"> DDFF34</td>
+                            <td>DDFF34</td>
                             <td>Madera</td>
                             <td>Minera Escondida</td>
                             <td>Aeurus</td>
                             <td>Bola 1</td>
-                            <td>Carga 1</td>
                             <td>Empresa 1</td>
                             <td>22-02-2023</td>
-                            <td>Darío Gijón</td>
+                            {{-- <td>Darío Gijón</td> --}}
                             <td>
+                                <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-correo-enviado.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Correo enviado</span>
+                                </a>
                                 <a href="/detalle-carga" class="tooltip">
                                     <img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt="">
                                     <!-- ToolTip -->
                                     <span class="tooltiptext">Ver detalles</span>
-                                </a>
-
-                                {{-- No cabe --}}
-                                {{-- <a href="" class="tooltip">
-                                    <img src="{{ asset('web/imagenes/i-correo-enviado.png') }}" alt="">
-                                    <!-- ToolTip -->
-                                    <span class="tooltiptext">Correo enviado</span>
                                 </a>
                                 <a href="" class="tooltip">
                                     <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
@@ -146,24 +144,38 @@
                                     <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
                                     <!-- ToolTip -->
                                     <span class="tooltiptext">Eliminar</span>
-                                </a> --}}
+                                </a>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox"> DDFF34</td>
+                            <td>DDFF34</td>
                             <td>Madera</td>
                             <td>Minera Escondida</td>
                             <td>Aeurus</td>
                             <td>Bola 1</td>
-                            <td>Carga 1</td>
                             <td>Empresa 1</td>
                             <td>22-02-2023</td>
-                            <td>Darío Gijón</td>
+                            {{-- <td>Darío Gijón</td> --}}
                             <td>
+                                <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-correo-pendiente.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Correo pendiente</span>
+                                </a>
                                 <a href="/detalle-carga" class="tooltip">
                                     <img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt="">
                                     <!-- ToolTip -->
                                     <span class="tooltiptext">Ver detalles</span>
+                                </a>
+                                <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Editar</span>
+                                </a>
+                                <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Eliminar</span>
                                 </a>
                             </td>
                         </tr>
@@ -186,7 +198,6 @@
                             <span>Tipo de carga</span>
                             <p>Madera</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -194,7 +205,6 @@
                             <span>Cliente destino</span>
                             <p>Minera Escondida</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -202,15 +212,13 @@
                             <span>Chofer</span>
                             <p>Carlos Sanfuentes</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
                         <div>
-                            <span>Fecha de despacho</span>
+                            <span>Fecha y hora de salida a destino</span>
                             <p>22-02-2023</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -218,7 +226,25 @@
                             <span>Usuario MGTX</span>
                             <p>Darío Gijón</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                    </div>
+
+                    <div class="ocultar-detalles-n btn-4x4">
+                        <a href="" class="correo">
+                            <img src="{{ asset('web/imagenes/i-correo.svg') }}" alt="">
+                            <p>Correo enviado</p>
+                        </a>
+                        <a href="/detalle-carga" class="detalles">
+                            <img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt="">
+                            <p>Ver detalles</p>
+                        </a>
+                        <a href="" class="editar">
+                            <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
+                            <p>Editar</p>
+                        </a>
+                        <a href="" class="eliminar">
+                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                            <p>Eliminar</p>
+                        </a>
                     </div>
                 </div>
                 {{-- 2 --}}
@@ -235,7 +261,6 @@
                             <span>Tipo de carga</span>
                             <p>Madera</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -243,7 +268,6 @@
                             <span>Cliente destino</span>
                             <p>Minera Escondida</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -251,15 +275,13 @@
                             <span>Chofer</span>
                             <p>Carlos Sanfuentes</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
                         <div>
-                            <span>Fecha de despacho</span>
+                            <span>Fecha y hora de salida a destino</span>
                             <p>22-02-2023</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -267,7 +289,25 @@
                             <span>Usuario MGTX</span>
                             <p>Darío Gijón</p>
                         </div>
-                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                    </div>
+
+                    <div class="ocultar-detalles-n btn-4x4">
+                        <a href="" class="correo-pendiente">
+                            <img src="{{ asset('web/imagenes/i-correo-2.svg') }}" alt="">
+                            <p>Correo pendiente</p>
+                        </a>
+                        <a href="/detalle-carga" class="detalles">
+                            <img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt="">
+                            <p>Ver detalles</p>
+                        </a>
+                        <a href="" class="editar">
+                            <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
+                            <p>Editar</p>
+                        </a>
+                        <a href="" class="eliminar">
+                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                            <p>Eliminar</p>
+                        </a>
                     </div>
                 </div>
             </div>

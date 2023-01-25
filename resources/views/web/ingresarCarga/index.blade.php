@@ -39,6 +39,8 @@
                         <input type="text">
                     </div>
 
+                    <h3 class="subtitulo">Datos de la carga</h3>
+                    
                     <div class="label-input-n">
                         <label for="">Tipo de carga</label>
                         <select name="" id="">
@@ -112,9 +114,10 @@
                             <input type="file" name="" id="" class="file-simple" accept=".jpg,.jpeg,.png,.doc,.docx,.pdf">
                         </div>
                     </div>
-                    
-                    <h3 class="subtitulo">Imágenes</h3>
+                </div>
+                <div class="grid-carga-n grid-carga-n-row-2">
                     <div class="label-input-n">
+                        <h3 class="subtitulo">Imágenes</h3>
                         <label for="">Fotografía de la patente</label>
                         <div class="input-file-pro">
                             <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
@@ -133,6 +136,7 @@
                     </div>
 
                     <div class="label-input-n">
+                        <h3 class="subtitulo" style="visibility: hidden;">Imágenes</h3>
                         <label for="">Fotografía de la carga (horizontal)</label>
                         <div class="input-file-pro">
                             <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">

@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p class="menu-seleccionado">Mantenedor de clientes</p></a>
+            <a href="/choferes"><p class="menu-seleccionado">Mantenedor de choferes</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de clientes</h2>
-                        <a href="/nuevo-cliente" class="btn-contenido-inicio">
-                            <p>Crear nuevo cliente</p>
+                        <h2>Mantenedor de choferes</h2>
+                        <a href="/nuevo-chofer" class="btn-contenido-inicio">
+                            <p>Crear nuevo chofer</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                         </div>  
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del cliente</label>
+                                <label for="">Nombre del usuario</label>
                                 <input type="text">
                             </div>
                             <div class="label-input-n">
@@ -77,12 +77,14 @@
                         <div class="sub-contenido2">
                             <table>
                                 <tr>
-                                    <th><input type="checkbox" id="selectAll"> Nombre</th>
+                                    <th><input type="checkbox" id="selectAll">Nombre</th>
+                                    <th>Empresa de transportes</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -98,7 +100,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -114,7 +117,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -130,7 +134,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -146,7 +151,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -170,22 +176,22 @@
                         <div class="detalles-n">
                             <div>
                                 <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <p>Juan Pérez</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Nombre</span>
+                                    <p>Juan Pérez</p>
                                 </div>
                             </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Empresa de transportes</span>
+                                    <p>Empresa 1</p>
                                 </div>
                             </div>
         
@@ -204,22 +210,22 @@
                         <div class="detalles-n">
                             <div>
                                 <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <p>Juan Pérez</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Nombre</span>
+                                    <p>Juan Pérez</p>
                                 </div>
                             </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Empresa de transportes</span>
+                                    <p>Empresa 1</p>
                                 </div>
                             </div>
         

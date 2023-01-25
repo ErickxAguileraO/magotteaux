@@ -93,6 +93,24 @@
                     </div>
                 </div>
            </div>
+
+           <br>
+           <div class="grid-carga-n">
+                <div>
+                    <h3>Documentación</h3>
+                    <div class="datos-row">
+                        <div>
+                            <p>Guía de despacho</p>
+                            <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
+                        </div>
+
+                        <div>
+                            <p>Certificado de calidad</p>
+                            <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="div-contenido">
             <h3>Imágenes</h3>
