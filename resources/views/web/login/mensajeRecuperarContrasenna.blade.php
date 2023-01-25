@@ -8,7 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/style.css') }}">
 </head>
-<body>
+<body class="body-login">
     <div id="container">
         <div id="login">
             <div id="ingresar-login">

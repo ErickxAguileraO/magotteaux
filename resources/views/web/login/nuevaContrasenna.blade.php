@@ -8,7 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/style.css') }}">
 </head>
-<body>
+<body class="body-login">
     <div id="container">
         <div id="login">
             <div id="ingresar-login">
@@ -31,11 +31,10 @@
                     </div>
 
                     <button>
-                        <p>Iniciar contraseña</p>
+                        <p>Cambiar contraseña</p>
                         <img src="/public/img/btn-login.svg" alt="">
                     </button>
                 </form>
-                <a href="/resource/login/recuperar.html"><span>Olvidé mi contraseña</span></a>
             </div>
 
             <div class="flex-fondo-login">

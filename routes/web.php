@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('web.home');
 });
+Route::get('login', function () {
+    return view('web.login.index');
+});
 Route::get('confimarcion-nueva-contraseña', function () {
     return view('web.login.mensajeNuevaContrasenna');
 });
@@ -34,3 +37,14 @@ Route::get('recuperar-contraseña', function () {
 Route::get('nueva-carga', function () {
     return view('web.ingresarCarga.index');
 });
+Route::get('detalle-carga', function () {
+    return view('web.ingresarCarga.detalle');
+});
+
+Route::get('clientes', function () {
+    return view('web.clientes.index');
+});
+Route::get('crear-cliente', function () {
+    return view('web.clientes.crearCliente');
+});
+

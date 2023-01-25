@@ -14,13 +14,13 @@
         </nav>
         <div class="div-contenido">
             <div class="div-contenido-inicio">
-                <h2>Últimos viajes</h2>
+                <h2>Listado de cargas</h2>
                 <a href="/nueva-carga" class="btn-contenido-inicio">
                     <p>Ingresar nueva carga</p>
                     <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                 </a>
             </div>
-            <div class="sub-contenido">
+            <form action="" class="sub-contenido">
                 <div class="div-contenido-inicio-2">
                     <h2>Filtros de búsqueda</h2>
                     <div class="botones-contenido-inicio">
@@ -28,13 +28,13 @@
                             <p>Buscar</p>
                             <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
                         </button>
-                        <button class="btn-contenido-inicio2">
+                        <button class="btn-contenido-inicio2" type="reset">
                             <p>Limpiar filtro</p>
                             <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
                         </button>
                     </div>
                 </div>  
-                <form action="" class="fomulario-row-3">
+                <div class="fomulario-row-3">
                     <div class="label-input-n">
                         <label for="">Cliente destino</label>
                         <select name="" id="">
@@ -76,20 +76,20 @@
                         <label for="">Cliente destino</label>
                         <input type="date" class="input-fecha">
                     </div>
-                </form>
+                </div>
                 <div class="div-contenido-inicio-2-movil">
                     <div class="botones-contenido-inicio">
                         <button class="btn-contenido-inicio">
                             <p>Buscar</p>
                             <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
                         </button>
-                        <button class="btn-contenido-inicio2">
+                        <button class="btn-contenido-inicio2" type="reset">
                             <p>Limpiar filtro</p>
                             <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
                         </button>
                     </div>
                 </div> 
-            </div>
+            </form>
         </div>
         <div class="div-contenido">
             <div class="div-contenido-escritorio">
@@ -124,7 +124,30 @@
                             <td>Empresa 1</td>
                             <td>22-02-2023</td>
                             <td>Darío Gijón</td>
-                            <td><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></td>
+                            <td>
+                                <a href="/detalle-carga" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Ver detalles</span>
+                                </a>
+
+                                {{-- No cabe --}}
+                                {{-- <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-correo-enviado.png') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Correo enviado</span>
+                                </a>
+                                <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Editar</span>
+                                </a>
+                                <a href="" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Eliminar</span>
+                                </a> --}}
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"> DDFF34</td>
@@ -136,15 +159,15 @@
                             <td>Empresa 1</td>
                             <td>22-02-2023</td>
                             <td>Darío Gijón</td>
-                            <td><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></td>
+                            <td>
+                                <a href="/detalle-carga" class="tooltip">
+                                    <img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt="">
+                                    <!-- ToolTip -->
+                                    <span class="tooltiptext">Ver detalles</span>
+                                </a>
+                            </td>
                         </tr>
                     </table>
-                    <div class="numeros-pag">
-                        <a href="" class="numero-antes-despues"  style="margin-right: 35px">Anterior</a>
-                        <a href="" class="numero numero-seleccionado">1</a>
-                        <a href="" class="numero">2</a>
-                        <a href="" class="numero-antes-despues" style="margin-left: 35px">Siguiente</a>
-                    </div>
                 </div>
             </div>
             <div class="div-contenido-movil">
@@ -163,7 +186,7 @@
                             <span>Tipo de carga</span>
                             <p>Madera</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -171,7 +194,7 @@
                             <span>Cliente destino</span>
                             <p>Minera Escondida</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -179,7 +202,7 @@
                             <span>Chofer</span>
                             <p>Carlos Sanfuentes</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -187,7 +210,7 @@
                             <span>Fecha de despacho</span>
                             <p>22-02-2023</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -195,7 +218,7 @@
                             <span>Usuario MGTX</span>
                             <p>Darío Gijón</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
                 </div>
                 {{-- 2 --}}
@@ -212,7 +235,7 @@
                             <span>Tipo de carga</span>
                             <p>Madera</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -220,7 +243,7 @@
                             <span>Cliente destino</span>
                             <p>Minera Escondida</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -228,7 +251,7 @@
                             <span>Chofer</span>
                             <p>Carlos Sanfuentes</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -236,7 +259,7 @@
                             <span>Fecha de despacho</span>
                             <p>22-02-2023</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
 
                     <div class="ocultar-detalles-n">
@@ -244,9 +267,17 @@
                             <span>Usuario MGTX</span>
                             <p>Darío Gijón</p>
                         </div>
-                        <a href=""><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
+                        <a href="/detalle-carga"><img src="{{ asset('web/imagenes/i-ojo.svg') }}" alt=""></a>
                     </div>
                 </div>
+            </div>
+            <div class="numeros-pag">
+                <a href="" class="numero-antes-despues"  style="margin-right: 35px">Anterior</a>
+                <a href="" class="numero-antes-despues-movil"  style="margin-right: 35px"><img src="{{ asset('web/imagenes/i-antes.svg') }}" alt=""></a>
+                <a href="" class="numero numero-seleccionado">1</a>
+                <a href="" class="numero">2</a>
+                <a href="" class="numero-antes-despues" style="margin-left: 35px">Siguiente</a>
+                <a href="" class="numero-antes-despues-movil"  style="margin-left: 35px"><img src="{{ asset('web/imagenes/i-despues.svg') }}" alt=""></a>
             </div>
         </div>
         

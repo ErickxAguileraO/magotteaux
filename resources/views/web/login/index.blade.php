@@ -37,7 +37,7 @@
                         <img src="{{ asset('/web/imagenes/btn-login.svg') }}" alt="">
                     </button>
                 </form>
-                <a href="/resource/login/recuperar.html"><span>Olvidé mi contraseña</span></a>
+                <a href="/recuperar-contraseña"><span>Olvidé mi contraseña</span></a>
             </div>
 
             <div class="flex-fondo-login">
