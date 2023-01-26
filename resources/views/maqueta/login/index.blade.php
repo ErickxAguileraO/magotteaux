@@ -7,7 +7,6 @@
     <title>Magotteaux</title>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/style.css') }}">
-
 </head>
 <body class="body-login">
     <div id="container">
@@ -28,8 +27,8 @@
 
                     <label for="">Contraseña</label>
                     <div class="input">
-                        <input class="password" type="password" required>
-                        <p class="mostrar-pass">Mostrar</p>
+                        <input class="password" id="password" type="password" required>
+                        <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
                     </div>
 
                     <button>
@@ -45,5 +44,17 @@
             </div>
         </div>
     </div>
+    <script>
+        function mostrarContrasena(){
+            var tipo = document.getElementById("password");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+                document.getElementById("mostrar-pass").innerHTML = 'Ocultar'
+            }else{
+                tipo.type = "password";
+                document.getElementById("mostrar-pass").innerHTML = 'Mostrar'
+            }
+        }
+    </script>
 </body>
 </html>

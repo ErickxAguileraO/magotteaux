@@ -29,34 +29,44 @@ $('.cerrar-menu-sidebar-movil').click(function() {
 });
 
 
+// Imput file img
+const input = document.getElementById("input-file-preview");
+    const image = document.getElementById("image-selected");
+    //CAPTURAMOS LA IMAGEN SELECCIONADA
+    input.addEventListener("change", (e) => {
+    console.log(e.target.files[0]);
+    let imageBinary = null;
+    //LEEMOS EL BINARIO DE LA IMAGEN
+    const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = (e) => {
+            e.preventDefault();
+            image.setAttribute('src', e.target.result)
+        };
+});
+
+const input2 = document.getElementById("input-file-preview2");
+    const image2 = document.getElementById("image-selected2");
+    //CAPTURAMOS LA IMAGEN SELECCIONADA
+    input2.addEventListener("change", (e) => {
+    console.log(e.target.files[0]);
+    let imageBinary = null;
+    //LEEMOS EL BINARIO DE LA IMAGEN
+    const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = (e) => {
+            e.preventDefault();
+            image2.setAttribute('src', e.target.result)
+        };
+});
+
 // Mostrar pass
 
-
-// $(".mostrar-pass").click(function(){
-//     $(".password").get(0).type = 'text';
-// });
-
-// $(".mostrar-pass").click(function(){
-//     $(".password").val('');
-//     $(".password").get(0).type = 'password';
-// });
-
-// $(".mostrar-pass").focus(function(){
-//     $(".password").val('');
-//     $(".password").get(0).type = 'password';
-// });
-
-// $(".mostrar-pass").click(function(){
-//     $(".password").val('');
-//     $(".password").get(0).type = 'password';
-// });
-
-// $(".mostrar-pass").focusout(function(){
-//     var value = $(".password").val();
-
-//     if(value == '') {
-//         $(".password").get(0).type = 'text';
-//         $(".password").val($(".password").attr('default'));
-//     }
-
-// });
+function mostrarContrasena(){
+    var tipo = document.getElementById("password");
+    if(tipo.type == "password"){
+        tipo.type = "text";
+    }else{
+        tipo.type = "password";
+    }
+}
