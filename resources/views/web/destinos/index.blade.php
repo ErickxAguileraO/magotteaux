@@ -83,13 +83,13 @@
                         <div class="sub-contenido2">
                             <table>
                                 <tr>
-                                    <th><input type="checkbox" id="selectAll"> Nombre</th>
+                                    <th>Nombre</th>
                                     <th>Cliente asociado</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -106,7 +106,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -123,7 +123,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>eurus</td>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -140,7 +140,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -157,7 +157,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>

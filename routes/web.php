@@ -117,3 +117,7 @@ Route::get('choferes', function () {
 Route::get('nuevo-chofer', function () {
     return view('web.choferes.crear');
 });
+
+Route::get('editar-perfil', function () {
+    return view('web.perfil.index');
+});

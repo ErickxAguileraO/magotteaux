@@ -77,12 +77,12 @@
                         <div class="sub-contenido2">
                             <table>
                                 <tr>
-                                    <th><input type="checkbox" id="selectAll"> Nombre de país</th>
+                                    <th>Nombre de país</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -98,7 +98,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -114,7 +114,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -130,7 +130,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -146,7 +146,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">

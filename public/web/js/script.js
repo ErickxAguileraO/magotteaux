@@ -25,3 +25,36 @@ $('.cerrar-menu-sidebar-movil').click(function() {
     $(".menu-sidebar-movil").css("display", "grid");
     $(".cerrar-menu-sidebar-movil").css("display", "none");
 });
+
+
+// Mostrar pass
+
+
+// $(".mostrar-pass").click(function(){
+//     $(".password").get(0).type = 'text';
+// });
+
+// $(".mostrar-pass").click(function(){
+//     $(".password").val('');
+//     $(".password").get(0).type = 'password';
+// });
+
+// $(".mostrar-pass").focus(function(){
+//     $(".password").val('');
+//     $(".password").get(0).type = 'password';
+// });
+
+// $(".mostrar-pass").click(function(){
+//     $(".password").val('');
+//     $(".password").get(0).type = 'password';
+// });
+
+// $(".mostrar-pass").focusout(function(){
+//     var value = $(".password").val();
+
+//     if(value == '') {
+//         $(".password").get(0).type = 'text';
+//         $(".password").val($(".password").attr('default'));
+//     }
+
+// });

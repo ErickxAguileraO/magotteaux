@@ -28,8 +28,8 @@
 
                     <label for="">Contraseña</label>
                     <div class="input">
-                        <input type="password" required>
-                        <p>Mostrar</p>
+                        <input class="password" type="password" required>
+                        <p class="mostrar-pass">Mostrar</p>
                     </div>
 
                     <button>

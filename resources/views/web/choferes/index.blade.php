@@ -77,13 +77,13 @@
                         <div class="sub-contenido2">
                             <table>
                                 <tr>
-                                    <th><input type="checkbox" id="selectAll">Nombre</th>
+                                    <th>Nombre</th>
                                     <th>Empresa de transportes</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Juan Pérez</td>
                                     <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
@@ -100,7 +100,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Juan Pérez</td>
                                     <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
@@ -117,7 +117,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Juan Pérez</td>
                                     <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
@@ -134,7 +134,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Juan Pérez</td>
                                     <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
@@ -151,7 +151,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"> Juan Pérez</td>
+                                    <td>Juan Pérez</td>
                                     <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
