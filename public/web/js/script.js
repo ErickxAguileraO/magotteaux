@@ -1,3 +1,5 @@
+$('select').niceSelect();
+
 $(".user-menu").click(function(){
     $(".user-menu-drop").fadeToggle(300);
     event.preventDefault();

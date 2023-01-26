@@ -38,7 +38,7 @@
             <img class="flecha-menu-user" src="{{ asset('web/imagenes/i-flecha-menu.svg') }}" alt="">
         </div>
         <div class="user-menu-drop">
-            <a class="user-menu-n" href="">
+            <a class="user-menu-n" href="{{ route('cuenta.edit') }}">
                 <img src="{{ asset('web/imagenes/i-menu-user.svg') }}" alt="">
                 <p>Editar mi perfil</p>
             </a>
@@ -53,14 +53,13 @@
         </div>
     </header>
     @yield('content')
+    @include('imports.notifications')
 
 
     <!-- Scripts -->
-    <script src="{{ asset('/web/js/niceselect/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('/web/js/script.js') }}"></script>
-    <script>
-        $('select').niceSelect();
-    </script>
+    <script src="{{ asset('web/js/niceselect/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('web/js/script.js') }}"></script>
+    <script src="{{ asset('web/js/web.js') }}"></script>
     @stack('extra-js')
 
 </body>
