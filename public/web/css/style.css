@@ -30,6 +30,10 @@ a{
     line-height: 29px;
     color: #5E9B6D;
 }
+#mostrar-pass2, #mostrar-pass{
+    cursor: pointer;
+}
+
 /* ToolTip */
 .tooltip {
     position: relative;
@@ -653,11 +657,16 @@ td:last-child{
     border-radius: 10px;
     padding: 24px;
 }
+
 .grid-carga-n-row-2{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 298%;
+    max-width: 100%;
     gap: 20px;
+    border: 1px solid #EBEBEB;
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 20px;
 }
 .grid-carga-n .subtitulo{
     margin-bottom: 24px;
@@ -684,7 +693,18 @@ td:last-child{
     line-height: 24px;
     color: #5E9B6D;
 }
-
+.input-file-preview{
+    position: absolute;
+    width: 30% !important;
+    height: 140px !important;
+    color: transparent;
+    z-index: 1;
+}
+.image-selected{
+    position: absolute;
+    max-height: 150px;
+    max-width: 60%;
+}
 .file-simple{
     text-align: center !important;
     width: 42%;
@@ -707,7 +727,7 @@ td:last-child{
     border: 1px dashed #FF5400;
     border-radius: 5px;
     width: 100%;
-    height: 115px;
+    height: 150px;
 }
 .btn-input-file{
     display: grid;
@@ -945,6 +965,10 @@ td:last-child{
         display: grid;
         grid-template-columns: repeat(1,1fr);
         margin-top: 24px;
+    }
+    .grid-carga-n-row-2 {
+        display: grid;
+        grid-template-columns: 1fr;
     }
     /* Plantilla */
     .grid-row-menu-lateral{
