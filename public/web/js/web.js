@@ -70,15 +70,15 @@ const showNotificacion = (type, message) => {
 const notificaciones = () => {
 
     const message = document.getElementById('msg-notify');
-    const type = document.getElementById('tipo-notify');
-    const route = document.getElementById('ruta-notify');
-
+    const type = document.getElementById('type-notify');
+    const route = document.getElementById('route-notify');
+    
     if (!message || !type) return;
-
+    
     const Toast = configSweetAlert();
-
+    
     Toast.fire(themeSweetAlert(type.value, message.value));
-
+    
     if (!route) return;
     if (route.value) setTimeout(() => window.location.href = route.value, 2000);
 

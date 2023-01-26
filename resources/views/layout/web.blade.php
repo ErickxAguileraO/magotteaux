@@ -17,7 +17,8 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/web/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/web/js/niceselect/nice-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/web/plugins/niceselect/nice-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/plugins/sweetalert2/css/sweetalert2.min.css') }}" />
     
     @stack('extra-css')
 </head>
@@ -57,7 +58,8 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('web/js/niceselect/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('web/plugins/niceselect/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('web/plugins/sweetalert2/js/sweetalert2.min.js') }}"></script> 
     <script src="{{ asset('web/js/script.js') }}"></script>
     <script src="{{ asset('web/js/web.js') }}"></script>
     @stack('extra-js')
