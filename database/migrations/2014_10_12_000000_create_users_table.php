@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->id('usu_id');
             $table->string('usu_nombre');
             $table->string('usu_apellido');
-            $table->string('usu_rut')->nullable();
+            $table->string('usu_identificador')->nullable();
             $table->string('usu_celular');
             $table->string('usu_email');
             $table->boolean('usu_estado')->default(true);
@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
         User::create([
             'usu_nombre' => 'Admin',
             'usu_apellido' => 'Admin',
-            'usu_rut' => '12345678-9',
+            'usu_identificador' => '12345678-9',
             'usu_celular' => 123456789,
             'usu_email' => 'admin@aeurus.cl',
             'usu_password' => 'aeurus'

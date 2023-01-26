@@ -25,7 +25,7 @@ class User extends Authenticatable
         'usu_id',
         'usu_nombre',
         'usu_apellido',
-        'usu_rut',
+        'usu_identificador',
         'usu_celular',
         'usu_email',
         'usu_estado',
