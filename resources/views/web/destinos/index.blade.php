@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p class="menu-seleccionado">Mantenedor de clientes</p></a>
+            <a href="/destinos"><p class="menu-seleccionado">Mantenedor de destinos</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de clientes</h2>
-                        <a href="/nuevo-cliente" class="btn-contenido-inicio">
-                            <p>Crear nuevo cliente</p>
+                        <h2>Mantenedor de destinos</h2>
+                        <a href="/nuevo-destino" class="btn-contenido-inicio">
+                            <p>Crear nuevo destino</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,8 +40,14 @@
                         </div>  
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del cliente</label>
+                                <label for="">Nombre del destino</label>
                                 <input type="text">
+                            </div>
+                            <div class="label-input-n">
+                                <label for="">Cliente asociado</label>
+                                <select name="" id="">
+                                    <option value="">Cliente</option>
+                                </select>
                             </div>
                             <div class="label-input-n">
                                 <label for="">Estado</label>
@@ -78,26 +84,12 @@
                             <table>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Cliente asociado</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
                                     <td>Aeurus</td>
-                                    <td>Activo</td>
-                                    <td>
-                                        <a href="" class="tooltip">
-                                            <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                            <!-- ToolTip -->
-                                            <span class="tooltiptext">Editar</span>
-                                        </a>
-                                        <a href="" class="tooltip">
-                                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                            <!-- ToolTip -->
-                                            <span class="tooltiptext">Eliminar</span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -115,21 +107,6 @@
                                 </tr>
                                 <tr>
                                     <td>Aeurus</td>
-                                    <td>Activo</td>
-                                    <td>
-                                        <a href="" class="tooltip">
-                                            <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                            <!-- ToolTip -->
-                                            <span class="tooltiptext">Editar</span>
-                                        </a>
-                                        <a href="" class="tooltip">
-                                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                            <!-- ToolTip -->
-                                            <span class="tooltiptext">Eliminar</span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -146,6 +123,41 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>eurus</td>
+                                    <td>Aeurus</td>
+                                    <td>Activo</td>
+                                    <td>
+                                        <a href="" class="tooltip">
+                                            <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
+                                            <!-- ToolTip -->
+                                            <span class="tooltiptext">Editar</span>
+                                        </a>
+                                        <a href="" class="tooltip">
+                                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                                            <!-- ToolTip -->
+                                            <span class="tooltiptext">Eliminar</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Aeurus</td>
+                                    <td>Aeurus</td>
+                                    <td>Activo</td>
+                                    <td>
+                                        <a href="" class="tooltip">
+                                            <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
+                                            <!-- ToolTip -->
+                                            <span class="tooltiptext">Editar</span>
+                                        </a>
+                                        <a href="" class="tooltip">
+                                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                                            <!-- ToolTip -->
+                                            <span class="tooltiptext">Eliminar</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Aeurus</td>
                                     <td>Aeurus</td>
                                     <td>Activo</td>
                                     <td>
@@ -177,15 +189,15 @@
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Nombre</span>
+                                    <p>BHP Mineral</p>
                                 </div>
                             </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Cliente asociado</span>
+                                    <p>Aeurus</p>
                                 </div>
                             </div>
         
@@ -211,15 +223,15 @@
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Nombre</span>
+                                    <p>BHP Mineral</p>
                                 </div>
                             </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Cliente asociado</span>
+                                    <p>Aeurus</p>
                                 </div>
                             </div>
         

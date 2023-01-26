@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p class="menu-seleccionado">Mantenedor de clientes</p></a>
+            <a href="/patentes"><p class="menu-seleccionado">Mantenedor de patentes</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de clientes</h2>
-                        <a href="/nuevo-cliente" class="btn-contenido-inicio">
-                            <p>Crear nuevo cliente</p>
+                        <h2>Mantenedor de patentes</h2>
+                        <a href="/nueva-patente" class="btn-contenido-inicio">
+                            <p>Crear nueva patente</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,8 +40,10 @@
                         </div>  
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del cliente</label>
-                                <input type="text">
+                                <label for="">Empresa de transporte</label>
+                                <select name="" id="">
+                                    <option value="">Estado</option>
+                                </select>
                             </div>
                             <div class="label-input-n">
                                 <label for="">Estado</label>
@@ -77,12 +79,14 @@
                         <div class="sub-contenido2">
                             <table>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>Patente</th>
+                                    <th>Empresa de transportes</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td>DDFF12</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -98,7 +102,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td>DDFF12</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -114,7 +119,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td>DDFF12</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -130,7 +136,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td>DDFF12</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -146,7 +153,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td>DDFF12</td>
+                                    <td>Empresa 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -169,23 +177,23 @@
                         {{-- 1 --}}
                         <div class="detalles-n">
                             <div>
-                                <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <span>Patente</span>
+                                <p>DDFF12</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Patente</span>
+                                    <p>DDFF12</p>
                                 </div>
                             </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Empresa de transportes</span>
+                                    <p>Empresa 1</p>
                                 </div>
                             </div>
         
@@ -203,23 +211,23 @@
                         {{-- 2 --}}
                         <div class="detalles-n">
                             <div>
-                                <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <span>Patente</span>
+                                <p>DDFF12</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Patente</span>
+                                    <p>DDFF12</p>
                                 </div>
                             </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Empresa de transportes</span>
+                                    <p>Empresa 1</p>
                                 </div>
                             </div>
         

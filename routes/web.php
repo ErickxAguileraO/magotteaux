@@ -44,7 +44,80 @@ Route::get('detalle-carga', function () {
 Route::get('clientes', function () {
     return view('web.clientes.index');
 });
-Route::get('crear-cliente', function () {
-    return view('web.clientes.crearCliente');
+Route::get('nuevo-cliente', function () {
+    return view('web.clientes.crear');
 });
 
+Route::get('destinos', function () {
+    return view('web.destinos.index');
+});
+Route::get('nuevo-destino', function () {
+    return view('web.destinos.crear');
+});
+
+Route::get('plantas', function () {
+    return view('web.plantas.index');
+});
+Route::get('nueva-planta', function () {
+    return view('web.plantas.crear');
+});
+
+Route::get('puntos-de-carga', function () {
+    return view('web.puntosCarga.index');
+});
+Route::get('nuevo-punto-de-carga', function () {
+    return view('web.puntosCarga.crear');
+});
+
+Route::get('empresa-de-transporte', function () {
+    return view('web.empresaTransporte.index');
+});
+Route::get('nueva-empresa-de-transporte', function () {
+    return view('web.empresaTransporte.crear');
+});
+
+Route::get('tipos-de-carga', function () {
+    return view('web.tiposCarga.index');
+});
+Route::get('nuevo-tipo-de-carga', function () {
+    return view('web.tiposCarga.crear');
+});
+
+Route::get('tamaños-de-bola', function () {
+    return view('web.tamañosBola.index');
+});
+Route::get('nuevo-tamaño-de-bola', function () {
+    return view('web.tamañosBola.crear');
+});
+
+Route::get('paises', function () {
+    return view('web.paises.index');
+});
+Route::get('nuevo-pais', function () {
+    return view('web.paises.crear');
+});
+
+Route::get('usuarios', function () {
+    return view('web.usuarios.index');
+});
+Route::get('nuevo-usuario', function () {
+    return view('web.usuarios.crear');
+});
+
+Route::get('patentes', function () {
+    return view('web.patentes.index');
+});
+Route::get('nueva-patente', function () {
+    return view('web.patentes.crear');
+});
+
+Route::get('choferes', function () {
+    return view('web.choferes.index');
+});
+Route::get('nuevo-chofer', function () {
+    return view('web.choferes.crear');
+});
+
+Route::get('editar-perfil', function () {
+    return view('web.perfil.index');
+});

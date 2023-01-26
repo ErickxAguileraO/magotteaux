@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p class="menu-seleccionado">Mantenedor de clientes</p></a>
+            <a href="/usuarios"><p class="menu-seleccionado">Mantenedor de usuarios</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de clientes</h2>
-                        <a href="/nuevo-cliente" class="btn-contenido-inicio">
-                            <p>Crear nuevo cliente</p>
+                        <h2>Mantenedor de usuarios</h2>
+                        <a href="/nuevo-usuario" class="btn-contenido-inicio">
+                            <p>Crear nuevo usuario</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                         </div>  
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del cliente</label>
+                                <label for="">Nombre de usuario</label>
                                 <input type="text">
                             </div>
                             <div class="label-input-n">
@@ -77,12 +77,16 @@
                         <div class="sub-contenido2">
                             <table>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th><input type="checkbox" id="selectAll"> Nombre</th>
+                                    <th>Tipo de usuario</th>
+                                    <th>Planta</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Logística</td>
+                                    <td>Planta 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -98,7 +102,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Logística</td>
+                                    <td>Planta 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -114,7 +120,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Logística</td>
+                                    <td>Planta 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -130,7 +138,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Logística</td>
+                                    <td>Planta 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -146,7 +156,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeurus</td>
+                                    <td><input type="checkbox"> Aeurus</td>
+                                    <td>Logística</td>
+                                    <td>Planta 1</td>
                                     <td>Activo</td>
                                     <td>
                                         <a href="" class="tooltip">
@@ -170,25 +182,30 @@
                         <div class="detalles-n">
                             <div>
                                 <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <p>Aeurus</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
-                            <div class="ocultar-detalles-n">
-                                <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
-                                </div>
-                            </div>
         
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <p>Aeurus</p>
                                 </div>
                             </div>
-        
+                            <div class="ocultar-detalles-n">
+                                <div>
+                                    <span>Tipo de usuario</span>
+                                    <p>Logística</p>
+                                </div>
+                            </div>
+                            <div class="ocultar-detalles-n">
+                                <div>
+                                    <span>Planta</span>
+                                    <p>Planta 1</p>
+                                </div>
+                            </div>
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Estado</span>
@@ -204,25 +221,29 @@
                         <div class="detalles-n">
                             <div>
                                 <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <p>Aeurus</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Tipo de carga</span>
-                                    <p>Madera</p>
+                                    <span>Nombre</span>
+                                    <p>Aeurus</p>
                                 </div>
                             </div>
-        
                             <div class="ocultar-detalles-n">
                                 <div>
-                                    <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <span>Tipo de usuario</span>
+                                    <p>Logística</p>
                                 </div>
                             </div>
-        
+                            <div class="ocultar-detalles-n">
+                                <div>
+                                    <span>Planta</span>
+                                    <p>Planta 1</p>
+                                </div>
+                            </div>
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Estado</span>

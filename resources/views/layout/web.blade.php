@@ -40,7 +40,7 @@
         <div class="user-menu-drop">
             <a class="user-menu-n" href="">
                 <img src="{{ asset('web/imagenes/i-menu-user.svg') }}" alt="">
-                <p>Mi perfil</p>
+                <p>Editar mi perfil</p>
             </a>
             <a class="user-menu-n" href="">
                 <img src="{{ asset('web/imagenes/i-menu-admin.svg') }}" alt="">
