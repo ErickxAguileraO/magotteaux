@@ -12,19 +12,9 @@ class CuentaController extends Controller
 {
     public function edit()
     {
-        //dump(session()->all());
-       // $password = User::find($id);
+        dump(session()->all());
         session()->flash('success', 'Registro actualizado con éxito.');
 
-
-
         return view('sistema.perfil.edit');
-    }
-
-    public function update(UpdateCuentaRequest $request)
-    {
-
-        return redirect()->route('cliente.index')
-            ->with('success', 'Registro actualizado con éxito');
     }
 }

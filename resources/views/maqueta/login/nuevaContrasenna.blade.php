@@ -20,14 +20,14 @@
                 <form action="" class="login-formulario">
                     <label for="">Nueva contraseña</label>
                     <div class="input">
-                        <input type="password" required>
-                        <p>Mostrar</p>
+                        <input type="password" id="password" required>
+                        <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
                     </div>
 
                     <label for="">Confirmar contraseña</label>
                     <div class="input">
-                        <input type="password" required>
-                        <p>Mostrar</p>
+                        <input type="password" id="password2" required>
+                        <p id="mostrar-pass2" onclick="mostrarContrasena2()">Mostrar</p>
                     </div>
 
                     <button>
@@ -42,5 +42,27 @@
             </div>
         </div>
     </div>
+    <script>
+        function mostrarContrasena(){
+            var tipo = document.getElementById("password");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+                document.getElementById("mostrar-pass").innerHTML = 'Ocultar'
+            }else{
+                tipo.type = "password";
+                document.getElementById("mostrar-pass").innerHTML = 'Mostrar'
+            }
+        }
+        function mostrarContrasena2(){
+            var tipo = document.getElementById("password2");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+                document.getElementById("mostrar-pass2").innerHTML = 'Ocultar'
+            }else{
+                tipo.type = "password";
+                document.getElementById("mostrar-pass2").innerHTML = 'Mostrar'
+            }
+        }
+    </script>
 </body>
 </html>
