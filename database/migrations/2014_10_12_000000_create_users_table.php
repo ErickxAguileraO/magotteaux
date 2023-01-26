@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,6 +28,15 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        User::create([
+            'usu_nombre' => 'Admin',
+            'usu_apellido' => 'Admin',
+            'usu_rut' => '12345678-9',
+            'usu_celular' => 123456789,
+            'usu_email' => 'admin@aeurus.cl',
+            'usu_password' => 'aeurus'
+        ]);
     }
 
     /**

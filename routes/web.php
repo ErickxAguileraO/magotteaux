@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\Auth\AuthController;
+use App\Http\Controllers\Web\Auth\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('web.home');
 });
@@ -120,4 +123,9 @@ Route::get('nuevo-chofer', function () {
 
 Route::get('editar-perfil', function () {
     return view('web.perfil.index');
+});
+
+Route::group(['as' => 'web.'], function () {
+    Route::get('', [WebController::class, 'index'])->name('index');
+    Route::get('login', [AuthController::class, 'login'])->name('login');
 });
