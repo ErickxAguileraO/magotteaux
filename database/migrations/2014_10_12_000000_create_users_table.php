@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             'usu_identificador' => '12345678-9',
             'usu_celular' => 123456789,
             'usu_email' => 'admin@aeurus.cl',
-            'usu_password' => 'aeurus'
+            'usu_password' => '12345678'
         ]);
     }
 
