@@ -130,6 +130,7 @@ Route::get('editar-perfil', function () {
 Route::group(['as' => 'web.'], function () {
     Route::get('', [WebController::class, 'index'])->name('index');
     Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
 Route::group(['as' => 'cuenta.'], function () {

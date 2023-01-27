@@ -20,7 +20,7 @@
                 <h3>Ingresar nueva carga</h3>
            </section>
            <div class="grid-nueva-carga">
-                <div class="grid-carga-n">
+                <div class="grid-carga-n g-1">
                     <h3 class="subtitulo">Datos del camión</h3>
                     <div class="label-input-n">
                         <label for="">Empresa de transporte</label>
@@ -55,7 +55,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="grid-carga-n">
+                <div class="grid-carga-n g-2">
                     <h3 class="subtitulo">Ruta</h3>
                     <div class="label-input-n">
                         <label for="">Fecha y hora de carga</label>
@@ -90,7 +90,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="grid-carga-n">
+                <div class="grid-carga-n g-3">
                     <h3 class="subtitulo">Documentación</h3>
                     <div class="label-input-n">
                         <label for="">Guía de despacho</label>
@@ -115,35 +115,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid-carga-n grid-carga-n-row-2">
-                    <div class="label-input-n">
-                        <h3 class="subtitulo">Imágenes</h3>
-                        <label for="">Fotografía de la patente</label>
-                        <div class="input-file-pro">
-                            <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
-                            <input type="file" name="" id="" class="file-simple">
-                        </div>
-                        <div class="btn-input-file">
-                            <button class="btn-verde">
-                                <p>Subir imagen</p>
-                                <img src="{{ asset('web/imagenes/i-picture.svg') }}" alt="">
-                            </button>
-                            <button class="btn-rojo">
-                                <p>Eliminar imagen</p>
-                                <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                            </button>
-                        </div>
+            </div>
+            <div class="grid-carga-n-row-2 g-4">
+                <div class="label-input-n">
+                    <h3 class="subtitulo">Imágenes</h3>
+                    <label for="">Fotografía de la patente</label>
+                    <div class="input-file-pro">
+                        <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
+                        <input type="file" name="" id="input-file-preview2" class="file-simple input-file-preview">
+                        <img src="" alt="" id="image-selected2" class="image-selected">
                     </div>
+                    <div class="btn-input-file">
+                        <button class="btn-verde">
+                            <p>Subir imagen</p>
+                            <img src="{{ asset('web/imagenes/i-picture.svg') }}" alt="">
+                        </button>
+                        <button class="btn-rojo">
+                            <p>Eliminar imagen</p>
+                            <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
+                        </button>
+                    </div>
+                </div>
 
-                    <div class="label-input-n">
-                        <h3 class="subtitulo" style="visibility: hidden;">Imágenes</h3>
-                        <label for="">Fotografía de la carga (horizontal)</label>
-                        <div class="input-file-pro">
-                            <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
-                            <input type="file" name="" id="" class="file-simple">
-                        </div>
-                        <button class="btn-contenido-inicio btn-subir-imagen-2">Subir imagen<img src="{{ asset('web/imagenes/i-picture.svg') }}" alt=""></button>
+                <div class="label-input-n">
+                    <h3 class="subtitulo" style="visibility: hidden;">Imágenes</h3>
+                    <label for="">Fotografía de la carga (horizontal)</label>
+                    <div class="input-file-pro">
+                        <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
+                        <input type="file" name="" id="input-file-preview" class="file-simple input-file-preview">
+                        <img src="" alt="" id="image-selected" class="image-selected">
                     </div>
+                    <button class="btn-contenido-inicio btn-subir-imagen-2">Subir imagen<img src="{{ asset('web/imagenes/i-picture.svg') }}" alt=""></button>
                 </div>
             </div>
             <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">

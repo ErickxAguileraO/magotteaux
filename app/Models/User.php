@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
     protected $table = 'usuarios';
     protected $primaryKey = 'usu_id';
@@ -25,7 +26,7 @@ class User extends Authenticatable
         'usu_id',
         'usu_nombre',
         'usu_apellido',
-        'usu_rut',
+        'usu_identificador',
         'usu_celular',
         'usu_email',
         'usu_estado',
@@ -54,7 +55,7 @@ class User extends Authenticatable
 
     public function getAuthPassword()
     {
-        return $this->usu_contrasena;
+        return $this->usu_password;
     }
 
     /***********************************************************

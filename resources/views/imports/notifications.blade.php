@@ -3,5 +3,3 @@
    <input id="type-notify" type="hidden" value="{{ session()->get('type') }}">
    <input id="route-notify" type="hidden" value="{{ session()->get('route') }}">
 @endif
-
-@dump(session()->all())
