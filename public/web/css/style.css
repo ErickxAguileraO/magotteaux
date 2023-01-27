@@ -243,9 +243,12 @@ th {
     height: 48px;
     background: var(--colorAzulTerciario);
     border: 1px solid #EBEBEB;
-    margin-bottom: 40px;
     border-radius: 5px;
     padding: 0px 10px 0px 10px;
+}
+
+#ingresar-login .content-form{
+    margin-bottom: 40px;
 }
 
 #ingresar-login .input img{
@@ -828,6 +831,7 @@ td:last-child{
 *****************************************************/
 
 .alert-danger {
+    display: block;
     background: rgba(234, 84, 85, 0.12) !important;
     color: #ea5455 !important;
     border-radius: 5px;
