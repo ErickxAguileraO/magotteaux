@@ -8,6 +8,7 @@
    <title>Magotteaux</title>
    <!-- CSS -->
    <link rel="stylesheet" type="text/css" href="{{ asset('web/css/style.css') }}">
+   <link rel="stylesheet" href="{{ asset('web/plugins/sweetalert2/css/sweetalert2.min.css') }}">
 </head>
 
 <body class="body-login">
@@ -22,10 +23,12 @@
                <span>Un sistema pensado por MGTX</span>
             </div>
             <form action="{{ route('web.authenticate') }}" method="post" class="login-formulario">
-                @csrf
-               <label for="">Email</label>
-               <div class="input">
-                  <input type="email" name="email" required>
+               @csrf
+               <div class="content-form">
+                  <label for="">Email</label>
+                  <div class="input">
+                     <input type="email" name="email" value="{{ old('email') }}" required>
+                  </div>
                   @error('email')
                      <span class="invalid-feedback badge alert-danger" role="alert">
                         <strong>{{ $message }}</strong>
@@ -33,15 +36,17 @@
                   @enderror
                </div>
 
-               <label for="">Contraseña</label>
-               <div class="input">
-                  <input class="password" id="password" type="password" name="password" required>
+               <div class="content-form">
+                  <label for="">Contraseña</label>
+                  <div class="input">
+                     <input class="password" id="password" type="password" name="password" value="{{ old('password') }}" required>
+                     <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
+                  </div>
                   @error('password')
                      <span class="invalid-feedback badge alert-danger" role="alert">
                         <strong>{{ $message }}</strong>
                      </span>
                   @enderror
-                  <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
                </div>
 
                <button type="submit">
@@ -57,6 +62,11 @@
          </div>
       </div>
    </div>
+   @include('imports.notifications')
+
+   <script src="{{ asset('web/plugins/sweetalert2/js/sweetalert2.min.js') }}"></script>
+   <script src="{{ asset('web/js/web.js') }}"></script>
+
    <script>
       function mostrarContrasena() {
          var tipo = document.getElementById("password");
