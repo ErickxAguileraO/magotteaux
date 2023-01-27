@@ -134,7 +134,7 @@ Route::group(['as' => 'web.'], function () {
 
 Route::group(['as' => 'cuenta.'], function () {
     Route::get('cuenta/edit', [CuentaController::class, 'edit'])->name('edit');
-    Route::get('cuenta/update', [CuentaController::class, 'update'])->name('update');
+    Route::put('cuenta/update', [CuentaController::class, 'update'])->name('update');
 });
 
 Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {

@@ -24,16 +24,9 @@ class UpdateCuentaRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|max:12|min:8'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'password.required' => 'Debe ingresar su contraseña,',
-            'password.max' => 'Los caracteres máximos de la contraseña son 12',
-            'password.min' => 'Los caracteres mínimos de la contraseña son 8',
+            'password_actual' => 'required|max:255|min:2',
+            'password_nueva' => 'required|max:255|min:8',
+            'password_nueva_confirmar' => 'required|same:password_nueva'
         ];
     }
 }
