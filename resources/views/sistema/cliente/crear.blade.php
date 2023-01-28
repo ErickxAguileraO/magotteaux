@@ -5,63 +5,98 @@
 @section('content')
     @push('extra-css')
     @endpush
-    
+
     <div class="contenido">
         <nav class="sub-menu-nav">
-            <a><p>Usted está en</p></a>
+            <a>
+                <p>Usted está en</p>
+            </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes"><p>Mantenedor de clientes</p></a>
+            <a href="/clientes">
+                <p>Mantenedor de clientes</p>
+            </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/nuevo-cliente"><p class="menu-seleccionado">Nuevo cliente</p></a>
+            <a href="/nuevo-cliente">
+                <p class="menu-seleccionado">Nuevo cliente</p>
+            </a>
         </nav>
-        <div class="div-contenido">
-            <h3>Nuevo cliente</h3>
-            <div class="grid-mantenedor-n mantenedor-row-3">
-                <div class="label-input-n">
-                    <label for="">Razón social</label>
-                    <input type="text">
-                </div>
 
-                <div class="label-input-n">
-                    <label for="">Identificación (RUT, DNI, etc)</label>
-                    <input type="text">
-                </div>
+        <form method="POST" action="{{ route('cliente.store') }}" class="formulario-crear-cliente">
+            @csrf
+            @method('post')
+            <div class="div-contenido">
+                <h3>Nuevo cliente</h3>
+                <div class="grid-mantenedor-n mantenedor-row-3">
+                    <div class="label-input-n">
+                        <label for="">Razón social</label>
+                        <input type="text" name="crear_nombre_cliente" placeholder="Campo obligatorio" maxlength="255">
+                        @error('crear_nombre_cliente')
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-                <div class="label-input-n">
-                    <label for="">País</label>
-                    <select name="" id="">
-                        <option value="">Chile</option>
-                    </select>
-                </div>
+                    <div class="label-input-n">
+                        <label for="">Identificación (RUT, DNI, etc)</label>
+                        <input type="text" name="identificador_cliente" placeholder="Campo opcional" maxlength="255">
+                        @error('identificador_cliente')
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-                <div class="label-input-n">
-                    <label for="">Estado</label>
-                    <select name="" id="">
-                        <option value="">Activo</option>
-                    </select>
+                    <div class="label-input-n">
+                        <label for="">País</label>
+                        <select name="slc_crear_pais_cliente" id="id_pais_cliente">
+                            <option value="">Selecciones país (Campo obligatorio)</option>
+                            @foreach ($paises as $paises)
+                                <option value="{{$paises['pai_id']}}">{{$paises['pai_nombre']}}</option>
+                            @endforeach
+                        </select>
+                        @error('slc_crear_pais_cliente')
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="label-input-n">
+                        <label for="">Estado</label>
+                        <select name="slc_estado_cliente" id="id_estado_cliente">
+                            <option>Seleccione estado (Campo obligatorio)</option>
+                            <option value="0">Activo</option>
+                            <option value="1">Inactivo</option>
+                        </select>
+                        @error('slc_estado_cliente')
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
+                    <h2></h2>
+                    <div class="botones-contenido-inicio">
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ url()->previous() }}'">
+                            <p>Cancelar</p>
+                            <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
+                        </button>
+                        <button type="submit" class="btn-contenido-inicio">
+                            <p class="mostrar-escritorio">Guardar nuevo cliente</p>
+                            <p class="mostrar-movil">Guardar</p>
+                            <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
+                        </button>
+
+                    </div>
                 </div>
             </div>
-            <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
-                <h2></h2>
-                <div class="botones-contenido-inicio">
-                    <button class="btn-contenido-inicio2">
-                        <p>Cancelar</p>
-                        <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
-                    </button>
-                    <button class="btn-contenido-inicio">
-                        <p class="mostrar-escritorio">Guardar nuevo cliente</p>
-                        <p class="mostrar-movil">Guardar</p>
-                        <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
-                    </button>
-                    
-                </div>
-            </div> 
-        </div>
+        </form>
 
     </div>
 
     @push('extra-js')
-   
     @endpush
 
 @endsection
