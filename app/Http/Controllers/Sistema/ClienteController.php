@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Administracion;
+namespace App\Http\Controllers\Sistema;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD:app/Http/Controllers/Administracion/ClienteController.php
 use App\Http\Requests\cuenta\CreateClienteRequest;
 use App\Models\Cliente;
 use App\Models\Pais;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+=======
+>>>>>>> fed478310fb3b3413df8b61d022ff8aa37bdfaab:app/Http/Controllers/Sistema/ClienteController.php
 
 class ClienteController extends Controller
 {

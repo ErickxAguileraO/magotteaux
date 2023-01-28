@@ -21,11 +21,10 @@ class AuthController extends Controller
             'password' => $request->post('password')
         ]);
 
-        //redireccionar a dashboard dependiendo de su rol
+        if (!$isValid) return redirect()->back()->with(['message' => 'Correo o contraseña incorrecto', 'type' => 'error'])->withInput();
 
-        // dd(auth()->user());
-        // if(auth()->user())
-
-        return redirect()->route('web.index');
+        if (auth()->user()->hasRole('Admin')) return redirect()->route('cliente.index');
+        if (auth()->user()->hasRole('Cliente')) return redirect()->route('carga.index');
+        if (auth()->user()->hasRole('Logistica')) return redirect()->route('carga.index');
     }
 }

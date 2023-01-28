@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Administracion\ClienteController;
+use App\Http\Controllers\Sistema\ClienteController;
 use App\Http\Controllers\Auth\WebController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CargaController;
 use App\Http\Controllers\sistema\CuentaController;
 use Illuminate\Support\Facades\Route;
 
@@ -146,4 +147,8 @@ Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
     Route::post('update/{id}', [ClienteController::class, 'update'])->name('update')->whereNumber('id');
     Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
     Route::get('restore/{id}', [ClienteController::class, 'restore'])->name('restore')->whereNumber('id');
+});
+
+Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
+    Route::get('', [CargaController::class, 'index'])->name('index');
 });
