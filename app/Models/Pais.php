@@ -9,10 +9,7 @@ class Pais extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'paises';
     protected $primaryKey = 'pai_id';
-    // protected $fillable = [
-    //     "pai_nombre",
-    //     "pai_estado",
-    // ];
 }
