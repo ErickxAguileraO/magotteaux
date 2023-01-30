@@ -124,9 +124,9 @@ Route::get('nuevo-chofer', function () {
     return view('maqueta.choferes.crear');
 });
 
-Route::get('editar-perfil', function () {
-    return view('maqueta.perfil.index');
-});
+// Route::get('editar-perfil', function () {
+//     return view('maqueta.perfil.index');
+// });
 
 Route::group(['as' => 'web.'], function () {
     Route::get('', [WebController::class, 'index'])->name('index');
@@ -143,8 +143,8 @@ Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
     Route::get('', [ClienteController::class, 'index'])->name('index');
     Route::get('nuevo-cliente', [ClienteController::class, 'create'])->name('create');
     Route::post('store', [ClienteController::class, 'store'])->name('store');
-    Route::get('edit/{id}', [ClienteController::class, 'edit'])->name('edit')->whereNumber('id');
-    Route::post('update/{id}', [ClienteController::class, 'update'])->name('update')->whereNumber('id');
+    Route::get('editar-cliente/{id}', [ClienteController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [ClienteController::class, 'update'])->name('update');
     Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
     Route::get('restore/{id}', [ClienteController::class, 'restore'])->name('restore')->whereNumber('id');
 });

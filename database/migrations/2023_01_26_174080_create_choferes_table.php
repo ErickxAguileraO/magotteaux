@@ -17,7 +17,7 @@ class CreateChoferesTable extends Migration
             $table->id('cho_id');
             $table->string('cho_nombre');
             $table->string('cho_apellido');
-            $table->string('cho_identificador');
+            $table->string('cho_identificador')->nullable();
             $table->boolean('cho_estado')->default(true);
             $table->timestamps();
         });

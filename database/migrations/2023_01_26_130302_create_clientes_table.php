@@ -16,7 +16,7 @@ class CreateClientesTable extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id('cli_id');
             $table->string('cli_nombre');
-            $table->string('cli_identificacion');
+            $table->string('cli_identificacion')->nullable();
             $table->boolean('cli_estado')->default(true);
             $table->unsignedBigInteger('cli_pais_id');
             $table->softDeletes();
