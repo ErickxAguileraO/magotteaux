@@ -16,7 +16,7 @@ class CreateEmpresaTransportesTable extends Migration
         Schema::create('empresa_transportes', function (Blueprint $table) {
             $table->id('emt_id');
             $table->string('emt_nombre');
-            $table->string('emt_identificador');
+            $table->string('emt_identificacion');
             $table->boolean('emt_estado')->default(true);
         });
     }

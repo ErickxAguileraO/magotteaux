@@ -33,7 +33,7 @@ $('.cerrar-menu-sidebar-movil').click(function() {
 const input = document.getElementById("input-file-preview");
     const image = document.getElementById("image-selected");
     //CAPTURAMOS LA IMAGEN SELECCIONADA
-    input.addEventListener("change", (e) => {
+    input && input.addEventListener("change", (e) => {
     console.log(e.target.files[0]);
     let imageBinary = null;
     //LEEMOS EL BINARIO DE LA IMAGEN
@@ -48,7 +48,7 @@ const input = document.getElementById("input-file-preview");
 const input2 = document.getElementById("input-file-preview2");
     const image2 = document.getElementById("image-selected2");
     //CAPTURAMOS LA IMAGEN SELECCIONADA
-    input2.addEventListener("change", (e) => {
+    input2 && input2.addEventListener("change", (e) => {
     console.log(e.target.files[0]);
     let imageBinary = null;
     //LEEMOS EL BINARIO DE LA IMAGEN
