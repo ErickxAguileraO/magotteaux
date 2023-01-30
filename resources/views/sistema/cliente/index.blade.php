@@ -22,7 +22,7 @@
             <div class="div-contenido">
                <div class="div-contenido-inicio">
                   <h2>Mantenedor de clientes</h2>
-                  <a href="/nuevo-cliente" class="btn-contenido-inicio">
+                  <a href="{{ route('cliente.create') }}" class="btn-contenido-inicio">
                      <p>Crear nuevo cliente</p>
                      <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                   </a>

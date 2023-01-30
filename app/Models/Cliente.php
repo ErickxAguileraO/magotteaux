@@ -43,4 +43,9 @@ class Cliente extends Model
     /***********************************************************
      *  Eloquent relationships
      ************************************************************/
+
+    public function pais()
+    {
+        return $this->belongsTo(Pais::class, 'cli_pais_id', 'pai_id');
+    }
 }
