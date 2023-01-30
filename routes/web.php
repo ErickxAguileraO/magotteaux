@@ -50,9 +50,9 @@ Route::get('detalle-carga', function () {
 Route::get('clientes', function () {
     return view('maqueta.clientes.index');
 });
-Route::get('nuevo-cliente', function () {
-    return view('maqueta.clientes.crear');
-});
+//Route::get('nuevo-cliente', function () {
+  //  return view('sistema.cliente.crear');
+//});
 
 Route::get('destinos', function () {
     return view('maqueta.destinos.index');
@@ -124,9 +124,9 @@ Route::get('nuevo-chofer', function () {
     return view('maqueta.choferes.crear');
 });
 
-Route::get('editar-perfil', function () {
-    return view('maqueta.perfil.index');
-});
+// Route::get('editar-perfil', function () {
+//     return view('maqueta.perfil.index');
+// });
 
 Route::group(['middleware' => ['guest'], 'as' => 'web.'], function () {
     Route::get('', [AuthController::class, 'login'])->name('index');
@@ -141,6 +141,12 @@ Route::group(['as' => 'cuenta.'], function () {
 
 Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
     Route::get('', [ClienteController::class, 'index'])->name('index');
+    Route::get('nuevo-cliente', [ClienteController::class, 'create'])->name('create');
+    Route::post('store', [ClienteController::class, 'store'])->name('store');
+    Route::get('editar-cliente/{id}', [ClienteController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [ClienteController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
+    Route::get('restore/{id}', [ClienteController::class, 'restore'])->name('restore')->whereNumber('id');
 });
 
 Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
