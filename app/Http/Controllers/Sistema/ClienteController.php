@@ -7,14 +7,14 @@ use App\Http\Requests\cuenta\CreateClienteRequest;
 use App\Http\Requests\cuenta\UpdateClienteRequest;
 use App\Models\Cliente;
 use App\Models\Pais;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
     public function index()
     {
-        return view('sistema.cliente.index');
+        $clientes = Cliente::withFilters()->get();
+
+        return view('sistema.cliente.index', compact('clientes'));
     }
 
 
@@ -44,6 +44,7 @@ class ClienteController extends Controller
         $paises = Pais::all();
         return view('sistema.cliente.editar', compact('cliente', 'paises'));
     }
+    
     public function update(UpdateClienteRequest $request, int $id)
     {
 

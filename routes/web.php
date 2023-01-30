@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('maqueta.home');
-});
-Route::get('login', function () {
-    return view('maqueta.login.index');
-});
+// Route::get('/', function () {
+//     return view('maqueta.home');
+// });
+// Route::get('login', function () {
+//     return view('maqueta.login.index');
+// });
 Route::get('confimarcion-nueva-contraseña', function () {
     return view('maqueta.login.mensajeNuevaContrasenna');
 });
