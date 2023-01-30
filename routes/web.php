@@ -4,7 +4,9 @@ use App\Http\Controllers\Sistema\ClienteController;
 use App\Http\Controllers\Auth\WebController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CargaController;
-use App\Http\Controllers\sistema\CuentaController;
+use App\Http\Controllers\Sistema\CuentaController;
+use App\Http\Controllers\Sistema\DestinoController;
+use App\Http\Controllers\Sistema\PaisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,12 +98,12 @@ Route::get('nuevo-tamaño-de-bola', function () {
     return view('maqueta.tamañosBola.crear');
 });
 
-Route::get('paises', function () {
-    return view('maqueta.paises.index');
-});
-Route::get('nuevo-pais', function () {
-    return view('maqueta.paises.crear');
-});
+// Route::get('paises', function () {
+//     return view('maqueta.paises.index');
+// });
+// Route::get('nuevo-pais', function () {
+//     return view('maqueta.paises.crear');
+// });
 
 Route::get('usuarios', function () {
     return view('maqueta.usuarios.index');
@@ -145,8 +147,22 @@ Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
     Route::post('store', [ClienteController::class, 'store'])->name('store');
     Route::get('editar-cliente/{id}', [ClienteController::class, 'edit'])->name('edit');
     Route::post('update/{id}', [ClienteController::class, 'update'])->name('update');
-    Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
-    Route::get('restore/{id}', [ClienteController::class, 'restore'])->name('restore')->whereNumber('id');
+});
+
+Route::group(['prefix' => 'destino', 'as' => 'destino.'], function () {
+    Route::get('', [DestinoController::class, 'index'])->name('index');
+    Route::get('nuevo-destino', [DestinoController::class, 'create'])->name('create');
+    Route::post('store', [DestinoController::class, 'store'])->name('store');
+    Route::get('editar-destino/{id}', [DestinoController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [DestinoController::class, 'update'])->name('update');
+});
+
+Route::group(['prefix' => 'pais', 'as' => 'pais.'], function () {
+    Route::get('', [PaisController::class, 'index'])->name('index');
+    Route::get('nuevo-pais', [PaisController::class, 'create'])->name('create');
+    Route::post('store', [PaisController::class, 'store'])->name('store');
+    Route::get('editar-pais/{id}', [PaisController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [PaisController::class, 'update'])->name('update');
 });
 
 Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
