@@ -128,8 +128,8 @@ Route::get('editar-perfil', function () {
     return view('maqueta.perfil.index');
 });
 
-Route::group(['as' => 'web.'], function () {
-    Route::get('', [WebController::class, 'index'])->name('index');
+Route::group(['middleware' => ['guest'], 'as' => 'web.'], function () {
+    Route::get('', [AuthController::class, 'login'])->name('index');
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 });
