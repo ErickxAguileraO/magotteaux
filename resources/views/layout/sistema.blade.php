@@ -47,7 +47,7 @@
             <img src="{{ asset('web/imagenes/i-menu-admin.svg') }}" alt="">
             <p>Administración</p>
          </a>
-         <a class="user-menu-n" href="">
+         <a class="user-menu-n" href="{{ route('web.logout') }}">
             <img src="{{ asset('web/imagenes/cerrar-sesion.svg') }}" alt="">
             <p>Cerrar sesión</p>
          </a>
