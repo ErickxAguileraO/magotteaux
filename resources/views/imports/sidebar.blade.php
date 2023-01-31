@@ -30,7 +30,7 @@
         <p>Plantas</p>
     </a>
 
-    <a href="/puntos-de-carga" class="op-sidebar">
+    <a href="{{ route('puntoCarga.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-puntoscarga-sb.svg') }}" alt="">
         <p>Puntos de carga</p>
     </a>

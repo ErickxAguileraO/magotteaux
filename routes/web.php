@@ -8,6 +8,7 @@ use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
 use App\Http\Controllers\Sistema\PaisController;
 use App\Http\Controllers\Sistema\PlantaController;
+use App\Http\Controllers\Sistema\PuntoCargaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,12 +72,12 @@ Route::get('nuevo-destino', function () {
 //     return view('maqueta.plantas.crear');
 // });
 
-Route::get('puntos-de-carga', function () {
-    return view('maqueta.puntosCarga.index');
-});
-Route::get('nuevo-punto-de-carga', function () {
-    return view('maqueta.puntosCarga.crear');
-});
+// Route::get('puntos-de-carga', function () {
+//     return view('maqueta.puntosCarga.index');
+// });
+// Route::get('nuevo-punto-de-carga', function () {
+//     return view('maqueta.puntosCarga.crear');
+// });
 
 Route::get('empresa-de-transporte', function () {
     return view('maqueta.empresaTransporte.index');
@@ -172,6 +173,14 @@ Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
     Route::post('store', [PlantaController::class, 'store'])->name('store');
     Route::get('editar-planta/{id}', [PlantaController::class, 'edit'])->name('edit');
     Route::post('update/{id}', [PlantaController::class, 'update'])->name('update');
+});
+
+Route::group(['prefix' => 'puntoCarga', 'as' => 'puntoCarga.'], function () {
+    Route::get('', [PuntoCargaController::class, 'index'])->name('index');
+    Route::get('nuevo-puntoCarga', [PuntoCargaController::class, 'create'])->name('create');
+    Route::post('store', [PuntoCargaController::class, 'store'])->name('store');
+    Route::get('editar-puntoCarga/{id}', [PuntoCargaController::class, 'edit'])->name('edit');
+    Route::post('update', [PuntoCargaController::class, 'update'])->name('update');
 });
 
 Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
