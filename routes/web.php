@@ -7,6 +7,7 @@ use App\Http\Controllers\CargaController;
 use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
 use App\Http\Controllers\Sistema\PaisController;
+use App\Http\Controllers\Sistema\PlantaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,12 +64,12 @@ Route::get('nuevo-destino', function () {
     return view('maqueta.destinos.crear');
 });
 
-Route::get('plantas', function () {
-    return view('maqueta.plantas.index');
-});
-Route::get('nueva-planta', function () {
-    return view('maqueta.plantas.crear');
-});
+// Route::get('plantas', function () {
+//     return view('maqueta.plantas.index');
+// });
+// Route::get('nueva-planta', function () {
+//     return view('maqueta.plantas.crear');
+// });
 
 Route::get('puntos-de-carga', function () {
     return view('maqueta.puntosCarga.index');
@@ -163,6 +164,14 @@ Route::group(['prefix' => 'pais', 'as' => 'pais.'], function () {
     Route::post('store', [PaisController::class, 'store'])->name('store');
     Route::get('editar-pais/{id}', [PaisController::class, 'edit'])->name('edit');
     Route::post('update/{id}', [PaisController::class, 'update'])->name('update');
+});
+
+Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
+    Route::get('', [PlantaController::class, 'index'])->name('index');
+    Route::get('nuevo-planta', [PlantaController::class, 'create'])->name('create');
+    Route::post('store', [PlantaController::class, 'store'])->name('store');
+    Route::get('editar-planta/{id}', [PlantaController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [PlantaController::class, 'update'])->name('update');
 });
 
 Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {

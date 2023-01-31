@@ -12,7 +12,7 @@
             <p>Usted está en</p>
          </a>
          <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-         <a href="/clientes">
+         <a href="{{ route('cliente.index') }}">
             <p class="menu-seleccionado">Mantenedor de clientes</p>
          </a>
       </nav>

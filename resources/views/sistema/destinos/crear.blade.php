@@ -10,9 +10,9 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/destinos"><p class="menu-seleccionado">Mantenedor de destinos</p></a>
+            <a href="{{ route('destino.index') }}"><p class="menu-seleccionado">Mantenedor de destinos</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/nuevo-destino"><p class="menu-seleccionado">Nuevo destino</p></a>
+            <a href="{{ route('destino.create') }}"><p class="menu-seleccionado">Nuevo destino</p></a>
         </nav>
 
         <div class="div-contenido">
