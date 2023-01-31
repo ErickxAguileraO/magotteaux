@@ -27,4 +27,15 @@ class AuthController extends Controller
         if (auth()->user()->hasRole('Cliente')) return redirect()->route('carga.index');
         if (auth()->user()->hasRole('Logistica')) return redirect()->route('carga.index');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return redirect()->route('web.login');
+    }
 }
