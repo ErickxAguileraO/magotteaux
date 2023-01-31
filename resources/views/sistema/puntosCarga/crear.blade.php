@@ -1,8 +1,10 @@
-@extends('layout.sistema')
+@extends('layout.web')
 
 @section('title', 'Home')
 
 @section('content')
+    @push('extra-css')
+    @endpush
 
     <div class="contenido">
         <nav class="sub-menu-nav">
@@ -10,25 +12,25 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('cliente.index') }}">
-                <p>Mantenedor de clientes</p>
+            <a href="{{ route('puntoCarga.index') }}">
+                <p>Mantenedor de puntos de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('cliente.create') }}">
-                <p class="menu-seleccionado">Nuevo cliente</p>
+            <a href="{{ route('puntoCarga.create') }}">
+                <p class="menu-seleccionado">Nuevo punto de carga</p>
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('cliente.store') }}" class="formulario-crear-cliente">
+        <form method="POST" action="{{ route('puntoCarga.store') }}" class="formulario-crear-pais">
             @csrf
             @method('post')
             <div class="div-contenido">
-                <h3>Nuevo cliente</h3>
+                <h3>Nuevo punto de carga</h3>
                 <div class="grid-mantenedor-n mantenedor-row-3">
                     <div class="label-input-n">
-                        <label for="">Razón social</label>
-                        <input type="text" name="crear_nombre_cliente" placeholder="Campo obligatorio" maxlength="255" value="{{ old('crear_nombre_cliente') }}">
-                        @error('crear_nombre_cliente')
+                        <label for="">Nombre del punto de carga</label>
+                        <input type="text" name="nombre_puntoCarga">
+                        @error('nombre_puntoCarga')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -36,24 +38,14 @@
                     </div>
 
                     <div class="label-input-n">
-                        <label for="">Identificación (RUT, DNI, etc)</label>
-                        <input type="text" name="identificador_cliente" placeholder="Campo opcional" maxlength="255" value="{{ old('identificador_cliente') }}">
-                        @error('identificador_cliente')
-                            <span class="invalid-feedback badge alert-danger" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="label-input-n">
-                        <label for="">País</label>
-                        <select name="slc_crear_pais_cliente" id="id_pais_cliente">
-                            <option value="">Selecciones país (Campo obligatorio)</option>
-                            @foreach ($paises as $paises)
-                                <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
+                        <label for="">Planta</label>
+                        <select name="slc_planta_puntoCarga" id="">
+                            <option value="">Selecciones planta (Campo obligatorio)</option>
+                            @foreach ($planta as $planta)
+                                <option value="{{ $planta['pla_id'] }}">{{ $planta['pla_nombre'] }}</option>
                             @endforeach
                         </select>
-                        @error('slc_crear_pais_cliente')
+                        @error('slc_planta_puntoCarga')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -62,12 +54,11 @@
 
                     <div class="label-input-n">
                         <label for="">Estado</label>
-                        <select name="slc_estado_cliente" id="id_estado_cliente">
-                            <option>Seleccione estado (Campo obligatorio)</option>
+                        <select name="slc_estado_puntoCarga" id="" value="{{ old('slc_estado_pais') }}">
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>
-                        @error('slc_estado_cliente')
+                        @error('slc_estado_puntoCarga')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -77,12 +68,12 @@
                 <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
                     <h2></h2>
                     <div class="botones-contenido-inicio">
-                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('cliente.index') }}'">
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('puntoCarga.index') }}'">
                             <p>Cancelar</p>
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
                         <button type="submit" class="btn-contenido-inicio">
-                            <p class="mostrar-escritorio">Guardar nuevo cliente</p>
+                            <p class="mostrar-escritorio">Guardar nuevo punto</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
                         </button>
@@ -93,5 +84,7 @@
         </form>
     </div>
 
+    @push('extra-js')
+    @endpush
 
 @endsection

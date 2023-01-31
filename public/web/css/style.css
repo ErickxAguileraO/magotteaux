@@ -866,6 +866,13 @@ td:last-child{
         gap: 10px;
         margin-top: 12px;
     }
+    .sub-contenido2{
+        margin-top: 44px;
+        overflow-x: scroll;
+    }
+    .scroll{
+        width: 140% !important;
+    }
 }
 
 @media (max-width: 992px) {  

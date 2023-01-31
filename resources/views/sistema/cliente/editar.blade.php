@@ -10,11 +10,11 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes">
+            <a href="{{ route('cliente.index') }}">
                 <p>Mantenedor de clientes</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/editar-cliente">
+            <a href="{{ route('cliente.store') }}">
                 <p class="menu-seleccionado">Editar cliente</p>
             </a>
         </nav>

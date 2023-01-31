@@ -9,7 +9,7 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/editar-perfil">
+            <a href="{{ route('cuenta.edit') }}">
                 <p class="menu-seleccionado">Editar mi perfil</p>
             </a>
         </nav>
