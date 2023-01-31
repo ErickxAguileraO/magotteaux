@@ -48,7 +48,6 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_crear_pais_cliente" id="id_pais_cliente">
-                            <option value="">Selecciones país (Campo obligatorio)</option>
                             @foreach ($paises as $paises)
                                 <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
                             @endforeach
@@ -63,7 +62,6 @@
                     <div class="label-input-n">
                         <label for="">Estado</label>
                         <select name="slc_estado_cliente" id="id_estado_cliente">
-                            <option>Seleccione estado (Campo obligatorio)</option>
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>

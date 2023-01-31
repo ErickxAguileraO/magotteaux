@@ -40,7 +40,7 @@
         <p>Empresa de transporte</p>
     </a>
 
-    <a href="/tipos-de-carga" class="op-sidebar">
+    <a href="{{ route('tipo.carga.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-tiposcarga-sb.svg') }}" alt="">
         <p>Tipos de carga</p>
     </a>

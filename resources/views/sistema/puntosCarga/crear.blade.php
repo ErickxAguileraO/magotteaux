@@ -1,4 +1,4 @@
-@extends('layout.web')
+@extends('layout.sistema')
 
 @section('title', 'Home')
 
@@ -29,7 +29,7 @@
                 <div class="grid-mantenedor-n mantenedor-row-3">
                     <div class="label-input-n">
                         <label for="">Nombre del punto de carga</label>
-                        <input type="text" name="nombre_puntoCarga">
+                        <input type="text" name="nombre_puntoCarga" value="{{ old('nombre_puntoCarga') }}">
                         @error('nombre_puntoCarga')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -40,7 +40,6 @@
                     <div class="label-input-n">
                         <label for="">Planta</label>
                         <select name="slc_planta_puntoCarga" id="">
-                            <option value="">Selecciones planta (Campo obligatorio)</option>
                             @foreach ($planta as $planta)
                                 <option value="{{ $planta['pla_id'] }}">{{ $planta['pla_nombre'] }}</option>
                             @endforeach
@@ -54,7 +53,7 @@
 
                     <div class="label-input-n">
                         <label for="">Estado</label>
-                        <select name="slc_estado_puntoCarga" id="" value="{{ old('slc_estado_pais') }}">
+                        <select name="slc_estado_puntoCarga" id="">
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>

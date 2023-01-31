@@ -10,6 +10,7 @@ use App\Http\Controllers\Sistema\EmpresaTransporteController;
 use App\Http\Controllers\Sistema\PaisController;
 use App\Http\Controllers\Sistema\PlantaController;
 use App\Http\Controllers\Sistema\PuntoCargaController;
+use App\Http\Controllers\Sistema\TipoCargaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,12 +92,12 @@ Route::get('nuevo-destino', function () {
 //     return view('maqueta.empresaTransporte.crear');
 // });
 
-Route::get('tipos-de-carga', function () {
-    return view('maqueta.tiposCarga.index');
-});
-Route::get('nuevo-tipo-de-carga', function () {
-    return view('maqueta.tiposCarga.crear');
-});
+// Route::get('tipos-de-carga', function () {
+//     return view('maqueta.tiposCarga.index');
+// });
+// Route::get('nuevo-tipo-de-carga', function () {
+//     return view('maqueta.tiposCarga.crear');
+// });
 
 Route::get('tamaños-de-bola', function () {
     return view('maqueta.tamañosBola.index');
@@ -202,6 +203,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store', [EmpresaTransporteController::class, 'store'])->name('store');
         Route::get('editar-empresa-transporte/{id}', [EmpresaTransporteController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
+    });
+
+    Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
+        Route::get('', [TipoCargaController::class, 'index'])->name('index');
+        Route::get('nuevo-tipo-carga', [TipoCargaController::class, 'create'])->name('create');
+        Route::post('store', [TipoCargaController::class, 'store'])->name('store');
+        Route::get('editar-tipo-carga/{id}', [TipoCargaController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TipoCargaController::class, 'update'])->name('update');
     });
 
     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
