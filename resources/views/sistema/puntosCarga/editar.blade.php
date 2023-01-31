@@ -53,7 +53,7 @@
 
                     <div class="label-input-n">
                         <label for="">Estado</label>
-                        <select name="slc_estado_puntoCarga" id="" value="{{ old('slc_estado_pais') }}">
+                        <select name="slc_estado_puntoCarga" id="">
                             <option value="0" {{ old('slc_estado_puntoCarga', $puntoCarga->puc_estado) == 0 ? 'selected' : '' }}>Inactivo</option>
                             <option value="1" {{ old('slc_estado_puntoCarga', $puntoCarga->puc_estado) == 1 ? 'selected' : '' }}>Activo</option>
                         </select>

@@ -14,12 +14,12 @@
                 <p>Mantenedor de tipos de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('tipo.carga.create') }}">
+            <a href="{{ route('tipo.carga.update', ['id' => $tipoCarga->tic_id]) }}">
                 <p class="menu-seleccionado">Nuevo tipo de carga</p>
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('tipo.carga.store') }}" class="formulario-crear-pais">
+        <form method="POST" action="{{ route('tipo.carga.update', ['id' => $tipoCarga->tic_id]) }} " class="formulario-crear-pais">
             @csrf
             @method('post')
             <div class="div-contenido">
@@ -27,7 +27,7 @@
                 <div class="grid-mantenedor-n mantenedor-row-2">
                     <div class="label-input-n">
                         <label for="">Nombre de la carga</label>
-                        <input type="text" name="nombre_tipo_carga" value="{{ old('nombre_tipo_carga') }}">
+                        <input type="text" name="nombre_tipo_carga" maxlength="255" value="{{ old('nombre_tipo_carga', $tipoCarga->tic_nombre) }}">
                         @error('nombre_tipo_carga')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -37,8 +37,8 @@
                     <div class="label-input-n">
                         <label for="">Estado</label>
                         <select name="slc_estado_tipo_carga" id="">
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                            <option value="0" {{ old('slc_estado_tipo_carga', $tipoCarga->tic_estado) == 0 ? 'selected' : '' }}>Inactivo</option>
+                            <option value="1" {{ old('slc_estado_tipo_carga', $tipoCarga->tic_estado) == 1 ? 'selected' : '' }}>Activo</option>
                         </select>
                     </div>
                 </div>

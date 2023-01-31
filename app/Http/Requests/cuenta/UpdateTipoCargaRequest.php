@@ -24,7 +24,8 @@ class UpdateTipoCargaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre_tipo_carga' => 'required|max:255',
+            'slc_estado_tipo_carga' => 'required|boolean|numeric'
         ];
     }
 }
