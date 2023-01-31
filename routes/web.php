@@ -205,20 +205,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
     });
 
-<<<<<<< HEAD
-Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
-    Route::get('', [TipoCargaController::class, 'index'])->name('index');
-    Route::get('nuevo-tipo-carga', [TipoCargaController::class, 'create'])->name('create');
-    Route::post('store', [TipoCargaController::class, 'store'])->name('store');
-    Route::get('editar-tipo-carga/{id}', [TipoCargaController::class, 'edit'])->name('edit');
-    Route::post('update/{id}', [TipoCargaController::class, 'update'])->name('update');
-});
+    Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
+        Route::get('', [TipoCargaController::class, 'index'])->name('index');
+        Route::get('nuevo-tipo-carga', [TipoCargaController::class, 'create'])->name('create');
+        Route::post('store', [TipoCargaController::class, 'store'])->name('store');
+        Route::get('editar-tipo-carga/{id}', [TipoCargaController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TipoCargaController::class, 'update'])->name('update');
+    });
 
-Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
-    Route::get('', [CargaController::class, 'index'])->name('index');
-=======
     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
         Route::get('', [CargaController::class, 'index'])->name('index');
     });
->>>>>>> 42117b57ea78c85efdb912f688cd41f33b62ecb5
 });
