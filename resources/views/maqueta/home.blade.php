@@ -5,7 +5,7 @@
 @section('content')
     @push('extra-css')
     @endpush
-    
+
     <div class="contenido">
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
@@ -33,7 +33,7 @@
                             <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
                         </button>
                     </div>
-                </div>  
+                </div>
                 <div class="fomulario-row-3">
                     <div class="label-input-n">
                         <label for="">Cliente destino</label>
@@ -64,7 +64,7 @@
                     <div class="label-input-n">
                         <label for="">Rango de fecha fin despacho </label>
                         <input type="date" class="input-fecha">
-                    </div> 
+                    </div>
                     <div class="label-input-n">
                         <label for="">Empresa de transportes</label>
                         <select name="" id="">
@@ -90,7 +90,7 @@
                             <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
                         </button>
                     </div>
-                </div> 
+                </div>
             </form>
         </div>
         <div class="div-contenido">
@@ -320,11 +320,11 @@
                 <a href="" class="numero-antes-despues-movil"  style="margin-left: 35px"><img src="{{ asset('web/imagenes/i-despues.svg') }}" alt=""></a>
             </div>
         </div>
-        
+
     </div>
 
     @push('extra-js')
-   
+
     @endpush
 
 @endsection

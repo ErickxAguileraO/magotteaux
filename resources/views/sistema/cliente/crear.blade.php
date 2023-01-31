@@ -10,11 +10,11 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes">
+            <a href="{{ route('cliente.index') }}">
                 <p>Mantenedor de clientes</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/nuevo-cliente">
+            <a href="{{ route('cliente.create') }}">
                 <p class="menu-seleccionado">Nuevo cliente</p>
             </a>
         </nav>
@@ -27,7 +27,7 @@
                 <div class="grid-mantenedor-n mantenedor-row-3">
                     <div class="label-input-n">
                         <label for="">Razón social</label>
-                        <input type="text" name="crear_nombre_cliente" placeholder="Campo obligatorio" maxlength="255">
+                        <input type="text" name="crear_nombre_cliente" placeholder="Campo obligatorio" maxlength="255" value="{{ old('crear_nombre_cliente') }}">
                         @error('crear_nombre_cliente')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
 
                     <div class="label-input-n">
                         <label for="">Identificación (RUT, DNI, etc)</label>
-                        <input type="text" name="identificador_cliente" placeholder="Campo opcional" maxlength="255">
+                        <input type="text" name="identificador_cliente" placeholder="Campo opcional" maxlength="255" value="{{ old('identificador_cliente') }}">
                         @error('identificador_cliente')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>

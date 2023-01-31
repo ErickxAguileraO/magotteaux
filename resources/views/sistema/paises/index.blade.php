@@ -10,7 +10,7 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/paises"><p class="menu-seleccionado">Mantenedor de países</p></a>
+            <a href="{{ route('pais.index') }}"><p class="menu-seleccionado">Mantenedor de países</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")

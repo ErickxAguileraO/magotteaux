@@ -10,11 +10,11 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/paises">
+            <a href="{{ route('pais.index') }}">
                 <p>Mantenedor de países</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/editar-pais">
+            <a href="{{ route('pais.store') }}">
                 <p class="menu-seleccionado">Editar país</p>
             </a>
         </nav>

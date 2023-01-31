@@ -15,17 +15,17 @@
             <img src="{{ asset('web/imagenes/i-cerrar-menu.svg') }}" alt="">
         </div>
     </div>
-    <a href="/clientes" class="op-sidebar">
+    <a href="{{ route('cliente.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-clientes-sb.svg') }}" alt="">
         <p>Clientes</p>
     </a>
 
-    <a href="/destinos" class="op-sidebar">
+    <a href="{{ route('destino.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-destinos-sb.svg') }}" alt="">
         <p>Destinos</p>
     </a>
 
-    <a href="/plantas" class="op-sidebar">
+    <a href="{{ route('planta.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-plantas-sb.svg') }}" alt="">
         <p>Plantas</p>
     </a>
@@ -70,7 +70,7 @@
         <p>Choferes</p>
     </a>
 
-    <a href="/paises" class="op-sidebar">
+    <a href="{{ route('pais.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-paises-sb.svg') }}" alt="">
         <p>Países</p>
     </a>
