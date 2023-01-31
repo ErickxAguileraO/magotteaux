@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers\Sistema;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\cuenta\CreateEmpresaTransporteRequest;
+use App\Http\Requests\cuenta\UpdateEmpresaTransporteRequest;
+use App\Models\EmpresaTransporte;
+use CreateEmpresaTransportesTable;
+use Illuminate\Http\Request;
+
+class EmpresaTransporteController extends Controller
+{
+    public function index()
+    {
+        return view('sistema.empresaTransporte.index');
+    }
+
+    public function create()
+    {
+        $empresaTransporte = EmpresaTransporte::all();
+        return view('sistema.empresaTransporte.crear', compact('empresaTransporte'));
+    }
+
+    public function store(CreateEmpresaTransporteRequest $request)
+    {
+        try {
+            $empresaTransporte = new EmpresaTransporte();
+            $empresaTransporte->emt_nombre = ucwords(strtolower($request->nombre_empresa));
+            $empresaTransporte->emt_identificador = $request->rut_empresa;
+            $empresaTransporte->emt_estado = $request->slc_estado_empresa;
+            $empresaTransporte->save();
+            return redirect()->route('empresa.transporte.index')->with(['message' => 'Se creo una nueva empresa', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+        }
+    }
+
+    public function edit($id)
+    {
+        $empresaTransporte = EmpresaTransporte::findOrFail($id);
+        return   view('sistema.empresaTransporte.editar', compact('empresaTransporte'));
+    }
+
+    public function update(UpdateEmpresaTransporteRequest $request, int $id)
+    {
+
+        try {
+            $empresaTransporte = EmpresaTransporte::findOrFail($id);
+            $empresaTransporte->emt_nombre = ucwords(strtolower($request->nombre_empresa));
+            $empresaTransporte->emt_identificador = $request->rut_empresa;
+            $empresaTransporte->emt_estado = $request->slc_estado_empresa;
+            $empresaTransporte->save();
+            return redirect()->route('empresa.transporte.index')->with(['message' => 'Se edito una empresa con exito', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+        }
+    }
+}

@@ -12,16 +12,16 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('puntoCarga.index') }}">
+            <a href="{{ route('punto.carga.index') }}">
                 <p>Mantenedor de puntos de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('puntoCarga.update') }}">
+            <a href="{{ route('punto.carga.update', ['id' => $puntoCarga->puc_id]) }}">
                 <p class="menu-seleccionado">Nuevo punto de carga</p>
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('puntoCarga.update', ['id' => $puntoCarga->puc_id]) }} " class="formulario-editar-pais">
+        <form method="POST" action="{{ route('punto.carga.update', ['id' => $puntoCarga->puc_id]) }} " class="formulario-editar-pais">
             @csrf
             <div class="div-contenido">
                 <h3>Nuevo punto de carga</h3>
@@ -67,7 +67,7 @@
                 <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
                     <h2></h2>
                     <div class="botones-contenido-inicio">
-                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('puntoCarga.index') }}'">
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('punto.carga.index') }}'">
                             <p>Cancelar</p>
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
