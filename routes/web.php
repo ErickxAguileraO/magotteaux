@@ -36,6 +36,10 @@ Route::get('confirmacion-recuperar-contraseña', function () {
     return view('maqueta.login.mensajeRecuperarContrasenna');
 });
 
+Route::get('correo-detalle', function () {
+    return view('maqueta.correos.detalle');
+});
+
 Route::get('nueva-contraseña', function () {
     return view('maqueta.login.nuevaContrasenna');
 });
@@ -51,9 +55,9 @@ Route::get('detalle-carga', function () {
     return view('maqueta.ingresarCarga.detalle');
 });
 
-Route::get('clientes', function () {
-    return view('maqueta.clientes.index');
-});
+// Route::get('clientes', function () {
+//     return view('maqueta.clientes.index');
+// });
 //Route::get('nuevo-cliente', function () {
   //  return view('sistema.cliente.crear');
 //});
@@ -145,10 +149,13 @@ Route::group(['as' => 'cuenta.'], function () {
 
 Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
     Route::get('', [ClienteController::class, 'index'])->name('index');
+    Route::get('list', [ClienteController::class, 'list'])->name('list');
     Route::get('nuevo-cliente', [ClienteController::class, 'create'])->name('create');
     Route::post('store', [ClienteController::class, 'store'])->name('store');
     Route::get('editar-cliente/{id}', [ClienteController::class, 'edit'])->name('edit');
     Route::post('update/{id}', [ClienteController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
+    Route::get('download-excel', [ClienteController::class, 'downloadExcel'])->name('download.excel');
 });
 
 Route::group(['prefix' => 'destino', 'as' => 'destino.'], function () {
