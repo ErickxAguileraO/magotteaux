@@ -36,7 +36,7 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_planta_pais" id="">
-                            <option value="{{ $planta->pais->pai_id }}">{{ old('slc_crear_pais_cliente', $planta->pais->pai_nombre) }}</option>
+                            <option value="{{ $planta->pais->pai_id }}">{{ old('slc_planta_pais', $planta->pais->pai_nombre) }}</option>
                             @foreach ($paises as $paises)
                                 <option value="{{ $paises['pai_id'] }}">{{ old('slc_planta_pais', $paises->pai_nombre) }}</option>
                             @endforeach
