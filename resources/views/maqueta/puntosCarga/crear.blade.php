@@ -1,4 +1,4 @@
-@extends('layout.web')
+@extends('layout.sistema')
 
 @section('title', 'Home')
 

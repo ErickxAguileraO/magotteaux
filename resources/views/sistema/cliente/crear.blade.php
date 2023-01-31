@@ -1,4 +1,4 @@
-@extends('layout.web')
+@extends('layout.sistema')
 
 @section('title', 'Home')
 
@@ -10,11 +10,11 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/clientes">
+            <a href="{{ route('cliente.index') }}">
                 <p>Mantenedor de clientes</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/nuevo-cliente">
+            <a href="{{ route('cliente.create') }}">
                 <p class="menu-seleccionado">Nuevo cliente</p>
             </a>
         </nav>
