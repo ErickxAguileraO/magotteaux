@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    use HasFactory;
+    use HasFactory, StatusConvert;
 
     public $timestamps = false;
+    protected $prefix = 'cli';
     protected $table = 'clientes';
     protected $primaryKey = 'cli_id';
     protected $fillable = [
@@ -32,9 +34,9 @@ class Cliente extends Model
 
     public function scopeWithFilters($query)
     {
-        return $query->when(request('nombre'), function ($query) {
+        return $query->when(request('nombre') != '', function ($query) {
             $query->where('cli_nombre', 'like', "%" . request('nombre') . "%");
-        })->when(request('estado'), function ($query) {
+        })->when(request('estado') != '', function ($query) {
             $query->where('cli_estado', request('estado'));
         });
     }
