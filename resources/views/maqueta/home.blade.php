@@ -103,7 +103,7 @@
                     </a>
                 </div>
                 <div class="sub-contenido2">
-                    <table>
+                    <table class=""scroll>
                         <tr>
                             <th>Patente</th>
                             <th>Tipo de carga</th>
