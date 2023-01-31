@@ -31,7 +31,7 @@ class PuntoCargaController extends Controller
             $puntoCarga->puc_estado = $request->slc_estado_puntoCarga;
             $puntoCarga->puc_planta_id = $request->slc_planta_puntoCarga;
             $puntoCarga->save();
-            return redirect()->route('puntoCarga.index')->with(['message' => 'Se creo un nuevo punto de carga', 'type' => 'success']);
+            return redirect()->route('punto.carga.index')->with(['message' => 'Se creo un nuevo punto de carga', 'type' => 'success']);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
         }
@@ -52,7 +52,7 @@ class PuntoCargaController extends Controller
             $puntoCarga->puc_estado = $request->slc_estado_puntoCarga;
             $puntoCarga->puc_planta_id = $request->slc_planta_puntoCarga;
             $puntoCarga->save();
-            return redirect()->route('puntoCarga.index')->with(['message' => 'Se creo un nuevo punto de carga', 'type' => 'success']);
+            return redirect()->route('punto.carga.index')->with(['message' => 'Se creo un nuevo punto de carga', 'type' => 'success']);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
         }

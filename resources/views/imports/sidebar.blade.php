@@ -30,12 +30,12 @@
         <p>Plantas</p>
     </a>
 
-    <a href="{{ route('puntoCarga.index') }}" class="op-sidebar">
+    <a href="{{ route('punto.carga.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-puntoscarga-sb.svg') }}" alt="">
         <p>Puntos de carga</p>
     </a>
 
-    <a href="/empresa-de-transporte" class="op-sidebar">
+    <a href="{{ route('empresa.transporte.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-empresatransporte-sb.svg') }}" alt="">
         <p>Empresa de transporte</p>
     </a>

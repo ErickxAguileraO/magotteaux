@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('punto.carga.index') }}"><p class="menu-seleccionado">Mantenedor de puntos de carga</p></a>
+            <a href="{{ route('empresa.transporte.index') }}"><p class="menu-seleccionado">Mantenedor de empresas de transporte</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de puntos de carga</h2>
-                        <a href="{{ route('punto.carga.create') }}" class="btn-contenido-inicio">
-                            <p>Crear punto de carga</p>
+                        <h2>Mantenedor de empresas de transporte</h2>
+                        <a href="{{ route('empresa.transporte.create') }}" class="btn-contenido-inicio">
+                            <p>Crear empresa de transporte</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre del punto de carga</label>
+                                <label for="">Razón social</label>
                                 <input type="text">
                             </div>
                             <div class="label-input-n">
