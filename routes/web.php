@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
+use App\Http\Controllers\Sistema\EmpresaTransporteController;
 use App\Http\Controllers\Sistema\PaisController;
 use App\Http\Controllers\Sistema\PlantaController;
 use App\Http\Controllers\Sistema\PuntoCargaController;
@@ -83,12 +84,12 @@ Route::get('nuevo-destino', function () {
 //     return view('maqueta.puntosCarga.crear');
 // });
 
-Route::get('empresa-de-transporte', function () {
-    return view('maqueta.empresaTransporte.index');
-});
-Route::get('nueva-empresa-de-transporte', function () {
-    return view('maqueta.empresaTransporte.crear');
-});
+// Route::get('empresa-de-transporte', function () {
+//     return view('maqueta.empresaTransporte.index');
+// });
+// Route::get('nueva-empresa-de-transporte', function () {
+//     return view('maqueta.empresaTransporte.crear');
+// });
 
 Route::get('tipos-de-carga', function () {
     return view('maqueta.tiposCarga.index');
@@ -182,12 +183,20 @@ Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
     Route::post('update/{id}', [PlantaController::class, 'update'])->name('update');
 });
 
-Route::group(['prefix' => 'puntoCarga', 'as' => 'puntoCarga.'], function () {
+Route::group(['prefix' => 'punto-carga', 'as' => 'punto.carga.'], function () {
     Route::get('', [PuntoCargaController::class, 'index'])->name('index');
-    Route::get('nuevo-puntoCarga', [PuntoCargaController::class, 'create'])->name('create');
+    Route::get('nuevo-punto-carga', [PuntoCargaController::class, 'create'])->name('create');
     Route::post('store', [PuntoCargaController::class, 'store'])->name('store');
-    Route::get('editar-puntoCarga/{id}', [PuntoCargaController::class, 'edit'])->name('edit');
-    Route::post('update', [PuntoCargaController::class, 'update'])->name('update');
+    Route::get('editar-punto-carga/{id}', [PuntoCargaController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [PuntoCargaController::class, 'update'])->name('update');
+});
+
+Route::group(['prefix' => 'empresa-transporte', 'as' => 'empresa.transporte.'], function () {
+    Route::get('', [EmpresaTransporteController::class, 'index'])->name('index');
+    Route::get('nuevo-empresa-transporte', [EmpresaTransporteController::class, 'create'])->name('create');
+    Route::post('store', [EmpresaTransporteController::class, 'store'])->name('store');
+    Route::get('editar-empresa-transporte/{id}', [EmpresaTransporteController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
 });
 
 Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
