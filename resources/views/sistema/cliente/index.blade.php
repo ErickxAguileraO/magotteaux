@@ -88,8 +88,6 @@
 
 @push('extra-js')
    <script>
-      let nombre = '';
-      let estado = '';
       const grid = document.getElementById('container-datagrid');
 
       $(document).ready(async function(e) {
@@ -144,6 +142,14 @@
                // filtro en cabecera para STRING filterOperations:[ "contains", "notcontains", "startswith", "endswith", "=", "<>" ],
                // filtro en cabecera para DATE filterOperations:[ "=", "<>", "<", ">", "<=", ">=", "between" ],
                // en caso de tener 2 o más filtros, para dejar uno por defecto se usa selectedFilterOperation: "between",
+               {
+                  dataField: 'id',
+                  caption: 'Id',
+                  dataType: 'number',
+                  visible: false,
+                  sortIndex: 1, // al cargar, ordena por esta columna
+                  sortOrder: "desc", // orden descendente
+               },
                {
                   dataField: 'nombre',
                   caption: 'Nombre',

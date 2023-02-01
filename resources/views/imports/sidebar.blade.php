@@ -45,7 +45,7 @@
         <p>Tipos de carga</p>
     </a>
 
-    <a href="/tamaños-de-bola" class="op-sidebar">
+    <a href="{{ route('tamano.bola.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-tamañosbola-sb.svg') }}" alt="">
         <p>Tamaños de bola</p>
     </a>

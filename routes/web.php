@@ -10,6 +10,7 @@ use App\Http\Controllers\Sistema\EmpresaTransporteController;
 use App\Http\Controllers\Sistema\PaisController;
 use App\Http\Controllers\Sistema\PlantaController;
 use App\Http\Controllers\Sistema\PuntoCargaController;
+use App\Http\Controllers\Sistema\TamanoBolaController;
 use App\Http\Controllers\Sistema\TipoCargaController;
 use Illuminate\Support\Facades\Route;
 
@@ -99,12 +100,12 @@ Route::get('nuevo-destino', function () {
 //     return view('maqueta.tiposCarga.crear');
 // });
 
-Route::get('tamaños-de-bola', function () {
-    return view('maqueta.tamañosBola.index');
-});
-Route::get('nuevo-tamaño-de-bola', function () {
-    return view('maqueta.tamañosBola.crear');
-});
+// Route::get('tamaños-de-bola', function () {
+//     return view('maqueta.tamañosBola.index');
+// });
+// Route::get('nuevo-tamaño-de-bola', function () {
+//     return view('maqueta.tamañosBola.crear');
+// });
 
 // Route::get('paises', function () {
 //     return view('maqueta.paises.index');
@@ -205,6 +206,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
     });
 
+    Route::group(['prefix' => 'tamano-bola', 'as' => 'tamano.bola.'], function () {
+        Route::get('', [TamanoBolaController::class, 'index'])->name('index');
+        Route::get('nuevo-tamano-bola', [TamanoBolaController::class, 'create'])->name('create');
+        Route::post('store', [TamanoBolaController::class, 'store'])->name('store');
+    });
+    
     Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
         Route::get('', [TipoCargaController::class, 'index'])->name('index');
         Route::get('nuevo-tipo-carga', [TipoCargaController::class, 'create'])->name('create');
