@@ -70,172 +70,133 @@
                <div class="div-contenido-escritorio">
                   <div class="div-contenido-inicio">
                      <h2>Detalle</h2>
-                     <a href="" class="btn-contenido-inicio">
+                     <a href="{{ route('tamano.bola.download.excel') }}" class="btn-contenido-inicio">
                         <p>Descargar Excel</p>
                         <img src="{{ asset('web/imagenes/i-exel.svg') }}" alt="">
                      </a>
                   </div>
-                  <div class="sub-contenido2">
-                     <table>
-                        <tr>
-                           <th>Nombre</th>
-                           <th>Estado</th>
-                           <th></th>
-                        </tr>
-                        <tr>
-                           <td>Aeurus</td>
-                           <td>Activo</td>
-                           <td>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Editar</span>
-                              </a>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Eliminar</span>
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>Aeurus</td>
-                           <td>Activo</td>
-                           <td>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Editar</span>
-                              </a>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Eliminar</span>
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>Aeurus</td>
-                           <td>Activo</td>
-                           <td>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Editar</span>
-                              </a>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Eliminar</span>
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>Aeurus</td>
-                           <td>Activo</td>
-                           <td>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Editar</span>
-                              </a>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Eliminar</span>
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>Aeurus</td>
-                           <td>Activo</td>
-                           <td>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-editar-green.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Editar</span>
-                              </a>
-                              <a href="" class="tooltip">
-                                 <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                                 <!-- ToolTip -->
-                                 <span class="tooltiptext">Eliminar</span>
-                              </a>
-                           </td>
-                        </tr>
-                     </table>
-                  </div>
-               </div>
-               <div class="div-contenido-movil">
-                  <h2 style="margin-bottom: 15px;">Detalles</h2>
-                  {{-- 1 --}}
-                  <div class="detalles-n">
-                     <div>
-                        <span>Nombre</span>
-                        <p>Aeurus</p>
-                     </div>
-                     <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
-                  </div>
-                  <div class="ocultar-detalles">
-
-                     <div class="ocultar-detalles-n">
-                        <div>
-                           <span>Nombre</span>
-                           <p>Aeurus</p>
-                        </div>
-                     </div>
-
-                     <div class="ocultar-detalles-n">
-                        <div>
-                           <span>Estado</span>
-                           <p>Inactivo</p>
-                        </div>
-                     </div>
-                     <div class="eliminar-editar">
-                        <a href="" class="eliminar">Eliminar <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt=""></a>
-                        <a href="" class="editar">Editar <img src="{{ asset('web/imagenes/i-editar.svg') }}" alt=""></a>
-                     </div>
-                  </div>
-                  {{-- 2 --}}
-                  <div class="detalles-n">
-                     <div>
-                        <span>Nombre</span>
-                        <p>Aeurus</p>
-                     </div>
-                     <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
-                  </div>
-                  <div class="ocultar-detalles">
-                     <div class="ocultar-detalles-n">
-                        <div>
-                           <span>Nombre</span>
-                           <p>Aeurus</p>
-                        </div>
-                     </div>
-
-                     <div class="ocultar-detalles-n">
-                        <div>
-                           <span>Estado</span>
-                           <p>Inactivo</p>
-                        </div>
-                     </div>
-                     <div class="eliminar-editar">
-                        <a href="" class="eliminar">Eliminar <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt=""></a>
-                        <a href="" class="editar">Editar <img src="{{ asset('web/imagenes/i-editar.svg') }}" alt=""></a>
-                     </div>
-                  </div>
-               </div>
-               <div class="numeros-pag">
-                  <a href="" class="numero-antes-despues" style="margin-right: 35px">Anterior</a>
-                  <a href="" class="numero-antes-despues-movil" style="margin-right: 35px"><img src="{{ asset('web/imagenes/i-antes.svg') }}" alt=""></a>
-                  <a href="" class="numero numero-seleccionado">1</a>
-                  <a href="" class="numero">2</a>
-                  <a href="" class="numero-antes-despues" style="margin-left: 35px">Siguiente</a>
-                  <a href="" class="numero-antes-despues-movil" style="margin-left: 35px"><img src="{{ asset('web/imagenes/i-despues.svg') }}" alt=""></a>
+                  <div id="container-datagrid" data-link="{{ route('tamano.bola.list') }}" data-link-edit="{{ route('tamano.bola.edit', ':id') }}" data-link-delete="{{ route('tamano.bola.delete', ':id') }}"></div>
                </div>
             </div>
-
          </div>
       </section>
    </div>
 @endsection
+
 @push('extra-js')
+   <script>
+      const grid = document.getElementById('container-datagrid');
+
+      $(document).ready(async function(e) {
+
+         const items = new DevExpress.data.CustomStore({ // función para el origen de datos
+            load: function() {
+               return sendRequest($(grid).data('link'));
+            }
+         });
+
+         DevExpress.localization.locale(navigator.language);
+
+         const dataGrid = $(grid).dxDataGrid({
+            dataSource: items,
+            columnAutoWidth: true,
+            showBorders: true, // mostrar bordes de la tabla
+            hoverStateEnabled: true, // color en la fila al pasar el mouse por encima
+            columnHidingEnabled: true, // ocultar columnas si no alcanzan a desplegarse en la resolucion
+            allowColumnReordering: true, // permite mover las columnas (cambiar de orden) al actualizar vuelve a la normalidad
+            // rowAlternationEnabled: true, // fila de color intercalada
+            wordWrapEnabled: true, // permite visualizar todo el texto en una columna (pasa la siguiente, como si hiciera enter)
+            searchPanel: { // 1 panel para buscar palabras
+               visible: true,
+               width: 240,
+               placeholder: 'Buscar...',
+            },
+            headerFilter: { // filtro para filtrar al seleccionar valores de la columna en la cabecera
+               visible: true,
+            },
+            filterRow: { //lupita para buscar en columna
+               visible: true,
+               applyFilter: 'auto', // puede ser auto u onClick
+               betweenStartText: 'Inicio',
+               betweenEndText: 'Fin',
+            },
+            pager: { // paginador, cuantas filas se muestran
+               allowedPageSizes: [10, 25, 50, 100],
+               showInfo: true,
+               showNavigationButtons: true,
+               showPageSizeSelector: true,
+               visible: 'auto',
+            },
+            paging: { // numero de filas a mostrar
+               pageSize: 10,
+            },
+            columnChooser: { // escoger que columnas se muestran u ocultar al presionar un botón y seleccionar
+               enabled: false,
+               mode: 'select',
+            },
+            columns: [
+               // filtro en cabecera para NUMERIC filterOperations:[ "=", "<>", "<", ">", "<=", ">=", "between" ],
+               // filtro en cabecera para STRING filterOperations:[ "contains", "notcontains", "startswith", "endswith", "=", "<>" ],
+               // filtro en cabecera para DATE filterOperations:[ "=", "<>", "<", ">", "<=", ">=", "between" ],
+               // en caso de tener 2 o más filtros, para dejar uno por defecto se usa selectedFilterOperation: "between",
+               {
+                  dataField: 'id',
+                  caption: 'Id',
+                  dataType: 'number',
+                  visible: false,
+                  sortIndex: 1, // al cargar, ordena por esta columna
+                  sortOrder: "desc", // orden descendente
+               },
+               {
+                  dataField: 'tamano',
+                  caption: 'Tamaño de bola',
+                  filterOperations: ["contains"],
+                  hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
+               },
+               {
+                  dataField: 'estado',
+                  caption: 'Estado',
+                  filterOperations: ["contains"],
+                  lookup: {
+                     dataSource: {
+                        store: {
+                           type: 'array',
+                           data: [{
+                                 id: 0,
+                                 name: 'Inactivo'
+                              },
+                              {
+                                 id: 1,
+                                 name: 'Activo'
+                              }
+                           ],
+                           key: "id"
+                        },
+                        pageSize: 10,
+                        paginate: true
+                     },
+                     valueExpr: 'id',
+                     displayExpr: 'name'
+                  },
+               },
+               {
+                  caption: 'Opciones',
+                  filterOperations: ["contains"],
+                  hidingPriority: 0, // prioridad para ocultar columna, 0 se oculta primero
+                  cellTemplate(container, options) {
+
+                     const url_edit = $(grid).data('link-edit').replace(':id', options.data.id);
+                     const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
+
+                     const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
+                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este tamaño de bola"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+
+                     return $(link_edit + link_delete);
+                  },
+               },
+            ],
+         }).dxDataGrid('instance');
+      });
+   </script>
 @endpush
+
