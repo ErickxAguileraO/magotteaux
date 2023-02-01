@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Exports\TamanoDeBolasExport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TamnoBola\CrearTamanoBolaRequest;
+use App\Http\Requests\TamnoBola\CreateTamanoBolaRequest;
+use App\Http\Requests\TamnoBola\UpdateTamanoBolaRequest;
 use App\Models\TamanoBola;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TamanoBolaController extends Controller
 {
@@ -23,11 +26,14 @@ class TamanoBolaController extends Controller
         return view('sistema.tamanoBola.crear');
     }
 
-    public function store(CrearTamanoBolaRequest $request)
+    public function store(CreateTamanoBolaRequest $request)
     {
         try {
 
-            TamanoBola::create(['tab_tamano' => $request->post('tamano')]);
+            TamanoBola::create([
+                'tab_tamano' => $request->post('tamano'),
+                'tab_estado' => $request->post('estado'),
+            ]);
 
             return redirect()->route('tamano.bola.index')->with(['message' => 'Se creo un nuevo tamaño de bola', 'type' => 'success']);
         } catch (\Throwable $th) {
@@ -35,50 +41,51 @@ class TamanoBolaController extends Controller
         }
     }
 
-    // public function edit($id)
-    // {
-    //     $cliente = Cliente::findOrFail($id);
-    //     $paises = Pais::all();
-    //     return view('sistema.cliente.editar', compact('cliente', 'paises'));
-    // }
+    public function edit(int $id)
+    {
+        $tamano = TamanoBola::findOrFail($id);
 
-    // public function update(UpdateClienteRequest $request, int $id)
-    // {
+        return view('sistema.tamanoBola.editar', compact('tamano'));
+    }
 
-    //     try {
-    //         $cliente = Cliente::findOrFail($id);
-    //         $cliente->cli_nombre = $request->crear_nombre_cliente;
-    //         $cliente->cli_identificacion = $request->identificador_cliente;
-    //         $cliente->cli_pais_id = $request->slc_crear_pais_cliente;
-    //         $cliente->cli_estado = $request->slc_estado_cliente;
-    //         $cliente->save();
-    //         return redirect()->route('cliente.index')->with(['message' => 'Se edito correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
-    //         return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
-    //     }
-    // }
+    public function update(UpdateTamanoBolaRequest $request, int $id)
+    {
+        try {
 
-    // public function delete(int $id)
-    // {
-    //     try {
-    //         Cliente::findOrFail($id)->delete();
+            $tamano = TamanoBola::findOrFail($id);
 
-    //         return redirect()->route('cliente.index')->with(['message' => 'Cliente eliminado correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
+            $tamano->update([
+                'tab_tamano' => $request->post('tamano'),
+                'tab_estado' => $request->post('estado'),
+            ]);
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el cliente', 'type' => 'error']);
-    //     }
-    // }
+            return redirect()->route('tamano.bola.index')->with(['message' => 'Se edito el tamaño de bola', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar el tamaño de bola', 'type' => 'error']);
+        }
+    }
 
-    // public function downloadExcel()
-    // {
-    //     try {
-    //         $clientes = Cliente::all();
+    /* public function delete(int $id)
+    {
+        try {
+            TamanoBola::findOrFail($id)->delete();
 
-    //         return Excel::download(new ClientesExport($clientes), 'clientes.xlsx');
-    //     } catch (\Throwable $th) {
+            return redirect()->route('cliente.index')->with(['message' => 'Tamaño de bola eliminado correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-    //     }
-    // }
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el tamaño de bola', 'type' => 'error']);
+        }
+    }
+
+    public function downloadExcel()
+    {
+        try {
+            $tamanos = TamanoBola::all();
+
+            return Excel::download(new TamanoDeBolasExport($tamanos), 'tamaños-de-bola.xlsx');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
+    } */
 }
