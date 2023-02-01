@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\Pais;
 
 use Illuminate\Foundation\Http\FormRequest;
 

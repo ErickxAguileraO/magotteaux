@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Planta extends Model
 {
-    use HasFactory;
+    use HasFactory, StatusConvert;
 
     public $timestamps = false;
+    protected $prefix = 'pla';
     protected $table = 'plantas';
     protected $primaryKey = 'pla_id';
     protected $fillable = [

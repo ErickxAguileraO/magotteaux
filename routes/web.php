@@ -168,34 +168,46 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'destino', 'as' => 'destino.'], function () {
         Route::get('', [DestinoController::class, 'index'])->name('index');
+        Route::get('list', [DestinoController::class, 'list'])->name('list');
         Route::get('nuevo-destino', [DestinoController::class, 'create'])->name('create');
         Route::post('store', [DestinoController::class, 'store'])->name('store');
         Route::get('editar-destino/{id}', [DestinoController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [DestinoController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [DestinoController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [DestinoController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'pais', 'as' => 'pais.'], function () {
         Route::get('', [PaisController::class, 'index'])->name('index');
+        Route::get('list', [PaisController::class, 'list'])->name('list');
         Route::get('nuevo-pais', [PaisController::class, 'create'])->name('create');
         Route::post('store', [PaisController::class, 'store'])->name('store');
         Route::get('editar-pais/{id}', [PaisController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [PaisController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PaisController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [PaisController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
         Route::get('', [PlantaController::class, 'index'])->name('index');
+        Route::get('list', [PlantaController::class, 'list'])->name('list');
         Route::get('nuevo-planta', [PlantaController::class, 'create'])->name('create');
         Route::post('store', [PlantaController::class, 'store'])->name('store');
         Route::get('editar-planta/{id}', [PlantaController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [PlantaController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PlantaController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [PlantaController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'punto-carga', 'as' => 'punto.carga.'], function () {
         Route::get('', [PuntoCargaController::class, 'index'])->name('index');
+        Route::get('list', [PuntoCargaController::class, 'list'])->name('list');
         Route::get('nuevo-punto-carga', [PuntoCargaController::class, 'create'])->name('create');
         Route::post('store', [PuntoCargaController::class, 'store'])->name('store');
         Route::get('editar-punto-carga/{id}', [PuntoCargaController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [PuntoCargaController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PuntoCargaController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [PuntoCargaController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'empresa-transporte', 'as' => 'empresa.transporte.'], function () {
@@ -211,7 +223,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('nuevo-tamano-bola', [TamanoBolaController::class, 'create'])->name('create');
         Route::post('store', [TamanoBolaController::class, 'store'])->name('store');
     });
-    
+
     Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
         Route::get('', [TipoCargaController::class, 'index'])->name('index');
         Route::get('nuevo-tipo-carga', [TipoCargaController::class, 'create'])->name('create');

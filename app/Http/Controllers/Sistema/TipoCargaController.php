@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Sistema;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\cuenta\CreateTipoCargaRequest;
-use App\Http\Requests\cuenta\UpdateTipoCargaRequest;
+use App\Http\Requests\TipoCarga\CreateTipoCargaRequest;
+use App\Http\Requests\TipoCarga\UpdateTipoCargaRequest;
 use App\Models\TipoCarga;
 use Illuminate\Http\Request;
 

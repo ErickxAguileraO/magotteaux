@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Sistema;
 
 use App\Exports\ClientesExport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\cuenta\CreateClienteRequest;
-use App\Http\Requests\cuenta\UpdateClienteRequest;
+use App\Http\Requests\Cliente\CreateClienteRequest;
+use App\Http\Requests\Cliente\UpdateClienteRequest;
 use App\Http\Resources\ClienteResource;
 use App\Models\Cliente;
 use App\Models\Pais;

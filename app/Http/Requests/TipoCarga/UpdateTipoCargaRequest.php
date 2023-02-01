@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\TipoCarga;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateClienteRequest extends FormRequest
+class UpdateTipoCargaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class CreateClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'crear_nombre_cliente' => 'required|max:255',
-            'identificador_cliente' => 'max:255',
-            'slc_crear_pais_cliente' => 'required',
-            'slc_estado_cliente' => 'required|boolean|numeric'
+            'nombre_tipo_carga' => 'required|max:255',
+            'slc_estado_tipo_carga' => 'required|boolean|numeric'
         ];
     }
 }

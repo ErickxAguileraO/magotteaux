@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\Planta;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTipoCargaRequest extends FormRequest
+class UpdatePlantaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class CreateTipoCargaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_tipo_carga' => 'required|max:255',
-            'slc_estado_tipo_carga' => 'required|boolean|numeric'
+            'nombre_planta' => 'required|max:255',
+            'slc_planta_pais' => 'required',
+            'estado_planta' => 'required|boolean|numeric'
         ];
     }
 }

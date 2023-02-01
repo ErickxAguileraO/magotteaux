@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\TipoCarga;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePuntoCargaRequest extends FormRequest
+class CreateTipoCargaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class UpdatePuntoCargaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_puntoCarga' => 'required|max:255',
-            'slc_planta_puntoCarga' => 'required',
-            'slc_estado_puntoCarga' => 'required|boolean|numeric'
+            'nombre_tipo_carga' => 'required|max:255',
+            'slc_estado_tipo_carga' => 'required|boolean|numeric'
         ];
     }
 }
