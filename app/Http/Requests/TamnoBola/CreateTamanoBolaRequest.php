@@ -24,8 +24,15 @@ class CreateTamanoBolaRequest extends FormRequest
     public function rules()
     {
         return [
-            'tamano' => ['required', 'numeric', 'max:10000', 'unique:tamano_bolas,tab_tamano'],
+            'tamano' => ['required', 'numeric', 'max:10000', 'unique:tamano_bolas,tab_tamano', 'regex:/^[0-9]+(\.[0-9][0-9]?)?$/'],
             'estado' => ['required', 'boolean'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'regex' => 'El :attribute debe ser (Ej: 50 / 10.50).'
         ];
     }
 }

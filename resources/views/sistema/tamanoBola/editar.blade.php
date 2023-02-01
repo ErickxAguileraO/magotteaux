@@ -24,7 +24,7 @@
             <div class="grid-mantenedor-n mantenedor-row-2">
                <div class="label-input-n">
                   <label for="tamano">Tipo de tamaño</label>
-                  <input type="text" id="tamano" name="tamano" value="{{ old('tamano', $tamano->tab_tamano) }}">
+                  <input type="text" id="tamano" name="tamano" value="{{ old('tamano', $tamano->tab_tamano) }}" placeholder="Si el valor contiene decimales, separar con punto EJ: 2.5">
                   @error('tamano')
                      <span class="invalid-feedback badge alert-danger" role="alert">
                         <strong>{{ $message }}</strong>
