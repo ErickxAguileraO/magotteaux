@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PuntoCarga extends Model
 {
-    use HasFactory;
+    use HasFactory, StatusConvert;
 
     public $timestamps = false;
+    protected $prefix = 'puc';
     protected $table = 'punto_cargas';
     protected $primaryKey = 'puc_id';
     protected $fillable = [
