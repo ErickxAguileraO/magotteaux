@@ -1,5 +1,9 @@
 window.addEventListener('load', () => {
 
+    const TIPO_LOGISTICA = 1;
+    const TIPO_CLIENTE = 2;
+    const TIPO_ADMINISTRADOR = 3;
+
     /***********************************
      *  Iniciar plugins
      **********************************/
@@ -23,6 +27,27 @@ window.addEventListener('load', () => {
             }).then((result) => {
                 if (result.isConfirmed) window.location = boton.getAttribute("href");
             });
+
+        }
+    });
+
+    $('#tipo_usuario').on('change', function (e) {
+        const value = e.currentTarget.value;
+
+        const label_planta = document.querySelector('.label-planta');
+        const label_cliente = document.querySelector('.label-cliente');
+
+        if (value == TIPO_LOGISTICA) {
+            label_planta.style.display = '';
+            label_cliente.style.display = 'none';
+
+        } else if (value == TIPO_CLIENTE) {
+            label_cliente.style.display = '';
+            label_planta.style.display = 'none';
+
+        } else {
+            label_cliente.style.display = 'none';
+            label_planta.style.display = 'none';
 
         }
     });
@@ -72,13 +97,13 @@ const notificaciones = () => {
     const message = document.getElementById('msg-notify');
     const type = document.getElementById('type-notify');
     const route = document.getElementById('route-notify');
-    
+
     if (!message || !type) return;
-    
+
     const Toast = configSweetAlert();
-    
+
     Toast.fire(themeSweetAlert(type.value, message.value));
-    
+
     if (!route) return;
     if (route.value) setTimeout(() => window.location.href = route.value, 2000);
 

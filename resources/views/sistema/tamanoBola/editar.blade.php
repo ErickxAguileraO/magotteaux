@@ -34,7 +34,7 @@
                <div class="label-input-n">
                   <label for="estado">Estado</label>
                   <select name="estado" id="estado">
-                     <option>Seleccione estado (Campo obligatorio)</option>
+                     <option>Seleccione</option>
                      <option value="1" {{ old('estado', $tamano->tab_estado) == '1' ? 'selected' : '' }}>Activo</option>
                      <option value="0" {{ old('estado', $tamano->tab_estado) == '0' ? 'selected' : '' }}>Inactivo</option>
                   </select>

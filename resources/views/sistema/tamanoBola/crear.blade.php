@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Crear tamaño de bola')
 
 @section('content')
    <div class="contenido">
@@ -34,7 +34,7 @@
                <div class="label-input-n">
                   <label for="estado">Estado</label>
                   <select name="estado" id="estado">
-                     <option>Seleccione estado (Campo obligatorio)</option>
+                     <option>Seleccione</option>
                      <option value="1" {{ old('estado') == '1' ? 'selected' : '' }}>Activo</option>
                      <option value="0" {{ old('estado') == '0' ? 'selected' : '' }}>Inactivo</option>
                   </select>

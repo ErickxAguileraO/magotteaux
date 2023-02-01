@@ -41,6 +41,11 @@ class Cliente extends Model
         });
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('cli_estado', 1);
+    }
+
 
     /***********************************************************
      *  Eloquent relationships
@@ -50,4 +55,8 @@ class Cliente extends Model
     {
         return $this->belongsTo(Pais::class, 'cli_pais_id', 'pai_id');
     }
+
+    /***********************************************************
+     *  Auxiliary functions
+     ************************************************************/
 }

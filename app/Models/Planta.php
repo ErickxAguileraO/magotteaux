@@ -19,6 +19,19 @@ class Planta extends Model
         'pla_pais_id',
     ];
 
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+
+    public function scopeActive($query)
+    {
+        return $query->where('pla_estado', 1);
+    }
+
+    /***********************************************************
+     *  Eloquent relationships
+     ************************************************************/
+
     public function pais()
     {
         return $this->belongsTo(Pais::class, 'pla_pais_id', 'pai_id');

@@ -14,6 +14,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
+    const TIPO_LOGISTICA = 1;
+    const TIPO_CLIENTE = 2;
+    const TIPO_ADMINISTRADOR = 3;
+
     protected $table = 'usuarios';
     protected $primaryKey = 'usu_id';
 
@@ -66,4 +70,23 @@ class User extends Authenticatable
     {
         $this->attributes['usu_password'] = bcrypt($value);
     }
+
+     /***********************************************************
+     *  Auxiliary functions
+     ************************************************************/
+
+     public function getRoleId()
+     {
+        if($this->hasRole('Logistica')){
+            return self::TIPO_LOGISTICA;
+        }
+
+        if($this->hasRole('Cliente')){
+            return self::TIPO_CLIENTE;
+        }
+
+        if($this->hasRole('Admin')){
+            return self::TIPO_ADMINISTRADOR;
+        }
+     }
 }
