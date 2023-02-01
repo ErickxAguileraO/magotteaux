@@ -10,16 +10,16 @@
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('planta.index') }}"><p class="menu-seleccionado">Mantenedor de plantas</p></a>
+            <a href="{{ route('tipo.carga.index') }}"><p class="menu-seleccionado">Mantenedor de tipos de carga</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
             @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de plantas</h2>
-                        <a href="{{ route('planta.create') }}" class="btn-contenido-inicio">
-                            <p>Crear nueva planta</p>
+                        <h2>Mantenedor de tipos de carga</h2>
+                        <a href="{{ route('tipo.carga.create') }}" class="btn-contenido-inicio">
+                            <p>Crear nuevo tipo de carga</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
-                                <label for="">Nombre de planta</label>
+                                <label for="">Nombre de la carga</label>
                                 <input type="text">
                             </div>
                             <div class="label-input-n">
@@ -170,15 +170,16 @@
                         <div class="detalles-n">
                             <div>
                                 <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <p>Aeurus</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
                         <div class="ocultar-detalles">
+
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <p>Aeurus</p>
                                 </div>
                             </div>
 
@@ -197,7 +198,7 @@
                         <div class="detalles-n">
                             <div>
                                 <span>Nombre</span>
-                                <p>BHP Mineral</p>
+                                <p>Aeurus</p>
                             </div>
                             <img src="{{ asset('web/imagenes/i-flecha-down.svg') }}" alt="">
                         </div>
@@ -205,7 +206,7 @@
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Nombre</span>
-                                    <p>BHP Mineral</p>
+                                    <p>Aeurus</p>
                                 </div>
                             </div>
 

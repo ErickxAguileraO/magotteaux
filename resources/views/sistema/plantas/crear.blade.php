@@ -1,4 +1,4 @@
-@extends('layout.web')
+@extends('layout.sistema')
 
 @section('title', 'Home')
 
@@ -39,7 +39,6 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_planta_pais" id="">
-                            <option value="">Selecciones país (Campo obligatorio)</option>
                             @foreach ($paises as $paises)
                                 <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
                             @endforeach

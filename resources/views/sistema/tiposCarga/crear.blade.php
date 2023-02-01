@@ -10,52 +10,47 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('pais.index') }}">
-                <p>Mantenedor de países</p>
+            <a href="{{ route('tipo.carga.index') }}">
+                <p>Mantenedor de tipos de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('pais.create') }}">
-                <p class="menu-seleccionado">Nuevo país</p>
+            <a href="{{ route('tipo.carga.create') }}">
+                <p class="menu-seleccionado">Nuevo tipo de carga</p>
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('pais.store') }}" class="formulario-crear-pais">
+        <form method="POST" action="{{ route('tipo.carga.store') }}" class="formulario-crear-pais">
             @csrf
             @method('post')
             <div class="div-contenido">
-                <h3>Nuevo país</h3>
+                <h3>Nuevo tipo de carga</h3>
                 <div class="grid-mantenedor-n mantenedor-row-2">
                     <div class="label-input-n">
-                        <label for="">Nombre del país</label>
-                        <input type="text" name="pais_nombre" value="{{ old('pais_nombre') }}">
-                        @error('pais_nombre')
-                        <span class="invalid-feedback badge alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                        <label for="">Nombre de la carga</label>
+                        <input type="text" name="nombre_tipo_carga" value="{{ old('nombre_tipo_carga') }}">
+                        @error('nombre_tipo_carga')
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="label-input-n">
                         <label for="">Estado</label>
-                        <select name="slc_estado_pais" id="id_estado_pais" value="{{ old('slc_estado_pais') }}">
+                        <select name="slc_estado_tipo_carga" id="">
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>
-                        @error('slc_estado_pais')
-                        <span class="invalid-feedback badge alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                     </div>
                 </div>
                 <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
                     <h2></h2>
                     <div class="botones-contenido-inicio">
-                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('pais.index') }}'">
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('tipo.carga.index') }}'">
                             <p>Cancelar</p>
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
                         <button type="submit" class="btn-contenido-inicio">
-                            <p class="mostrar-escritorio">Guardar nuevo país</p>
+                            <p class="mostrar-escritorio">Guardar tipo de carga</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
                         </button>
@@ -65,8 +60,5 @@
             </div>
         </form>
     </div>
-
-    @push('extra-js')
-    @endpush
 
 @endsection
