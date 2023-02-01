@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Sistema;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\cuenta\CreateEmpresaTransporteRequest;
-use App\Http\Requests\cuenta\UpdateEmpresaTransporteRequest;
+use App\Http\Requests\EmpresaTransporte\CreateEmpresaTransporteRequest;
+use App\Http\Requests\EmpresaTransporte\UpdateEmpresaTransporteRequest;
 use App\Models\EmpresaTransporte;
 use CreateEmpresaTransportesTable;
 use Illuminate\Http\Request;

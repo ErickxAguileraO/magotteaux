@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\EmpresaTransporte;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePuntoCargaRequest extends FormRequest
+class CreateEmpresaTransporteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class CreatePuntoCargaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_puntoCarga' => 'required|max:255',
-            'slc_planta_puntoCarga' => 'required',
-            'slc_estado_puntoCarga' => 'required|boolean|numeric'
+            'nombre_empresa' => 'required|max:255',
+            'rut_empresa' => 'required|max:255',
+            'slc_estado_empresa' => 'required|boolean|numeric'
         ];
     }
 }

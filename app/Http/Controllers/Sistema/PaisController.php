@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Sistema;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\cuenta\CreateClienteRequest;
-use App\Http\Requests\cuenta\CreatePaisRequest;
-use App\Http\Requests\cuenta\UpdatePaisRequest;
+use App\Http\Requests\Pais\CreatePaisRequest;
+use App\Http\Requests\Pais\UpdatePaisRequest;
 use App\Models\Cliente;
 use App\Models\Pais;
 use Illuminate\Http\Request;
