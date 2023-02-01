@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\PuntoCarga;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePlantaRequest extends FormRequest
+class UpdatePuntoCargaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class CreatePlantaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_planta' => 'required|max:255',
-            'slc_planta_pais' => 'required',
-            'estado_planta' => 'required|boolean|numeric'
+            'nombre_puntoCarga' => 'required|max:255',
+            'slc_planta_puntoCarga' => 'required',
+            'slc_estado_puntoCarga' => 'required|boolean|numeric'
         ];
     }
 }

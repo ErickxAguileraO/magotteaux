@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\PuntoCarga;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateClienteRequest extends FormRequest
+class CreatePuntoCargaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class UpdateClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'crear_nombre_cliente' => 'required|max:255',
-            'identificador_cliente' => 'max:255',
-            'slc_crear_pais_cliente' => 'required',
-            'slc_estado_cliente' => 'required|boolean|numeric'
+            'nombre_puntoCarga' => 'required|max:255',
+            'slc_planta_puntoCarga' => 'required',
+            'slc_estado_puntoCarga' => 'required|boolean|numeric'
         ];
     }
 }
