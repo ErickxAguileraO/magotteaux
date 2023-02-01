@@ -6,6 +6,7 @@ use App\Exports\TamanoDeBolasExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TamnoBola\CreateTamanoBolaRequest;
 use App\Http\Requests\TamnoBola\UpdateTamanoBolaRequest;
+use App\Http\Resources\TamanoBolaResource;
 use App\Models\TamanoBola;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,10 +17,10 @@ class TamanoBolaController extends Controller
         return view('sistema.tamanoBola.index');
     }
 
-    // public function list()
-    // {
-    //     return ClienteResource::collection(Cliente::withFilters()->get());
-    // }
+    public function list()
+    {
+        return TamanoBolaResource::collection(TamanoBola::all());
+    }
 
     public function create()
     {
@@ -65,12 +66,12 @@ class TamanoBolaController extends Controller
         }
     }
 
-    /* public function delete(int $id)
+    public function delete(int $id)
     {
         try {
             TamanoBola::findOrFail($id)->delete();
 
-            return redirect()->route('cliente.index')->with(['message' => 'Tamaño de bola eliminado correctamente', 'type' => 'success']);
+            return redirect()->route('tamano.bola.index')->with(['message' => 'Tamaño de bola eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el tamaño de bola', 'type' => 'error']);
@@ -87,5 +88,5 @@ class TamanoBolaController extends Controller
 
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
         }
-    } */
+    }
 }

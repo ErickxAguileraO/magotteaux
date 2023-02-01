@@ -49,14 +49,14 @@ class InsertRecordToPermissionsAndRolesTable extends Migration
             }
         }
 
-        //Create rol admin
-        Role::firstOrCreate(['name' => 'Admin']);
+        //Create rol logistica
+        Role::firstOrCreate(['name' => 'Logistica']);
 
         //Create rol cliente
         Role::firstOrCreate(['name' => 'Cliente']);
 
-        //Create rol logistica
-        Role::firstOrCreate(['name' => 'Logistica']);
+        //Create rol admin
+        Role::firstOrCreate(['name' => 'Admin']);
 
         //Asignacion de rol administrador
         User::find(1)->assignRole('Admin')->givePermissionTo($name_permissions);
