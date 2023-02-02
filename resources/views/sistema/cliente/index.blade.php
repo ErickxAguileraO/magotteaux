@@ -85,7 +85,6 @@
    </div>
 @endsection
 
-
 @push('extra-js')
    <script>
       const grid = document.getElementById('container-datagrid');

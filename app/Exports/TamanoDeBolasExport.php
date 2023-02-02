@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithDefaultStyles;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
@@ -33,8 +34,8 @@ class TamanoDeBolasExport implements WithMapping, WithHeadings, FromCollection, 
     public function map($tamanos): array
     {
         return [
-            $tamanos->cli_id,
-            $tamanos->cli_nombre,
+            $tamanos->tab_id,
+            $tamanos->tab_tamano,
             $tamanos->getEstado(),
         ];
     }
@@ -43,7 +44,7 @@ class TamanoDeBolasExport implements WithMapping, WithHeadings, FromCollection, 
     {
         return [
             'ID',
-            'Nombre',
+            'Tamaño',
             'Estado',
         ];
     }
