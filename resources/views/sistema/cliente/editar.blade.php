@@ -26,8 +26,8 @@
                 <div class="grid-mantenedor-n mantenedor-row-3">
                     <div class="label-input-n">
                         <label for="">Razón social</label>
-                        <input type="text" name="crear_nombre_cliente" placeholder="Campo obligatorio" maxlength="255" value="{{ old('crear_nombre_cliente', $cliente->cli_nombre) }}">
-                        @error('crear_nombre_cliente')
+                        <input type="text" name="editar_nombre_cliente" placeholder="Campo obligatorio" maxlength="255" value="{{ old('editar_nombre_cliente', $cliente->cli_nombre) }}">
+                        @error('editar_nombre_cliente')
                             <span class="invalid-feedback badge alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -47,8 +47,9 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_crear_pais_cliente" id="id_pais_cliente">
-                            <option value="{{ $cliente->pais->pai_id }}">{{ old('slc_crear_pais_cliente', $cliente->pais->pai_nombre) }}</option>
+                            <option value="{{$cliente->pais->pai_id }}">{{ old('slc_crear_pais_cliente', $cliente->pais->pai_nombre) }}</option>
                             @foreach ($paises as $paises)
+                                @continue($paises->pai_id == $cliente->pais->pai_id)
                                 <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
                             @endforeach
                         </select>
