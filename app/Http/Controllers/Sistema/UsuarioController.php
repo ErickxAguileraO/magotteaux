@@ -8,11 +8,13 @@ use App\Http\Requests\TamnoBola\UpdateTamanoBolaRequest;
 use App\Http\Requests\Usuario\CreateUsuarioRequest;
 use App\Http\Requests\Usuario\UpdateUsuarioRequest;
 use App\Http\Resources\TamanoBolaResource;
+use App\Mail\Usuario\CuentaCreada;
 use App\Models\Cliente;
 use App\Models\Planta;
 use App\Models\TamanoBola;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
@@ -64,6 +66,8 @@ class UsuarioController extends Controller
 
             $usuario->assignRole($rol->name);
 
+            Mail::to($usuario->usu_email)->send((new CuentaCreada($usuario, $request->post('contrasena')))->afterCommit());
+
             DB::commit();
 
             return redirect()->route('usuario.index')->with(['message' => 'Se creo un nuevo usuario correctamente', 'type' => 'success']);
@@ -92,7 +96,7 @@ class UsuarioController extends Controller
         try {
 
             DB::beginTransaction();
-
+            
             $usuario = User::findOrFail($id);
             $rol = Role::findOrFail($request->post('tipo_usuario'));
 
@@ -118,6 +122,7 @@ class UsuarioController extends Controller
 
             return redirect()->route('usuario.index')->with(['message' => 'Se edito el usuario correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
+            dd($th);
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar el usuario', 'type' => 'error']);
         }
     }

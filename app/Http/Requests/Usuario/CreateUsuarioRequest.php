@@ -28,7 +28,7 @@ class CreateUsuarioRequest extends FormRequest
             'nombre' => ['required', 'max:255'],
             'apellido' => ['required', 'max:255'],
             'celular' => ['required', 'max:255'],
-            'email' => ['required', 'max:255', 'email:filter'],
+            'email' => ['required', 'max:255', 'email:filter', Rule::unique('usuarios', 'usu_email')->whereNull('deleted_at')],
             'contrasena' => ['required', 'max:255', 'min:8'],
             'identificacion' => ['nullable', 'max:255'],
             'tipo_usuario' => ['required', 'in:1,2,3'],
