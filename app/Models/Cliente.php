@@ -56,6 +56,11 @@ class Cliente extends Model
         return $this->belongsTo(Pais::class, 'cli_pais_id', 'pai_id');
     }
 
+    public function destinos()
+    {
+        return $this->hasMany(Destino::class, 'des_cliente_id', 'cli_id');
+    }
+
     /***********************************************************
      *  Auxiliary functions
      ************************************************************/

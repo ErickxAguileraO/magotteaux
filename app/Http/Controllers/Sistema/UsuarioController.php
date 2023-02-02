@@ -31,8 +31,10 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $clientes = Cliente::active()->get();
+        $clientes = Cliente::with('destinos')->active()->get();
         $plantas = Planta::active()->get();
+
+        dd($clientes->toarray());
 
         return view('sistema.usuario.crear', compact('clientes', 'plantas'));
     }
