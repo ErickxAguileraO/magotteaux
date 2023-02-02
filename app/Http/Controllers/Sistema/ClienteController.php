@@ -54,17 +54,17 @@ class ClienteController extends Controller
     public function update(UpdateClienteRequest $request, int $id)
     {
 
-        try {
+        //try {
             $cliente = Cliente::findOrFail($id);
-            $cliente->cli_nombre = $request->crear_nombre_cliente;
+            $cliente->cli_nombre = $request->editar_nombre_cliente;
             $cliente->cli_identificacion = $request->identificador_cliente;
             $cliente->cli_pais_id = $request->slc_crear_pais_cliente;
             $cliente->cli_estado = $request->slc_estado_cliente;
             $cliente->save();
             return redirect()->route('cliente.index')->with(['message' => 'Se edito correctamente', 'type' => 'success']);
-        } catch (\Throwable $th) {
+        //} catch (\Throwable $th) {
             return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
-        }
+        //}
     }
 
     public function delete(int $id)

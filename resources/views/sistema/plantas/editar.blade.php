@@ -37,6 +37,7 @@
                         <select name="slc_planta_pais" id="">
                             <option value="{{ $planta->pais->pai_id }}">{{ old('slc_planta_pais', $planta->pais->pai_nombre) }}</option>
                             @foreach ($paises as $paises)
+                                @continue($paises->pai_id == $planta->pais->pai_nombre)
                                 <option value="{{ $paises['pai_id'] }}">{{ old('slc_planta_pais', $paises->pai_nombre) }}</option>
                             @endforeach
                         </select>

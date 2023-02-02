@@ -191,7 +191,7 @@
                      const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
-                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este esta planta"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta planta"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 
                      return $(link_edit + link_delete);
                   },
