@@ -15,7 +15,7 @@
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
             <a href="{{ route('tipo.carga.update', ['id' => $tipoCarga->tic_id]) }}">
-                <p class="menu-seleccionado">Nuevo tipo de carga</p>
+                <p class="menu-seleccionado">Editar tipo de carga</p>
             </a>
         </nav>
 
@@ -23,7 +23,7 @@
             @csrf
             @method('post')
             <div class="div-contenido">
-                <h3>Nuevo tipo de carga</h3>
+                <h3>Editar tipo de carga</h3>
                 <div class="grid-mantenedor-n mantenedor-row-2">
                     <div class="label-input-n">
                         <label for="">Nombre de la carga</label>
