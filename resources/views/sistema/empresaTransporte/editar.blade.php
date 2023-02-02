@@ -14,7 +14,7 @@
                 <p>Mantenedor de empresas de transporte</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('empresa.transporte.create') }}">
+            <a href="">
                 <p class="menu-seleccionado">Editar empresa de transporte</p>
             </a>
         </nav>

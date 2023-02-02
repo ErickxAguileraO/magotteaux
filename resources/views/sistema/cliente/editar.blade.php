@@ -14,7 +14,7 @@
                 <p>Mantenedor de clientes</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('cliente.store') }}">
+            <a href="">
                 <p class="menu-seleccionado">Editar cliente</p>
             </a>
         </nav>
@@ -47,9 +47,9 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_crear_pais_cliente" id="id_pais_cliente">
-                            <option value="{{$cliente->pais->pai_id }}">{{ old('slc_crear_pais_cliente', $cliente->pais->pai_nombre) }}</option>
+                            <option value="{{$cliente->pais->pai_id }}">{{ old($cliente->pais->pai_nombre,$cliente->pais->pai_nombre) }}</option>
                             @foreach ($paises as $paises)
-                                @continue($paises->pai_id == $cliente->pais->pai_id)
+                                @continue($paises->pai_id == $cliente->pais->pai_id || $paises->pai_estado == 0)
                                 <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
                             @endforeach
                         </select>

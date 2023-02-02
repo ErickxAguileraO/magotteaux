@@ -35,10 +35,10 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_planta_pais" id="">
-                            <option value="{{ $planta->pais->pai_id }}">{{ old('slc_planta_pais', $planta->pais->pai_nombre) }}</option>
+                            <option value="{{ $planta->pais->pai_id }}">{{ old($planta->pais->pai_nombre, $planta->pais->pai_nombre) }}</option>
                             @foreach ($paises as $paises)
-                                @continue($paises->pai_id == $planta->pais->pai_nombre)
-                                <option value="{{ $paises['pai_id'] }}">{{ old('slc_planta_pais', $paises->pai_nombre) }}</option>
+                                @continue($paises->pai_id == $planta->pais->pai_id || $paises->pai_estado==0)
+                                <option value="{{ $paises['pai_id'] }}">{{ $paises->pai_nombre }}</option>
                             @endforeach
                         </select>
                         @error('slc_planta_pais')
