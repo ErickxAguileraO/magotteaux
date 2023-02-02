@@ -41,6 +41,7 @@
                         <select name="slc_planta_puntoCarga" id="">
                             <option value="{{ $puntoCarga->planta->pla_id }}">{{ old('slc_planta_puntoCarga', $puntoCarga->planta->pla_nombre) }}</option>
                             @foreach ($planta as $planta)
+                                @continue($planta->pla_id == $puntoCarga->planta->pla_nombre)
                                 <option value="{{ $planta['pla_id'] }}">{{ old('slc_planta_puntoCarga', $planta->pla_nombre) }}</option>
                             @endforeach
                         </select>

@@ -24,7 +24,7 @@ class UpdateClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'crear_nombre_cliente' => 'required|max:255',
+            'editar_nombre_cliente' => 'required|max:255',
             'identificador_cliente' => 'max:255',
             'slc_crear_pais_cliente' => 'required',
             'slc_estado_cliente' => 'required|boolean|numeric'

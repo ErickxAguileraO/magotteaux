@@ -212,10 +212,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'empresa-transporte', 'as' => 'empresa.transporte.'], function () {
         Route::get('', [EmpresaTransporteController::class, 'index'])->name('index');
+        Route::get('list', [EmpresaTransporteController::class, 'list'])->name('list');
         Route::get('nuevo-empresa-transporte', [EmpresaTransporteController::class, 'create'])->name('create');
         Route::post('store', [EmpresaTransporteController::class, 'store'])->name('store');
         Route::get('editar-empresa-transporte/{id}', [EmpresaTransporteController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [EmpresaTransporteController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [EmpresaTransporteController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'tamano-bola', 'as' => 'tamano.bola.'], function () {

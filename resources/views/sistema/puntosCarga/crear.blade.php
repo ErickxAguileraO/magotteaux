@@ -40,6 +40,7 @@
                     <div class="label-input-n">
                         <label for="">Planta</label>
                         <select name="slc_planta_puntoCarga" id="">
+                            <option value="">Selecciones una planta</option>
                             @foreach ($planta as $planta)
                                 <option value="{{ $planta['pla_id'] }}">{{ $planta['pla_nombre'] }}</option>
                             @endforeach
