@@ -37,6 +37,7 @@ class User extends Authenticatable
         'usu_password',
         'usu_planta_id',
         'usu_cliente_id',
+        'usu_destino_id',
     ];
 
     /**

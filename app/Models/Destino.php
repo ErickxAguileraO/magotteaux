@@ -17,5 +17,15 @@ class Destino extends Model
         'des_id',
         'des_nombre',
         'des_estado',
+        'des_cliente_id',
     ];
+
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+
+    public function scopeActive($query)
+    {
+        return $query->where('des_estado', 1);
+    }
 }

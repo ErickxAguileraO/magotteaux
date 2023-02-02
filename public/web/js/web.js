@@ -34,22 +34,38 @@ window.addEventListener('load', () => {
     $('#tipo_usuario').on('change', function (e) {
         const value = e.currentTarget.value;
 
-        const label_planta = document.querySelector('.label-planta');
-        const label_cliente = document.querySelector('.label-cliente');
+        const label_planta = document.querySelectorAll('.label-planta');
+        const label_cliente = document.querySelectorAll('.label-cliente');
 
         if (value == TIPO_LOGISTICA) {
-            label_planta.style.display = '';
-            label_cliente.style.display = 'none';
+            label_planta.forEach(label => label.style.display = '');
+            label_cliente.forEach(label => label.style.display = 'none');
 
         } else if (value == TIPO_CLIENTE) {
-            label_cliente.style.display = '';
-            label_planta.style.display = 'none';
+            label_planta.forEach(label => label.style.display = 'none');
+            label_cliente.forEach(label => label.style.display = '');
 
         } else {
-            label_cliente.style.display = 'none';
-            label_planta.style.display = 'none';
+            label_planta.forEach(label => label.style.display = 'none');
+            label_cliente.forEach(label => label.style.display = 'none');
 
         }
+    });
+
+    $('#cliente').on('change', function (e) {
+        const select = e.currentTarget;
+        const destinos = JSON.parse(document.querySelector('.value-destinos').value);
+        const select_destino = document.querySelector('#destino');
+
+        const filtered = destinos.filter(destino => destino.des_cliente_id == select.value);
+
+        select_destino.innerHTML = "<option value=''>Seleccione</option>";
+
+        filtered.forEach(destino => {
+            select_destino.innerHTML += "<option value='" + destino.des_id + "'>" + destino.des_nombre + "</option>";
+        });
+
+        $(select_destino).niceSelect('update');
     });
 });
 

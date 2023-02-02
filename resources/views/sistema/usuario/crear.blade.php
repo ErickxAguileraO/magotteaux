@@ -90,7 +90,10 @@
                      </span>
                   @enderror
                </div>
-               <div class="label-input-n label-cliente" style="display: none">
+               @php
+                  $style = old('tipo_usuario') == 2 ? '' : 'display: none';
+               @endphp
+               <div class="label-input-n label-cliente" style="{{ $style }}">
                   <label for="cliente">Empresa</label>
                   <select name="cliente" id="cliente">
                      <option value="">Seleccione</option>
@@ -107,7 +110,31 @@
                      </span>
                   @enderror
                </div>
-               <div class="label-input-n label-planta" style="display: none">
+               @php
+                  $style = old('tipo_usuario') == 2 ? '' : 'display: none';
+               @endphp
+               <div class="label-input-n label-cliente" style="{{ $style }}">
+                  <label for="destino">Destinos</label>
+                  <input type="hidden" class="value-destinos" value="{{ $clientes->pluck('destinos')->collapse() }}">
+                  <select name="destino" id="destino">
+                     <option value="">Seleccione</option>
+                     @foreach ($destinos as $destino)
+                        @php
+                           $selected = old('destino') == $destino->des_id ? 'selected' : '';
+                        @endphp
+                        <option value="{{ $destino->des_id }}" {{ $selected }}>{{ $destino->des_nombre }}</option>
+                     @endforeach
+                  </select>
+                  @error('destino')
+                     <span class="invalid-feedback badge alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                     </span>
+                  @enderror
+               </div>
+               @php
+                  $style = old('tipo_usuario') == 1 ? '' : 'display: none';
+               @endphp
+               <div class="label-input-n label-planta" style="{{ $style }}">
                   <label for="planta">Planta</label>
                   <select name="planta" id="planta">
                      <option value="">Seleccione</option>

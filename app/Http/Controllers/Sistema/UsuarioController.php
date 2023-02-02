@@ -31,12 +31,14 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $clientes = Cliente::with('destinos')->active()->get();
+        $clientes = Cliente::with(['destinos' => function ($query) {
+            $query->active();
+        }])->active()->get();
+
         $plantas = Planta::active()->get();
+        $destinos = $clientes->firstWhere('cli_id', old('cliente'))->destinos ?? [];
 
-        dd($clientes->toarray());
-
-        return view('sistema.usuario.crear', compact('clientes', 'plantas'));
+        return view('sistema.usuario.crear', compact('clientes', 'plantas', 'destinos'));
     }
 
     public function store(CreateUsuarioRequest $request)
@@ -57,6 +59,7 @@ class UsuarioController extends Controller
                 'usu_password' => $request->post('contrasena'),
                 'usu_planta_id' => $request->post('tipo_usuario') == User::TIPO_LOGISTICA ? $request->post('planta') : null,
                 'usu_cliente_id' => $request->post('tipo_usuario') == User::TIPO_CLIENTE ? $request->post('cliente') : null,
+                'usu_destino_id' => $request->post('tipo_usuario') == User::TIPO_CLIENTE ? $request->post('destino') : null,
             ]);
 
             $usuario->assignRole($rol->name);
@@ -74,10 +77,14 @@ class UsuarioController extends Controller
     public function edit(int $id)
     {
         $usuario = User::findOrFail($id);
-        $clientes = Cliente::active()->get();
-        $plantas = Planta::active()->get();
+        $clientes = Cliente::with(['destinos' => function ($query) {
+            $query->active();
+        }])->active()->get();
 
-        return view('sistema.usuario.editar', compact('clientes', 'plantas', 'usuario'));
+        $plantas = Planta::active()->get();
+        $destinos = $clientes->firstWhere('cli_id', old('cliente', $usuario->usu_cliente_id))->destinos ?? [];
+
+        return view('sistema.usuario.editar', compact('clientes', 'plantas', 'usuario', 'destinos'));
     }
 
     public function update(UpdateUsuarioRequest $request, int $id)
@@ -98,9 +105,10 @@ class UsuarioController extends Controller
                 'usu_estado' => $request->post('estado'),
                 'usu_planta_id' => $request->post('tipo_usuario') == User::TIPO_LOGISTICA ? $request->post('planta') : null,
                 'usu_cliente_id' => $request->post('tipo_usuario') == User::TIPO_CLIENTE ? $request->post('cliente') : null,
+                'usu_destino_id' => $request->post('tipo_usuario') == User::TIPO_CLIENTE ? $request->post('destino') : null,
             ]);
 
-            if($request->post('contrasena')){
+            if ($request->post('contrasena')) {
                 $usuario->update(['usu_password' => $request->post('contrasena')]);
             }
 

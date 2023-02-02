@@ -19,7 +19,6 @@
       </nav>
       <form method="POST" action="{{ route('usuario.update', ['id' => $usuario->usu_id]) }}" class="formulario-crear-cliente">
          @csrf
-         @dump(old())
          <div class="div-contenido">
             <h3>Actualizar usuario</h3>
             <div class="grid-mantenedor-n mantenedor-row-3">
@@ -112,7 +111,28 @@
                   @enderror
                </div>
                @php
-                  $style = old('tipo_usuario', $usuario->getRoleId()) == 1  ? '' : 'display: none';
+                  $style = old('tipo_usuario', $usuario->getRoleId()) == 2 ? '' : 'display: none';
+               @endphp
+               <div class="label-input-n label-cliente" style="{{ $style }}">
+                  <label for="destino">Destinos</label>
+                  <input type="hidden" class="value-destinos" value="{{ $clientes->pluck('destinos')->collapse() }}">
+                  <select name="destino" id="destino">
+                     <option value="">Seleccione</option>
+                     @foreach ($destinos as $destino)
+                        @php
+                           $selected = old('destino', $usuario->usu_destino_id) == $destino->des_id ? 'selected' : '';
+                        @endphp
+                        <option value="{{ $destino->des_id }}" {{ $selected }}>{{ $destino->des_nombre }}</option>
+                     @endforeach
+                  </select>
+                  @error('destino')
+                     <span class="invalid-feedback badge alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                     </span>
+                  @enderror
+               </div>
+               @php
+                  $style = old('tipo_usuario', $usuario->getRoleId()) == 1 ? '' : 'display: none';
                @endphp
                <div class="label-input-n label-planta" style="{{ $style }}">
                   <label for="planta">Planta</label>
@@ -134,7 +154,6 @@
                <div class="label-input-n">
                   <label for="estado">Estado</label>
                   <select name="estado" id="estado">
-                     <option value="">Seleccione</option>
                      <option value="1" {{ old('estado', $usuario->usu_estado) == '1' ? 'selected' : '' }}>Activo</option>
                      <option value="0" {{ old('estado', $usuario->usu_estado) == '0' ? 'selected' : '' }}>Inactivo</option>
                   </select>

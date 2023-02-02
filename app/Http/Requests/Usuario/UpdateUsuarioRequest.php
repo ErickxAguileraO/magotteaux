@@ -32,8 +32,21 @@ class UpdateUsuarioRequest extends FormRequest
             'contrasena' => ['nullable', 'max:255', 'min:8'],
             'identificacion' => ['nullable', 'max:255'],
             'tipo_usuario' => ['required', 'in:1,2,3'],
-            'cliente' => ['nullable', 'required_if:tipo_usuario,2', Rule::exists('clientes', 'cli_id')->whereNull('deleted_at')],
-            'planta' => ['nullable', 'required_if:tipo_usuario,1', Rule::exists('plantas', 'pla_id')->whereNull('deleted_at')],
+            'cliente' => [
+                'nullable',
+                'required_if:tipo_usuario,2',
+                Rule::exists('clientes', 'cli_id')->whereNull('deleted_at')
+            ],
+            'destino' => [
+                'nullable',
+                'required_if:tipo_usuario,2',
+                Rule::exists('destinos', 'des_id')->where('des_cliente_id', $this->cliente)->whereNull('deleted_at')
+            ],
+            'planta' => [
+                'nullable',
+                'required_if:tipo_usuario,1',
+                Rule::exists('plantas', 'pla_id')->whereNull('deleted_at')
+            ],
             'estado' => ['required', 'boolean'],
         ];
     }
