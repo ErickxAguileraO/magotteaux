@@ -55,7 +55,7 @@
         <p>Cargas</p>
     </a>
 
-    <a href="/usuarios" class="op-sidebar">
+    <a href="{{ route('usuario.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-clientes-sb.svg') }}" alt="">
         <p>Usuarios</p>
     </a>

@@ -1,5 +1,9 @@
 window.addEventListener('load', () => {
 
+    const TIPO_LOGISTICA = 1;
+    const TIPO_CLIENTE = 2;
+    const TIPO_ADMINISTRADOR = 3;
+
     /***********************************
      *  Iniciar plugins
      **********************************/
@@ -25,6 +29,43 @@ window.addEventListener('load', () => {
             });
 
         }
+    });
+
+    $('#tipo_usuario').on('change', function (e) {
+        const value = e.currentTarget.value;
+
+        const label_planta = document.querySelectorAll('.label-planta');
+        const label_cliente = document.querySelectorAll('.label-cliente');
+
+        if (value == TIPO_LOGISTICA) {
+            label_planta.forEach(label => label.style.display = '');
+            label_cliente.forEach(label => label.style.display = 'none');
+
+        } else if (value == TIPO_CLIENTE) {
+            label_planta.forEach(label => label.style.display = 'none');
+            label_cliente.forEach(label => label.style.display = '');
+
+        } else {
+            label_planta.forEach(label => label.style.display = 'none');
+            label_cliente.forEach(label => label.style.display = 'none');
+
+        }
+    });
+
+    $('#cliente').on('change', function (e) {
+        const select = e.currentTarget;
+        const destinos = JSON.parse(document.querySelector('.value-destinos').value);
+        const select_destino = document.querySelector('#destino');
+
+        const filtered = destinos.filter(destino => destino.des_cliente_id == select.value);
+
+        select_destino.innerHTML = "<option value=''>Seleccione</option>";
+
+        filtered.forEach(destino => {
+            select_destino.innerHTML += "<option value='" + destino.des_id + "'>" + destino.des_nombre + "</option>";
+        });
+
+        $(select_destino).niceSelect('update');
     });
 });
 
@@ -72,13 +113,13 @@ const notificaciones = () => {
     const message = document.getElementById('msg-notify');
     const type = document.getElementById('type-notify');
     const route = document.getElementById('route-notify');
-    
+
     if (!message || !type) return;
-    
+
     const Toast = configSweetAlert();
-    
+
     Toast.fire(themeSweetAlert(type.value, message.value));
-    
+
     if (!route) return;
     if (route.value) setTimeout(() => window.location.href = route.value, 2000);
 
