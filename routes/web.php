@@ -12,6 +12,7 @@ use App\Http\Controllers\Sistema\PlantaController;
 use App\Http\Controllers\Sistema\PuntoCargaController;
 use App\Http\Controllers\Sistema\TamanoBolaController;
 use App\Http\Controllers\Sistema\TipoCargaController;
+use App\Http\Controllers\Sistema\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -114,12 +115,12 @@ Route::get('nuevo-destino', function () {
 //     return view('maqueta.paises.crear');
 // });
 
-Route::get('usuarios', function () {
-    return view('maqueta.usuarios.index');
-});
-Route::get('nuevo-usuario', function () {
-    return view('maqueta.usuarios.crear');
-});
+// Route::get('usuarios', function () {
+//     return view('maqueta.usuarios.index');
+// });
+// Route::get('nuevo-usuario', function () {
+//     return view('maqueta.usuarios.crear');
+// });
 
 Route::get('patentes', function () {
     return view('maqueta.patentes.index');
@@ -150,9 +151,9 @@ Route::group(['as' => 'web.'], function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::group(['as' => 'cuenta.'], function () {
-        Route::get('cuenta/edit', [CuentaController::class, 'edit'])->name('edit');
-        Route::put('cuenta/update', [CuentaController::class, 'update'])->name('update');
+    Route::group(['prefix' => 'cuenta', 'as' => 'cuenta.'], function () {
+        Route::get('edit', [CuentaController::class, 'edit'])->name('edit');
+        Route::put('update', [CuentaController::class, 'update'])->name('update');
     });
 
     Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
@@ -230,6 +231,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [TamanoBolaController::class, 'update'])->name('update');
         Route::get('delete/{id}', [TamanoBolaController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [TamanoBolaController::class, 'downloadExcel'])->name('download.excel');
+    });
+
+    Route::group(['prefix' => 'usuario', 'as' => 'usuario.'], function () {
+        Route::get('', [UsuarioController::class, 'index'])->name('index');
+        // Route::get('list', [TamanoBolaController::class, 'list'])->name('list');
+        Route::get('nuevo-usuario', [UsuarioController::class, 'create'])->name('create');
+        Route::post('store', [UsuarioController::class, 'store'])->name('store');
+        Route::get('editar-usuario/{id}', [UsuarioController::class, 'edit'])->name('edit')->whereNumber('id');
+        Route::post('update/{id}', [UsuarioController::class, 'update'])->name('update');
+        // Route::get('delete/{id}', [TamanoBolaController::class, 'delete'])->name('delete')->whereNumber('id');
+        // Route::get('download-excel', [TamanoBolaController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
