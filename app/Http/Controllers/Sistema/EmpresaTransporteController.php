@@ -32,16 +32,16 @@ class EmpresaTransporteController extends Controller
 
     public function store(CreateEmpresaTransporteRequest $request)
     {
-        try {
+        //try {
             $empresaTransporte = new EmpresaTransporte();
             $empresaTransporte->emt_nombre = ucwords(strtolower($request->nombre_empresa));
-            $empresaTransporte->emt_identificador = $request->rut_empresa;
+            $empresaTransporte->emt_identificacion = $request->rut_empresa;
             $empresaTransporte->emt_estado = $request->slc_estado_empresa;
             $empresaTransporte->save();
             return redirect()->route('empresa.transporte.index')->with(['message' => 'Se creo una nueva empresa', 'type' => 'success']);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
-        }
+        //} catch (\Throwable $th) {
+          //  return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+        //}
     }
 
     public function edit($id)
@@ -53,16 +53,16 @@ class EmpresaTransporteController extends Controller
     public function update(UpdateEmpresaTransporteRequest $request, int $id)
     {
 
-        try {
+        //try {
             $empresaTransporte = EmpresaTransporte::findOrFail($id);
             $empresaTransporte->emt_nombre = ucwords(strtolower($request->nombre_empresa));
-            $empresaTransporte->emt_identificador = $request->rut_empresa;
+            $empresaTransporte->emt_identificacion = $request->rut_empresa;
             $empresaTransporte->emt_estado = $request->slc_estado_empresa;
             $empresaTransporte->save();
             return redirect()->route('empresa.transporte.index')->with(['message' => 'Se edito una empresa con exito', 'type' => 'success']);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
-        }
+        //} catch (\Throwable $th) {
+         //   return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+        //}
     }
 
     public function delete(int $id)

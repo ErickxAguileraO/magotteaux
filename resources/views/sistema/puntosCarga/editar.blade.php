@@ -17,14 +17,14 @@
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
             <a href="{{ route('punto.carga.update', ['id' => $puntoCarga->puc_id]) }}">
-                <p class="menu-seleccionado">Nuevo punto de carga</p>
+                <p class="menu-seleccionado">Editar punto de carga</p>
             </a>
         </nav>
 
         <form method="POST" action="{{ route('punto.carga.update', ['id' => $puntoCarga->puc_id]) }} " class="formulario-editar-pais">
             @csrf
             <div class="div-contenido">
-                <h3>Nuevo punto de carga</h3>
+                <h3>Editar punto de carga</h3>
                 <div class="grid-mantenedor-n mantenedor-row-3">
                     <div class="label-input-n">
                         <label for="">Nombre del punto de carga</label>

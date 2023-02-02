@@ -15,13 +15,13 @@
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
             <a href="{{ route('planta.edit', ['id' => $planta->pla_id]) }}">
-                <p class="menu-seleccionado">Nueva planta</p>
+                <p class="menu-seleccionado">Editar planta</p>
             </a>
         </nav>
         <form method="POST" action="{{ route('planta.update', ['id' => $planta->pla_id]) }} " class="formulario-editar_planta">
             @csrf
             <div class="div-contenido">
-                <h3>Nueva planta</h3>
+                <h3>Editar planta</h3>
                 <div class="grid-mantenedor-n mantenedor-row-3">
                     <div class="label-input-n">
                         <label for="">Nombre de planta</label>
