@@ -41,7 +41,7 @@ class PlantaController extends Controller
             $planta->save();
             return redirect()->route('planta.index')->with(['message' => 'Se creo una nueva planta', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear una planta', 'type' => 'error']);
         }
     }
 
@@ -62,7 +62,7 @@ class PlantaController extends Controller
             $planta->save();
             return redirect()->route('planta.index')->with(['message' => 'Se edito correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar una planta', 'type' => 'error']);
         }
     }
 

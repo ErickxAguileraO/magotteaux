@@ -38,7 +38,7 @@ class TipoCargaController extends Controller
             $tipoCarga->save();
             return redirect()->route('tipo.carga.index')->with(['message' => 'Se creo un nuevo tipo de carga', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear un tipo de carga', 'type' => 'error']);
         }
     }
 
@@ -57,7 +57,7 @@ class TipoCargaController extends Controller
             $tipoCarga->save();
             return redirect()->route('tipo.carga.index')->with(['message' => 'Se edito un tipo carga', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar un tipo de carga', 'type' => 'error']);
         }
     }
 

@@ -40,7 +40,7 @@ class EmpresaTransporteController extends Controller
             $empresaTransporte->save();
             return redirect()->route('empresa.transporte.index')->with(['message' => 'Se creo una nueva empresa', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear una empresa de transporte', 'type' => 'error']);
         }
     }
 
@@ -61,7 +61,7 @@ class EmpresaTransporteController extends Controller
             $empresaTransporte->save();
             return redirect()->route('empresa.transporte.index')->with(['message' => 'Se edito una empresa con exito', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar una Empresa de transporte', 'type' => 'error']);
         }
     }
 
