@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\Destino;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,9 @@ class UpdateDestinoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre_destino' => 'required|max:255',
+            'cliente_destino' => 'required',
+            'estado_destino' => 'required|boolean|numeric'
         ];
     }
 }

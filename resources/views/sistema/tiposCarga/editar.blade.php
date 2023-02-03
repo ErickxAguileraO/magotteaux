@@ -50,7 +50,7 @@
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
                         <button type="submit" class="btn-contenido-inicio">
-                            <p class="mostrar-escritorio">Guardar tipo de carga</p>
+                            <p class="mostrar-escritorio">Editar tipo de carga</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
                         </button>
