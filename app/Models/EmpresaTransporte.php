@@ -14,4 +14,13 @@ class EmpresaTransporte extends Model
     protected $prefix = 'emt';
     protected $table = 'empresa_transportes';
     protected $primaryKey = 'emt_id';
+
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+
+     public function scopeActive($query)
+     {
+         return $query->where('emt_estado', 1);
+     }
 }

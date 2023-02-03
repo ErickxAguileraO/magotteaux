@@ -65,7 +65,7 @@
         <p>Patentes</p>
     </a>
 
-    <a href="/choferes" class="op-sidebar">
+    <a href="{{ route('chofer.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-choferes-sb.svg') }}" alt="">
         <p>Choferes</p>
     </a>
