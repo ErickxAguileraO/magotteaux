@@ -28,4 +28,13 @@ class Destino extends Model
     {
         return $query->where('des_estado', 1);
     }
+
+        /***********************************************************
+     *  Eloquent relationships
+     ************************************************************/
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'des_cliente_id', 'cli_id');
+    }
 }

@@ -24,47 +24,6 @@
                      <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                   </a>
                </div>
-               <form action="" class="sub-contenido">
-                  <div class="div-contenido-inicio-2">
-                     <h2>Filtros de búsqueda</h2>
-                     <div class="botones-contenido-inicio">
-                        <button class="btn-contenido-inicio" id="btn-buscar">
-                           <p>Buscar</p>
-                           <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
-                        </button>
-                        <button class="btn-contenido-inicio2" type="reset">
-                           <p>Limpiar filtro</p>
-                           <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
-                        </button>
-                     </div>
-                  </div>
-                  <div class="fomulario-row-2">
-                     <div class="label-input-n">
-                        <label for="">Nombre del cliente</label>
-                        <input type="text" name="nombre" id="nombre-cliente" value="{{ request('nombre') }}">
-                     </div>
-                     <div class="label-input-n">
-                        <label for="estado-cliente">Estado</label>
-                        <select id="estado-cliente" name="estado">
-                           <option value="">Seleccione</option>
-                           <option value="0" {{ request('estado') === '0' ? 'selected' : '' }}>Inactivo</option>
-                           <option value="1" {{ request('estado') === '1' ? 'selected' : '' }}>Activo</option>
-                        </select>
-                     </div>
-                  </div>
-                  <div class="div-contenido-inicio-2-movil">
-                     <div class="botones-contenido-inicio">
-                        <button class="btn-contenido-inicio">
-                           <p>Buscar</p>
-                           <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
-                        </button>
-                        <button class="btn-contenido-inicio2" type="reset">
-                           <p>Limpiar filtro</p>
-                           <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
-                        </button>
-                     </div>
-                  </div>
-               </form>
             </div>
             <div class="div-contenido">
                <div class="div-contenido-escritorio">

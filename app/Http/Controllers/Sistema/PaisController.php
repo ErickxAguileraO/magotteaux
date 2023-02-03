@@ -39,7 +39,7 @@ class PaisController extends Controller
             $pais->save();
             return redirect()->route('pais.index')->with(['message' => 'Se creo un nuevo pais', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear un país', 'type' => 'error']);
         }
     }
 
@@ -59,7 +59,7 @@ class PaisController extends Controller
             $pais->save();
             return redirect()->route('pais.index')->with(['message' => 'Se edito el pais con exito', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar un país', 'type' => 'error']);
         }
     }
 

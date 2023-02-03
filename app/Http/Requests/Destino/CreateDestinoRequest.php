@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\Destino;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class CreateDestinoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CreateDestinoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre_destino' => 'required|max:255',
+            'cliente_destino' => 'required',
+            'estado_destino' => 'required|boolean|numeric'
         ];
     }
 }

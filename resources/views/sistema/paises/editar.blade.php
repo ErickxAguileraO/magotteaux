@@ -14,7 +14,7 @@
                 <p>Mantenedor de países</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('pais.update',['id' => $paises->pai_id]) }}">
+            <a href="">
                 <p class="menu-seleccionado">Editar país</p>
             </a>
         </nav>
@@ -54,7 +54,7 @@
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
                         <button type="submit" class="btn-contenido-inicio">
-                            <p class="mostrar-escritorio">Guardar nuevo país</p>
+                            <p class="mostrar-escritorio">Editar nuevo país</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
                         </button>

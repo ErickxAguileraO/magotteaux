@@ -40,7 +40,7 @@ class ClienteController extends Controller
             $cliente->save();
             return redirect()->route('cliente.index')->with(['message' => 'Se creo un nuevo cliente', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crea un cliente', 'type' => 'error']);
         }
     }
 
@@ -63,7 +63,7 @@ class ClienteController extends Controller
             $cliente->save();
             return redirect()->route('cliente.index')->with(['message' => 'Se edito correctamente', 'type' => 'success']);
         //} catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar un cliente', 'type' => 'error']);
         //}
     }
 
