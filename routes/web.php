@@ -66,12 +66,12 @@ Route::get('detalle-carga', function () {
 //  return view('sistema.cliente.crear');
 //});
 
-Route::get('destinos', function () {
-    return view('maqueta.destinos.index');
-});
-Route::get('nuevo-destino', function () {
-    return view('maqueta.destinos.crear');
-});
+// Route::get('destinos', function () {
+//     return view('maqueta.destinos.index');
+// });
+// Route::get('nuevo-destino', function () {
+//     return view('maqueta.destinos.crear');
+// });
 
 // Route::get('plantas', function () {
 //     return view('maqueta.plantas.index');

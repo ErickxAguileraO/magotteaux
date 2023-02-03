@@ -41,7 +41,7 @@ class PuntoCargaController extends Controller
             $puntoCarga->save();
             return redirect()->route('punto.carga.index')->with(['message' => 'Se creo un nuevo punto de carga', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear un punto de carga', 'type' => 'error']);
         }
     }
 
@@ -62,7 +62,7 @@ class PuntoCargaController extends Controller
             $puntoCarga->save();
             return redirect()->route('punto.carga.index')->with(['message' => 'Se creo un nuevo punto de carga', 'type' => 'success']);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'error de ingreso', 'type' => 'error']);
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar un punto de carga', 'type' => 'error']);
         }
     }
     public function delete(int $id)
