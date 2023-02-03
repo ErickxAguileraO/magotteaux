@@ -14,7 +14,7 @@
                 <p>Mantenedor de tipos de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('tipo.carga.update', ['id' => $tipoCarga->tic_id]) }}">
+            <a href="">
                 <p class="menu-seleccionado">Editar tipo de carga</p>
             </a>
         </nav>

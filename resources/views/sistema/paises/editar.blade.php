@@ -14,7 +14,7 @@
                 <p>Mantenedor de países</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('pais.store') }}">
+            <a href="{{ route('pais.update',['id' => $paises->pai_id]) }}">
                 <p class="menu-seleccionado">Editar país</p>
             </a>
         </nav>

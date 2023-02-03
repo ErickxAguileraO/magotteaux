@@ -16,7 +16,7 @@
                 <p>Mantenedor de puntos de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('punto.carga.update', ['id' => $puntoCarga->puc_id]) }}">
+            <a href="">
                 <p class="menu-seleccionado">Editar punto de carga</p>
             </a>
         </nav>
@@ -39,9 +39,9 @@
                     <div class="label-input-n">
                         <label for="">Planta</label>
                         <select name="slc_planta_puntoCarga" id="">
-                            <option value="{{ $puntoCarga->planta->pla_id }}">{{ old('slc_planta_puntoCarga', $puntoCarga->planta->pla_nombre) }}</option>
+                            <option value="{{ $puntoCarga->planta->pla_id }}">{{ old($puntoCarga->planta->pla_nombre, $puntoCarga->planta->pla_nombre) }}</option>
                             @foreach ($planta as $planta)
-                                @continue($planta->pla_id == $puntoCarga->planta->pla_nombre)
+                                @continue($planta->pla_id == $puntoCarga->planta->pla_id || $planta->pla_estado==0)
                                 <option value="{{ $planta['pla_id'] }}">{{ old('slc_planta_puntoCarga', $planta->pla_nombre) }}</option>
                             @endforeach
                         </select>
