@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Planta extends Model
 {
-    use HasFactory, StatusConvert;
+    use HasFactory, StatusConvert, SoftDeletes;
 
     public $timestamps = false;
     protected $prefix = 'pla';

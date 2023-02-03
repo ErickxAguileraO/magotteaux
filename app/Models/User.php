@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\StatusConvert;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,13 +13,14 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles, StatusConvert;
 
     const TIPO_LOGISTICA = 1;
     const TIPO_CLIENTE = 2;
     const TIPO_ADMINISTRADOR = 3;
 
     protected $table = 'usuarios';
+    protected $prefix = 'usu';
     protected $primaryKey = 'usu_id';
 
     /**
@@ -72,22 +74,40 @@ class User extends Authenticatable
         $this->attributes['usu_password'] = bcrypt($value);
     }
 
-     /***********************************************************
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+ 
+     public function scopeIgnoreFirstUser($query)
+     {
+         return $query->where('usu_id', '!=', 1);
+     }
+
+    /***********************************************************
+    *  Eloquent relationships
+    ************************************************************/
+
+    public function planta()
+    {
+        return $this->belongsTo(Planta::class, 'usu_planta_id', 'pla_id')->withTrashed();
+    }
+
+    /***********************************************************
      *  Auxiliary functions
      ************************************************************/
 
-     public function getRoleId()
-     {
-        if($this->hasRole('Logistica')){
+    public function getRoleId()
+    {
+        if ($this->hasRole('Logistica')) {
             return self::TIPO_LOGISTICA;
         }
 
-        if($this->hasRole('Cliente')){
+        if ($this->hasRole('Cliente')) {
             return self::TIPO_CLIENTE;
         }
 
-        if($this->hasRole('Admin')){
+        if ($this->hasRole('Admin')) {
             return self::TIPO_ADMINISTRADOR;
         }
-     }
+    }
 }

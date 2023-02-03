@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Sistema;
 
-use App\Exports\TamanoDeBolasExport;
+use App\Exports\UsuariosExport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TamnoBola\UpdateTamanoBolaRequest;
 use App\Http\Requests\Usuario\CreateUsuarioRequest;
 use App\Http\Requests\Usuario\UpdateUsuarioRequest;
-use App\Http\Resources\TamanoBolaResource;
+use App\Http\Resources\UsuarioResource;
 use App\Mail\Usuario\CuentaCreada;
 use App\Models\Cliente;
 use App\Models\Planta;
-use App\Models\TamanoBola;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -26,10 +24,12 @@ class UsuarioController extends Controller
         return view('sistema.usuario.index');
     }
 
-    // public function list()
-    // {
-    //     return TamanoBolaResource::collection(TamanoBola::all());
-    // }
+    public function list()
+    {
+        $usuarios = User::with('planta')->ignoreFirstUser()->get();
+
+        return UsuarioResource::collection($usuarios);
+    }
 
     public function create()
     {
@@ -80,7 +80,7 @@ class UsuarioController extends Controller
 
     public function edit(int $id)
     {
-        $usuario = User::findOrFail($id);
+        $usuario = User::ignoreFirstUser()->findOrFail($id);
         $clientes = Cliente::with(['destinos' => function ($query) {
             $query->active();
         }])->active()->get();
@@ -96,8 +96,8 @@ class UsuarioController extends Controller
         try {
 
             DB::beginTransaction();
-            
-            $usuario = User::findOrFail($id);
+
+            $usuario = User::ignoreFirstUser()->findOrFail($id);
             $rol = Role::findOrFail($request->post('tipo_usuario'));
 
             $usuario->update([
@@ -122,32 +122,31 @@ class UsuarioController extends Controller
 
             return redirect()->route('usuario.index')->with(['message' => 'Se edito el usuario correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
-            dd($th);
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar el usuario', 'type' => 'error']);
         }
     }
 
-    // public function delete(int $id)
-    // {
-    //     try {
-    //         TamanoBola::findOrFail($id)->delete();
+    public function delete(int $id)
+    {
+        try {
+            User::ignoreFirstUser()->findOrFail($id)->delete();
 
-    //         return redirect()->route('tamano.bola.index')->with(['message' => 'Tamaño de bola eliminado correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
+            return redirect()->route('usuario.index')->with(['message' => 'Usuario eliminado correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el tamaño de bola', 'type' => 'error']);
-    //     }
-    // }
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el usuario', 'type' => 'error']);
+        }
+    }
 
-    // public function downloadExcel()
-    // {
-    //     try {
-    //         $tamanos = TamanoBola::all();
+    public function downloadExcel()
+    {
+        try {
+            $usuarios = User::with('planta')->ignoreFirstUser()->get();
 
-    //         return Excel::download(new TamanoDeBolasExport($tamanos), 'tamaños-de-bola.xlsx');
-    //     } catch (\Throwable $th) {
+            return Excel::download(new UsuariosExport($usuarios), 'usuarios.xlsx');
+        } catch (\Throwable $th) {
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-    //     }
-    // }
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
+    }
 }
