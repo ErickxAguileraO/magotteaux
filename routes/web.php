@@ -228,20 +228,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('nuevo-tamano-bola', [TamanoBolaController::class, 'create'])->name('create');
         Route::post('store', [TamanoBolaController::class, 'store'])->name('store');
         Route::get('editar-tamano-bola/{id}', [TamanoBolaController::class, 'edit'])->name('edit')->whereNumber('id');
-        Route::post('update/{id}', [TamanoBolaController::class, 'update'])->name('update');
+        Route::post('update/{id}', [TamanoBolaController::class, 'update'])->name('update')->whereNumber('id');
         Route::get('delete/{id}', [TamanoBolaController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [TamanoBolaController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'usuario', 'as' => 'usuario.'], function () {
         Route::get('', [UsuarioController::class, 'index'])->name('index');
-        // Route::get('list', [TamanoBolaController::class, 'list'])->name('list');
+        Route::get('list', [UsuarioController::class, 'list'])->name('list');
         Route::get('nuevo-usuario', [UsuarioController::class, 'create'])->name('create');
         Route::post('store', [UsuarioController::class, 'store'])->name('store');
         Route::get('editar-usuario/{id}', [UsuarioController::class, 'edit'])->name('edit')->whereNumber('id');
-        Route::post('update/{id}', [UsuarioController::class, 'update'])->name('update');
-        // Route::get('delete/{id}', [TamanoBolaController::class, 'delete'])->name('delete')->whereNumber('id');
-        // Route::get('download-excel', [TamanoBolaController::class, 'downloadExcel'])->name('download.excel');
+        Route::post('update/{id}', [UsuarioController::class, 'update'])->name('update')->whereNumber('id');
+        Route::get('delete/{id}', [UsuarioController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
