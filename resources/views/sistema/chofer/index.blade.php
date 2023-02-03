@@ -30,12 +30,12 @@
                <div class="div-contenido-escritorio">
                   <div class="div-contenido-inicio">
                      <h2>Detalle</h2>
-                     <a href="{{ route('usuario.download.excel') }}" class="btn-contenido-inicio">
+                     <a href="{{ route('chofer.download.excel') }}" class="btn-contenido-inicio">
                         <p>Descargar Excel</p>
                         <img src="{{ asset('web/imagenes/i-exel.svg') }}" alt="">
                      </a>
                   </div>
-                  {{-- <div id="container-datagrid" data-link="{{ route('usuario.list') }}" data-link-edit="{{ route('usuario.edit', ':id') }}" data-link-delete="{{ route('usuario.delete', ':id') }}"></div> --}}
+                  <div id="container-datagrid" data-link="{{ route('chofer.list') }}" data-link-edit="{{ route('chofer.edit', ':id') }}" data-link-delete="{{ route('chofer.delete', ':id') }}"></div>
                </div>
             </div>
          </div>
@@ -43,7 +43,7 @@
    </div>
 @endsection
 
-{{-- @push('extra-js')
+@push('extra-js')
    <script>
       const grid = document.getElementById('container-datagrid');
 
@@ -114,38 +114,8 @@
                   hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                },
                {
-                  dataField: 'tipo',
-                  caption: 'Tipo de usuario',
-                  filterOperations: ["contains"],
-                  lookup: {
-                     dataSource: {
-                        store: {
-                           type: 'array',
-                           data: [{
-                                 id: 1,
-                                 name: 'Logística'
-                              },
-                              {
-                                 id: 2,
-                                 name: 'Cliente'
-                              },
-                              {
-                                 id: 3,
-                                 name: 'Administrador'
-                              }
-                           ],
-                           key: "id"
-                        },
-                        pageSize: 10,
-                        paginate: true
-                     },
-                     valueExpr: 'id',
-                     displayExpr: 'name'
-                  },
-               },
-               {
-                  dataField: 'planta',
-                  caption: 'Planta',
+                  dataField: 'empresa',
+                  caption: 'Empresa',
                   filterOperations: ["contains"],
                   hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                },
@@ -185,7 +155,7 @@
                      const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
-                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este usuario"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este chofer"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 
                      return $(link_edit + link_delete);
                   },
@@ -194,4 +164,4 @@
          }).dxDataGrid('instance');
       });
    </script>
-@endpush --}}
+@endpush

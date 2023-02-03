@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Sistema;
 
-use App\Exports\UsuariosExport;
+use App\Exports\ChoferesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Chofer\CreateChoferRequest;
 use App\Http\Requests\Chofer\UpdateChoferRequest;
-use App\Http\Resources\UsuarioResource;
+use App\Http\Resources\ChoferResource;
 use App\Mail\Usuario\CuentaCreada;
 use App\Models\Chofer;
 use App\Models\Cliente;
@@ -28,9 +28,9 @@ class ChoferController extends Controller
 
     public function list()
     {
-        $usuarios = User::with('planta')->ignoreFirstUser()->get();
+        $choferes = Chofer::with('empresaTransporte')->get();
 
-        return UsuarioResource::collection($usuarios);
+        return ChoferResource::collection($choferes);
     }
 
     public function create()
@@ -85,27 +85,30 @@ class ChoferController extends Controller
         }
     }
 
-    // public function delete(int $id)
-    // {
-    //     try {
-    //         User::ignoreFirstUser()->findOrFail($id)->delete();
+    public function delete(int $id)
+    {
+        try {
+            $chofer = Chofer::withExists('cargas')->findOrFail($id);
 
-    //         return redirect()->route('usuario.index')->with(['message' => 'Usuario eliminado correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
+            if($chofer->cargas_exists) return redirect()->route('chofer.index')->with(['message' => 'No puedes eliminar un chofer ya asociado a una carga.', 'type' => 'success']);
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el usuario', 'type' => 'error']);
-    //     }
-    // }
+            $chofer->delete();
 
-    // public function downloadExcel()
-    // {
-    //     try {
-    //         $usuarios = User::with('planta')->ignoreFirstUser()->get();
+            return redirect()->route('chofer.index')->with(['message' => 'Chofer eliminado correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el chofer', 'type' => 'error']);
+        }
+    }
 
-    //         return Excel::download(new UsuariosExport($usuarios), 'usuarios.xlsx');
-    //     } catch (\Throwable $th) {
+    public function downloadExcel()
+    {
+        try {
+            $choferes = Chofer::with('empresaTransporte')->get();
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-    //     }
-    // }
+            return Excel::download(new ChoferesExport($choferes), 'choferes.xlsx');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
+    }
 }
