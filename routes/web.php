@@ -4,6 +4,7 @@ use App\Http\Controllers\Sistema\ClienteController;
 use App\Http\Controllers\Auth\WebController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CargaController;
+use App\Http\Controllers\Sistema\ChoferController;
 use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
 use App\Http\Controllers\Sistema\EmpresaTransporteController;
@@ -242,6 +243,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [UsuarioController::class, 'update'])->name('update')->whereNumber('id');
         Route::get('delete/{id}', [UsuarioController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
+    });
+
+    Route::group(['prefix' => 'chofer', 'as' => 'chofer.'], function () {
+        Route::get('', [ChoferController::class, 'index'])->name('index');
+        Route::get('list', [ChoferController::class, 'list'])->name('list');
+        Route::get('nuevo-chofer', [ChoferController::class, 'create'])->name('create');
+        Route::post('store', [ChoferController::class, 'store'])->name('store');
+        Route::get('editar-chofer/{id}', [ChoferController::class, 'edit'])->name('edit')->whereNumber('id');
+        Route::post('update/{id}', [ChoferController::class, 'update'])->name('update')->whereNumber('id');
+        Route::get('delete/{id}', [ChoferController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [ChoferController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'tipo-carga', 'as' => 'tipo.carga.'], function () {
