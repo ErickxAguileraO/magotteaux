@@ -41,7 +41,10 @@
                             <option value="{{$destino->cliente->cli_id }}">{{ old($destino->cliente->cli_nombre,$destino->cliente->cli_nombre) }}</option>
                             @foreach ($clientes as $clientes)
                                 @continue($clientes->cli_id == $destino->cliente->cli_id || $clientes->cli_estado == 0)
-                                <option value="{{ $clientes['cli_id'] }}">{{ $clientes['cli_nombre'] }}</option>
+                                @php
+                                    $selected = old('cliente_destino') == $clientes->cli_id ? 'selected' : '';
+                                @endphp
+                                <option value="{{ $clientes->cli_id }}" {{ $selected }}>{{ $clientes->cli_nombre }}</option>
                             @endforeach
                         </select>
                         @error('cliente_destino')

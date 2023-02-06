@@ -37,15 +37,18 @@
                         <select name="slc_planta_pais" id="">
                             <option value="{{ $planta->pais->pai_id }}">{{ old($planta->pais->pai_nombre, $planta->pais->pai_nombre) }}</option>
                             @foreach ($paises as $paises)
-                                @continue($paises->pai_id == $planta->pais->pai_id || $paises->pai_estado==0)
-                                <option value="{{ $paises['pai_id'] }}">{{ $paises->pai_nombre }}</option>
+                                @continue($paises->pai_id == $planta->pais->pai_id || $paises->pai_estado == 0)
+                                @php
+                                    $selected = old('slc_planta_pais') == $paises->pai_id ? 'selected' : '';
+                                @endphp
+                                <option value="{{ $paises->pai_id }}" {{ $selected }}>{{ $paises->pai_nombre }}</option>
                             @endforeach
                         </select>
                         @error('slc_planta_pais')
-                        <span class="invalid-feedback badge alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="label-input-n">
                         <label for="">Estado</label>
@@ -54,10 +57,10 @@
                             <option value="1" {{ old('estado_planta', $planta->pla_estado) == 1 ? 'selected' : '' }}>Activo</option>
                         </select>
                         @error('estado_planta')
-                        <span class="invalid-feedback badge alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
