@@ -42,14 +42,17 @@
                             <option value="">Selecciones un país</option>
                             @foreach ($paises as $paises)
                                 @continue($paises->pai_estado == 0)
-                                <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
+                                @php
+                                    $selected = old('slc_planta_pais') == $paises->pai_id ? 'selected' : '';
+                                @endphp
+                                <option value="{{ $paises->pai_id }}" {{ $selected }}>{{ $paises->pai_nombre }}</option>
                             @endforeach
                         </select>
                         @error('slc_planta_pais')
-                        <span class="invalid-feedback badge alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="label-input-n">
                         <label for="">Estado</label>
@@ -58,10 +61,10 @@
                             <option value="0">Inactivo</option>
                         </select>
                         @error('estado_planta')
-                        <span class="invalid-feedback badge alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">

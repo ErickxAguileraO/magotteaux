@@ -48,10 +48,13 @@
                     <div class="label-input-n">
                         <label for="">País</label>
                         <select name="slc_crear_pais_cliente" id="id_pais_cliente">
-                            <option value="">Selecciones un país</option>
+                            <option value="">Seleccione un país</option>
                             @foreach ($paises as $paises)
                                 @continue($paises->pai_estado == 0)
-                                <option value="{{ $paises['pai_id'] }}">{{ $paises['pai_nombre'] }}</option>
+                                @php
+                                    $selected = old('slc_crear_pais_cliente') == $paises->pai_id ? 'selected' : '';
+                                @endphp
+                                <option value="{{ $paises->pai_id }}" {{ $selected }}>{{ $paises->pai_nombre }}</option>
                             @endforeach
                         </select>
                         @error('slc_crear_pais_cliente')
@@ -64,8 +67,8 @@
                     <div class="label-input-n">
                         <label for="">Estado</label>
                         <select name="slc_estado_cliente" id="id_estado_cliente">
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                            <option value="1" {{ old('slc_estado_cliente') == '1' ? 'selected' : '' }}>Activo</option>
+                            <option value="0" {{ old('slc_estado_cliente') == '0' ? 'selected' : '' }}>Inactivo</option>
                         </select>
                         @error('slc_estado_cliente')
                             <span class="invalid-feedback badge alert-danger" role="alert">
