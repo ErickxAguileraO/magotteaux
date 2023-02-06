@@ -37,8 +37,8 @@
                     <div class="label-input-n">
                         <label for="">Estado</label>
                         <select name="slc_estado_tipo_carga" id="">
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                            <option value="1" {{ old('slc_estado_tipo_carga') == '1' ? 'selected' : '' }}>Activo</option>
+                            <option value="0" {{ old('slc_estado_tipo_carga') == '0' ? 'selected' : '' }}>Inactivo</option>
                         </select>
                     </div>
                 </div>

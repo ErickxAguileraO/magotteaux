@@ -9,6 +9,7 @@ use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
 use App\Http\Controllers\Sistema\EmpresaTransporteController;
 use App\Http\Controllers\Sistema\PaisController;
+use App\Http\Controllers\Sistema\PatenteController;
 use App\Http\Controllers\Sistema\PlantaController;
 use App\Http\Controllers\Sistema\PuntoCargaController;
 use App\Http\Controllers\Sistema\TamanoBolaController;
@@ -123,12 +124,12 @@ Route::get('detalle-carga', function () {
 //     return view('maqueta.usuarios.crear');
 // });
 
-Route::get('patentes', function () {
-    return view('maqueta.patentes.index');
-});
-Route::get('nueva-patente', function () {
-    return view('maqueta.patentes.crear');
-});
+// Route::get('patentes', function () {
+//     return view('maqueta.patentes.index');
+// });
+// Route::get('nueva-patente', function () {
+//     return view('maqueta.patentes.crear');
+// });
 
 Route::get('choferes', function () {
     return view('maqueta.choferes.index');
@@ -265,6 +266,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [TipoCargaController::class, 'update'])->name('update');
         Route::get('delete/{id}', [TipoCargaController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [TipoCargaController::class, 'downloadExcel'])->name('download.excel');
+    });
+
+    Route::group(['prefix' => 'patente', 'as' => 'patente.'], function () {
+        Route::get('', [PatenteController::class, 'index'])->name('index');
+        Route::get('list', [PatenteController::class, 'list'])->name('list');
+        Route::get('nueva-patente', [PatenteController::class, 'create'])->name('create');
+        Route::post('store', [PatenteController::class, 'store'])->name('store');
+        Route::get('editar-patente/{id}', [PatenteController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [PatenteController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PatenteController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
     });
 
     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {

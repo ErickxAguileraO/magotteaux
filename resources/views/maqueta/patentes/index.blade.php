@@ -5,7 +5,7 @@
 @section('content')
     @push('extra-css')
     @endpush
-    
+
     <div class="contenido">
         <nav class="sub-menu-nav">
             <a><p>Usted está en</p></a>
@@ -23,7 +23,7 @@
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
-                    
+
                     <form action="" class="sub-contenido">
                         <div class="div-contenido-inicio-2">
                             <h2>Filtros de búsqueda</h2>
@@ -37,7 +37,7 @@
                                     <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
                                 </button>
                             </div>
-                        </div>  
+                        </div>
                         <div class="fomulario-row-2">
                             <div class="label-input-n">
                                 <label for="">Empresa de transporte</label>
@@ -51,7 +51,7 @@
                                     <option value="">Estado</option>
                                 </select>
                             </div>
-        
+
                         </div>
                         <div class="div-contenido-inicio-2-movil">
                             <div class="botones-contenido-inicio">
@@ -64,7 +64,7 @@
                                     <img src="{{ asset('web/imagenes/i-eliminar-filtros.svg') }}" alt="">
                                 </button>
                             </div>
-                        </div> 
+                        </div>
                     </form>
                 </div>
                 <div class="div-contenido">
@@ -189,14 +189,14 @@
                                     <p>DDFF12</p>
                                 </div>
                             </div>
-        
+
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Empresa de transportes</span>
                                     <p>Empresa 1</p>
                                 </div>
                             </div>
-        
+
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Estado</span>
@@ -223,14 +223,14 @@
                                     <p>DDFF12</p>
                                 </div>
                             </div>
-        
+
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Empresa de transportes</span>
                                     <p>Empresa 1</p>
                                 </div>
                             </div>
-        
+
                             <div class="ocultar-detalles-n">
                                 <div>
                                     <span>Estado</span>
@@ -252,15 +252,15 @@
                         <a href="" class="numero-antes-despues-movil"  style="margin-left: 35px"><img src="{{ asset('web/imagenes/i-despues.svg') }}" alt=""></a>
                     </div>
                 </div>
-                
+
             </div>
         </section>
-        
-        
+
+
     </div>
 
     @push('extra-js')
-   
+
     @endpush
 
 @endsection

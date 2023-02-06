@@ -21,7 +21,6 @@
 
         <form method="POST" action="{{ route('destino.update', ['id' => $destino->des_id]) }}" class="formulario-editar-destino">
             @csrf
-            @method('post')
             <div class="div-contenido">
                 <h3>Editar destino</h3>
                 <div class="grid-mantenedor-n mantenedor-row-3">

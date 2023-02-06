@@ -6,22 +6,18 @@
 
     <div class="contenido">
         <nav class="sub-menu-nav">
-            <a>
-                <p>Usted está en</p>
-            </a>
+            <a><p>Usted está en</p></a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="{{ route('destino.index') }}">
-                <p class="menu-seleccionado">Mantenedor de destinos</p>
-            </a>
+            <a href="{{ route('patente.index') }}"><p class="menu-seleccionado">Mantenedor de patentes</p></a>
         </nav>
         <section class="grid-row-menu-lateral">
-            @include('imports.sidebar')
+            @include("imports.sidebar")
             <div>
                 <div class="div-contenido">
                     <div class="div-contenido-inicio">
-                        <h2>Mantenedor de destinos</h2>
-                        <a href="{{ route('destino.create') }}" class="btn-contenido-inicio">
-                            <p>Crear nuevo destino</p>
+                        <h2>Mantenedor de patentes</h2>
+                        <a href="{{ route('patente.create') }}" class="btn-contenido-inicio">
+                            <p>Crear nueva patente</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
                     </div>
@@ -31,17 +27,19 @@
                     <div class="div-contenido-escritorio">
                         <div class="div-contenido-inicio">
                             <h2>Detalle</h2>
-                            <a href="{{ route('destino.download.excel') }}" class="btn-contenido-inicio">
+                            <a href="{{ route('patente.download.excel') }}" class="btn-contenido-inicio">
                                 <p>Descargar Excel</p>
                                 <img src="{{ asset('web/imagenes/i-exel.svg') }}" alt="">
                             </a>
                         </div>
-                        <div id="container-datagrid" data-link="{{ route('destino.list') }}" data-link-edit="{{ route('destino.edit', ':id') }}" data-link-delete="{{ route('destino.delete', ':id') }}"></div>
+                        <div id="container-datagrid" data-link="{{ route('patente.list') }}" data-link-edit="{{ route('patente.edit', ':id') }}" data-link-delete="{{ route('patente.delete', ':id') }}"></div>
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
+
 @endsection
 
 @push('extra-js')
@@ -115,8 +113,8 @@
                         hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                     },
                     {
-                        dataField: 'cliente_asociado',
-                        caption: 'Cliente asociado',
+                        dataField: 'empresa_transportes',
+                        caption: 'Empresa de transportes',
                         filterOperations: ["contains"],
                         hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                     },
@@ -156,7 +154,7 @@
                             const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
                             const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
-                            const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este destino"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                            const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta patente"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 
                             return $(link_edit + link_delete);
                         },

@@ -6,19 +6,19 @@ use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Destino extends Model
+class Patente extends Model
 {
     use HasFactory, StatusConvert;
 
     public $timestamps = false;
-    protected $prefix = 'des';
-    protected $table = 'destinos';
-    protected $primaryKey = 'des_id';
+    protected $prefix = 'pat';
+    protected $table = 'patentes';
+    protected $primaryKey = 'pat_id';
     protected $fillable = [
-        'des_id',
-        'des_nombre',
-        'des_estado',
-        'des_cliente_id',
+        'pat_id',
+        'pat_patente',
+        'pat_estado',
+        'pat_empresa_id',
     ];
 
     /***********************************************************
@@ -27,15 +27,15 @@ class Destino extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('des_estado', 1);
+        return $query->where('pat_estado', 1);
     }
 
         /***********************************************************
      *  Eloquent relationships
      ************************************************************/
 
-    public function cliente()
+    public function empresaTransporte()
     {
-        return $this->belongsTo(Cliente::class, 'des_cliente_id', 'cli_id');
+        return $this->belongsTo(EmpresaTransporte::class, 'pat_empresa_id', 'emt_id');
     }
 }
