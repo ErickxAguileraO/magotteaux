@@ -7,16 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Chofer\CreateChoferRequest;
 use App\Http\Requests\Chofer\UpdateChoferRequest;
 use App\Http\Resources\ChoferResource;
-use App\Mail\Usuario\CuentaCreada;
 use App\Models\Chofer;
-use App\Models\Cliente;
 use App\Models\EmpresaTransporte;
-use App\Models\Planta;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
-use Spatie\Permission\Models\Role;
 
 class ChoferController extends Controller
 {

@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\Sistema\ClienteController;
-use App\Http\Controllers\Auth\WebController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\CargaController;
+use App\Http\Controllers\Sistema\CargaController;
 use App\Http\Controllers\Sistema\ChoferController;
 use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
@@ -53,12 +52,12 @@ Route::get('recuperar-contraseña', function () {
     return view('maqueta.login.recuperarContrasenna');
 });
 
-Route::get('nueva-carga', function () {
-    return view('maqueta.ingresarCarga.index');
-});
-Route::get('detalle-carga', function () {
-    return view('maqueta.ingresarCarga.detalle');
-});
+// Route::get('nueva-carga', function () {
+//     return view('maqueta.ingresarCarga.index');
+// });
+// Route::get('detalle-carga', function () {
+//     return view('maqueta.ingresarCarga.detalle');
+// });
 
 // Route::get('clientes', function () {
 //     return view('maqueta.clientes.index');
@@ -214,6 +213,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'empresa-transporte', 'as' => 'empresa.transporte.'], function () {
         Route::get('', [EmpresaTransporteController::class, 'index'])->name('index');
+        Route::get('{id}/chofer', [EmpresaTransporteController::class, 'listChoferes'])->name('list.choferes');
         Route::get('list', [EmpresaTransporteController::class, 'list'])->name('list');
         Route::get('nuevo-empresa-transporte', [EmpresaTransporteController::class, 'create'])->name('create');
         Route::post('store', [EmpresaTransporteController::class, 'store'])->name('store');
@@ -269,5 +269,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
         Route::get('', [CargaController::class, 'index'])->name('index');
+        // Route::get('list', [ChoferController::class, 'list'])->name('list');
+        Route::get('nueva-carga', [CargaController::class, 'create'])->name('create');
+        Route::post('store', [CargaController::class, 'store'])->name('store');
+        // Route::get('editar-chofer/{id}', [ChoferController::class, 'edit'])->name('edit')->whereNumber('id');
+        // Route::post('update/{id}', [ChoferController::class, 'update'])->name('update')->whereNumber('id');
+        // Route::get('delete/{id}', [ChoferController::class, 'delete'])->name('delete')->whereNumber('id');
+        // Route::get('download-excel', [ChoferController::class, 'downloadExcel'])->name('download.excel');
     });
 });

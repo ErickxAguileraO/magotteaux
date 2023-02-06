@@ -67,6 +67,20 @@ window.addEventListener('load', () => {
 
         $(select_destino).niceSelect('update');
     });
+
+    $('.load-relation').on('change', async function (e) {
+        const select = e.currentTarget;
+
+        if (select.id == 'empresa') {
+
+            const response = await sendRequest("/empresa-transporte/" + select.value + "/chofer") ?? [];
+            const choferes = response.data ?? [];
+
+            const select_chofer = document.querySelector('#chofer');
+
+            updateOptions(select_chofer, choferes);
+        }
+    });
 });
 
 /**********************************
@@ -126,6 +140,16 @@ const notificaciones = () => {
     message.remove();
     type.remove();
     route.remove();
+}
+
+function updateOptions(select, data) {
+    select.innerHTML = "<option value=''>Seleccione</option>";
+
+    data.forEach(d => {
+        select.innerHTML += "<option value='" + d.id + "'>" + d.nombre + "</option>";
+    });
+
+    $(select).niceSelect('update');
 }
 
 
