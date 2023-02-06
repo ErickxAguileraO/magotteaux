@@ -60,7 +60,7 @@
         <p>Usuarios</p>
     </a>
 
-    <a href="/patentes" class="op-sidebar">
+    <a href="{{ route('patente.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-patentes-sb.svg') }}" alt="">
         <p>Patentes</p>
     </a>

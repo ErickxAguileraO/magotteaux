@@ -59,8 +59,8 @@
                     <div class="label-input-n">
                         <label for="">Estado</label>
                         <select name="slc_estado_puntoCarga" id="">
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                            <option value="1" {{ old('slc_estado_puntoCarga') == '1' ? 'selected' : '' }}>Activo</option>
+                            <option value="0" {{ old('slc_estado_puntoCarga') == '0' ? 'selected' : '' }}>Inactivo</option>
                         </select>
                         @error('slc_estado_puntoCarga')
                             <span class="invalid-feedback badge alert-danger" role="alert">
