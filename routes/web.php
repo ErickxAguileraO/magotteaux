@@ -3,7 +3,7 @@
 use App\Http\Controllers\Sistema\ClienteController;
 use App\Http\Controllers\Auth\WebController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\CargaController;
+use App\Http\Controllers\Sistema\CargaController;
 use App\Http\Controllers\Sistema\ChoferController;
 use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\Sistema\PaisController;
 use App\Http\Controllers\Sistema\PatenteController;
 use App\Http\Controllers\Sistema\PlantaController;
 use App\Http\Controllers\Sistema\PuntoCargaController;
+use App\Http\Controllers\Sistema\RecuperarPasswordController;
 use App\Http\Controllers\Sistema\TamanoBolaController;
 use App\Http\Controllers\Sistema\TipoCargaController;
 use App\Http\Controllers\Sistema\UsuarioController;
@@ -152,6 +153,13 @@ Route::group(['as' => 'web.'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::group(['as' => 'recupera.password.'], function () {
+    Route::middleware(['guest'])->group(function () {
+        Route::get('recuperar-contrasenna', [RecuperarPasswordController::class, 'create'])->name('create');
+        Route::post('store', [RecuperarPasswordController::class, 'store'])->name('store');
+    });
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'cuenta', 'as' => 'cuenta.'], function () {
         Route::get('edit', [CuentaController::class, 'edit'])->name('edit');
@@ -281,5 +289,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
         Route::get('', [CargaController::class, 'index'])->name('index');
+        Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
     });
 });

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCuentaRequest extends FormRequest
+class CreateRecuperarPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class UpdateCuentaRequest extends FormRequest
     public function rules()
     {
         return [
-            'password_actual' => 'required|max:255|min:8',
-            'password_nueva' => 'required|max:255|min:8',
-            'password_nueva_confirmar' => 'required|same:password_nueva'
+            'email_recuperar' => ['required', 'email'],
         ];
     }
 }
