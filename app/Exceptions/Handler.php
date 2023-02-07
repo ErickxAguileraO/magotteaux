@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,6 +35,17 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->renderable(function (UnauthorizedException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'No tienes permisos para acceder a esta funcionalidad.',
+                    'status'  => 'error',
+                ], 403);
+            }
+
+            return redirect()->back()->with(['message' => 'No tienes permisos para acceder a esta funcionalidad.', 'type' => 'error']);
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });

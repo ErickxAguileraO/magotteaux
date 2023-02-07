@@ -19,8 +19,22 @@ class EmpresaTransporte extends Model
      *  Local scope
      ************************************************************/
 
-     public function scopeActive($query)
-     {
-         return $query->where('emt_estado', 1);
-     }
+    public function scopeActive($query)
+    {
+        return $query->where('emt_estado', 1);
+    }
+
+    /***********************************************************
+     *  Eloquent relationships
+     ************************************************************/
+
+    public function choferes()
+    {
+        return $this->hasMany(Chofer::class, 'cho_empresa_id', 'emt_id');
+    }
+
+    public function patentes()
+    {
+        return $this->hasMany(Patente::class, 'pat_empresa_id', 'emt_id');
+    }
 }

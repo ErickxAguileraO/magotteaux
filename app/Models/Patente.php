@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patente extends Model
 {
@@ -30,7 +31,7 @@ class Patente extends Model
         return $query->where('pat_estado', 1);
     }
 
-        /***********************************************************
+    /***********************************************************
      *  Eloquent relationships
      ************************************************************/
 
