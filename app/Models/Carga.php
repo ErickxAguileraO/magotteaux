@@ -42,6 +42,13 @@ class Carga extends Model
         return $query->where('car_estado', 1);
     }
 
+    public function scopeForClient($query)
+    {
+        return $query->where('car_cliente_id', auth()->user()->usu_cliente_id)
+            ->where('car_destino_id', auth()->user()->usu_destino_id)
+            ->orderBy('car_email_enviado');
+    }
+
 
     /***********************************************************
      *  Eloquent relationships
@@ -55,6 +62,36 @@ class Carga extends Model
     public function cargas()
     {
         return $this->hasMany(Carga::class, 'car_empresa_id', 'emt_id');
+    }
+
+    public function patente()
+    {
+        return $this->belongsTo(Patente::class, 'car_patente_id', 'pat_id');
+    }
+
+    public function tipo()
+    {
+        return $this->belongsTo(TipoCarga::class, 'car_tipo_id', 'tic_id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'car_cliente_id', 'cli_id');
+    }
+
+    public function planta()
+    {
+        return $this->belongsTo(Planta::class, 'car_planta_id', 'pla_id');
+    }
+
+    public function tamanoBola()
+    {
+        return $this->belongsTo(TamanoBola::class, 'car_tamano_bola_id', 'tab_id');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'car_usuario_id', 'usu_id');
     }
 
     /***********************************************************

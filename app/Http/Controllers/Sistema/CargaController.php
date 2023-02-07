@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Exports\Carga\CargaClienteExport;
+use App\Exports\Carga\CargaLogisticaExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Carga\CreateCargaRequest;
+use App\Http\Resources\Carga\CargaClienteResource;
+use App\Http\Resources\Carga\CargaLogisticaResource;
+use App\Models\Carga;
 use App\Models\EmpresaTransporte;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CargaController extends Controller
 {
@@ -13,12 +19,22 @@ class CargaController extends Controller
         return view('sistema.carga.index');
     }
 
-    // public function list()
-    // {
-    //     $choferes = Chofer::with('empresaTransporte')->get();
+    public function list()
+    {
+        $relations = ['empresaTransporte', 'patente', 'tipo', 'cliente'];
 
-    //     return ChoferResource::collection($choferes);
-    // }
+        if (auth()->user()->hasRole('Cliente')) {
+            $cargas = Carga::with($relations)->forClient()->get();
+
+            return CargaClienteResource::collection($cargas);
+        }
+
+        $relations = array_merge($relations, ['planta']);
+
+        $cargas = Carga::with($relations)->orderBy('car_email_enviado')->get();
+
+        return CargaLogisticaResource::collection($cargas);
+    }
 
     public function create()
     {
@@ -81,30 +97,36 @@ class CargaController extends Controller
     //     }
     // }
 
-    // public function delete(int $id)
-    // {
-    //     try {
-    //         $chofer = Chofer::withExists('cargas')->findOrFail($id);
+    public function delete(int $id)
+    {
+        try {
+            Carga::findOrFail($id)->delete();
 
-    //         if($chofer->cargas_exists) return redirect()->route('chofer.index')->with(['message' => 'No puedes eliminar un chofer ya asociado a una carga.', 'type' => 'success']);
+            return redirect()->route('carga.index')->with(['message' => 'Carga eliminada correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el carga', 'type' => 'error']);
+        }
+    }
 
-    //         $chofer->delete();
+    public function downloadExcel()
+    {
+        try {
 
-    //         return redirect()->route('chofer.index')->with(['message' => 'Chofer eliminado correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el chofer', 'type' => 'error']);
-    //     }
-    // }
+            $relations = ['empresaTransporte', 'patente', 'tipo', 'cliente'];
 
-    // public function downloadExcel()
-    // {
-    //     try {
-    //         $choferes = Chofer::with('empresaTransporte')->get();
+            if (auth()->user()->hasRole('Cliente')) {
+                $cargas = Carga::with($relations)->forClient()->get();
 
-    //         return Excel::download(new ChoferesExport($choferes), 'choferes.xlsx');
-    //     } catch (\Throwable $th) {
+                return Excel::download(new CargaClienteExport($cargas), 'cargas.xlsx');
+            }
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-    //     }
-    // }
+            $relations = array_merge($relations, ['usuario', 'planta']);
+            $cargas = Carga::with($relations)->orderBy('car_email_enviado')->get();
+
+            return Excel::download(new CargaLogisticaExport($cargas), 'cargas.xlsx');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
+    }
 }

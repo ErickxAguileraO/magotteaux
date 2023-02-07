@@ -14,27 +14,29 @@
          </a>
       </nav>
       <section class="grid-row-menu-lateral">
-         @include('imports.sidebar')
          <div>
             <div class="div-contenido">
                <div class="div-contenido-inicio">
                   <h2>Mantenedor de cargas</h2>
-                  <a href="{{ route('carga.create') }}" class="btn-contenido-inicio">
-                     <p>Crear nueva carga</p>
-                     <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
-                  </a>
+                  @if (auth()->user()->hasRole('Logistica'))
+                     <a href="{{ route('carga.create') }}" class="btn-contenido-inicio">
+                        <p>Crear nueva carga</p>
+                        <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
+                     </a>
+                  @endif
                </div>
             </div>
             <div class="div-contenido">
                <div class="div-contenido-escritorio">
                   <div class="div-contenido-inicio">
                      <h2>Detalle</h2>
-                     <a href="#" class="btn-contenido-inicio">
+                     <a href="{{ route('carga.download.excel') }}" class="btn-contenido-inicio">
                         <p>Descargar Excel</p>
                         <img src="{{ asset('web/imagenes/i-exel.svg') }}" alt="">
                      </a>
                   </div>
-                  {{-- <div id="container-datagrid" data-link="{{ route('usuario.list') }}" data-link-edit="{{ route('usuario.edit', ':id') }}" data-link-delete="{{ route('usuario.delete', ':id') }}"></div> --}}
+                  <input type="hidden" id="rolUser" value="{{ auth()->user()->getRoleId() }}">
+                  <div id="container-datagrid" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}"></div>
                </div>
             </div>
          </div>
@@ -42,9 +44,10 @@
    </div>
 @endsection
 
-{{-- @push('extra-js')
+@push('extra-js')
    <script>
       const grid = document.getElementById('container-datagrid');
+      const rol = document.querySelector('#rolUser').value;
 
       $(document).ready(async function(e) {
 
@@ -99,80 +102,61 @@
                // filtro en cabecera para DATE filterOperations:[ "=", "<>", "<", ">", "<=", ">=", "between" ],
                // en caso de tener 2 o más filtros, para dejar uno por defecto se usa selectedFilterOperation: "between",
                {
-                  dataField: 'id',
-                  caption: 'Id',
-                  dataType: 'number',
-                  visible: false,
-                  sortIndex: 1, // al cargar, ordena por esta columna
-                  sortOrder: "desc", // orden descendente
-               },
-               {
-                  dataField: 'nombre',
-                  caption: 'Nombre',
+                  dataField: 'patente',
+                  caption: 'Patente',
                   filterOperations: ["contains"],
-                  hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
+                  hidingPriority: 8, // prioridad para ocultar columna, 0 se oculta primero
                },
                {
                   dataField: 'tipo',
-                  caption: 'Tipo de usuario',
+                  caption: 'Tipo carga',
                   filterOperations: ["contains"],
-                  lookup: {
-                     dataSource: {
-                        store: {
-                           type: 'array',
-                           data: [{
-                                 id: 1,
-                                 name: 'Logística'
-                              },
-                              {
-                                 id: 2,
-                                 name: 'Cliente'
-                              },
-                              {
-                                 id: 3,
-                                 name: 'Administrador'
-                              }
-                           ],
-                           key: "id"
-                        },
-                        pageSize: 10,
-                        paginate: true
-                     },
-                     valueExpr: 'id',
-                     displayExpr: 'name'
-                  },
+                  hidingPriority: 7, // prioridad para ocultar columna, 0 se oculta primero
+               },
+               {
+                  dataField: 'cliente',
+                  caption: 'Cliente destino',
+                  filterOperations: ["contains"],
+                  hidingPriority: 6, // prioridad para ocultar columna, 0 se oculta primero
                },
                {
                   dataField: 'planta',
                   caption: 'Planta',
+                  visible: rol == 1,
                   filterOperations: ["contains"],
-                  hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
+                  hidingPriority: 5, // prioridad para ocultar columna, 0 se oculta primero
                },
                {
-                  dataField: 'estado',
-                  caption: 'Estado',
+                  dataField: 'tamano_bola',
+                  caption: 'Tipo de bola',
                   filterOperations: ["contains"],
-                  lookup: {
-                     dataSource: {
-                        store: {
-                           type: 'array',
-                           data: [{
-                                 id: 0,
-                                 name: 'Inactivo'
-                              },
-                              {
-                                 id: 1,
-                                 name: 'Activo'
-                              }
-                           ],
-                           key: "id"
-                        },
-                        pageSize: 10,
-                        paginate: true
-                     },
-                     valueExpr: 'id',
-                     displayExpr: 'name'
-                  },
+                  hidingPriority: 5, // prioridad para ocultar columna, 0 se oculta primero
+               },
+               {
+                  dataField: 'fecha_carga',
+                  caption: 'Fecha de carga',
+                  dataType: 'datetime',
+                  format: "dd/MM/yyyy - HH:mm",
+                  filterOperations: ["between"],
+                  selectedFilterOperation: "between",
+                  filterOperations: ["between"],
+                  hidingPriority: 4, // prioridad para ocultar columna, 0 se oculta primero
+               },
+               {
+                  dataField: 'fecha_salida',
+                  caption: 'Fecha de salida',
+                  dataType: 'datetime',
+                  format: "dd/MM/yyyy - HH:mm",
+                  filterOperations: ["between"],
+                  selectedFilterOperation: "between",
+                  filterOperations: ["between"],
+                  hidingPriority: 4, // prioridad para ocultar columna, 0 se oculta primero
+               },
+               {
+                  dataField: 'empresa',
+                  caption: 'Empresa',
+                  filterOperations: ["contains"],
+                  hidingPriority: 4, // prioridad para ocultar columna, 0 se oculta primero
                },
                {
                   caption: 'Opciones',
@@ -180,17 +164,21 @@
                   hidingPriority: 0, // prioridad para ocultar columna, 0 se oculta primero
                   cellTemplate(container, options) {
 
+                     const url_ver = $(grid).data('link-edit').replace(':id', options.data.id);
                      const url_edit = $(grid).data('link-edit').replace(':id', options.data.id);
                      const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
+                     const icon_correo = options.data.email_enviado == 0 ? '<img src="/web/imagenes/i-correo-pendiente.svg" alt="">' : '<img src="/web/imagenes/i-correo-enviado.svg" alt="">';
+                     const link_ver = '<a href="' + url_ver + '" class="tooltip" title="Ver"><img src="/web/imagenes/i-ojo.svg" alt=""></a>';
+                     // const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
-                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este usuario"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                     const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta carga"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 
-                     return $(link_edit + link_delete);
+                     return $(icon_correo + link_ver + link_edit + link_delete);
                   },
                },
             ],
          }).dxDataGrid('instance');
       });
    </script>
-@endpush --}}
+@endpush
