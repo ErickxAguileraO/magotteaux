@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Destino extends Model
 {
-    use HasFactory;
+    use HasFactory, StatusConvert;
 
     public $timestamps = false;
     protected $prefix = 'des';

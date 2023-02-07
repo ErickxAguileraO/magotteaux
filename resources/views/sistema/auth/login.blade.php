@@ -54,7 +54,7 @@
                   <img src="{{ asset('/web/imagenes/btn-login.svg') }}" alt="">
                </button>
             </form>
-            <a href="/recuperar-contraseña"><span>Olvidé mi contraseña</span></a>
+            <a href="{{ route('recupera.password.create') }}"><span>Olvidé mi contraseña</span></a>
          </div>
 
          <div class="flex-fondo-login">

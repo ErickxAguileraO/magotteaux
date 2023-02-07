@@ -129,4 +129,9 @@ class CargaController extends Controller
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
         }
     }
+
+    public function sendEmail ()
+    {
+        return view('sistema.auth.recuperarContrasenna');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Exports\DestinoExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Destino\CreateDestinoRequest;
 use App\Http\Requests\Destino\UpdateDestinoRequest;
@@ -9,6 +10,7 @@ use App\Http\Resources\DestinoResource;
 use App\Models\Cliente;
 use App\Models\Destino;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DestinoController extends Controller
 {
@@ -76,16 +78,16 @@ class DestinoController extends Controller
         }
     }
 
-    // public function downloadExcel()
-    // {
-    //     try {
-    //         $empresaTransporte = EmpresaTransporte::all();
+    public function downloadExcel()
+    {
+        //try {
+            $destino = Destino::all();
 
-    //         return Excel::download(new EmpresaTransporteExport($empresaTransporte), 'EmpresaTransporte.xlsx');
-    //     } catch (\Throwable $th) {
+            return Excel::download(new DestinoExport($destino), 'Destinos.xlsx');
+        // } catch (\Throwable $th) {
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-    //     }
-    // }
+        //     return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        // }
+    }
 
 }

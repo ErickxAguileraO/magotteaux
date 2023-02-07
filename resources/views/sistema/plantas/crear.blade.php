@@ -57,8 +57,8 @@
                     <div class="label-input-n">
                         <label for="">Estado</label>
                         <select name="estado_planta" id="" value="{{ old('slc_estado_pais') }}">
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                            <option value="1" {{ old('estado_planta') == '1' ? 'selected' : '' }}>Activo</option>
+                            <option value="0" {{ old('estado_planta') == '0' ? 'selected' : '' }}>Inactivo</option>
                         </select>
                         @error('estado_planta')
                             <span class="invalid-feedback badge alert-danger" role="alert">

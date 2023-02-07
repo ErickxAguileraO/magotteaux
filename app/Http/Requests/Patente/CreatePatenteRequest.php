@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\cuenta;
+namespace App\Http\Requests\Patente;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCuentaRequest extends FormRequest
+class CreatePatenteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class UpdateCuentaRequest extends FormRequest
     public function rules()
     {
         return [
-            'password_actual' => 'required|max:255|min:8',
-            'password_nueva' => 'required|max:255|min:8',
-            'password_nueva_confirmar' => 'required|same:password_nueva'
+            'numero_patente' => 'required|max:255',
+            'empresa_transporte_patente' => 'required',
+            'estado_patente' => 'required|boolean|numeric'
         ];
     }
 }
