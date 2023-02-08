@@ -217,10 +217,9 @@ class CargaController extends Controller
         if ($carga->car_email_enviado == 0) {
             return 'Error de envio, el correo ya fue enviado';
         }
-        if ($carga->car_fecha_salida < $horaActual) {
+        if ($carga->car_fecha_salida <= $horaActual) {
             return 'Error de envio, la fecha de salia es mejor a la actual, tiene que ser mayor o igual';
         }
-
         Mail::to($carga->usuario->usu_email)->send((new NotificacionCarga($carga)));
         return redirect()->route('cliente.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
     }

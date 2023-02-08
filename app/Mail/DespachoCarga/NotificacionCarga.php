@@ -32,6 +32,7 @@ class NotificacionCarga extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.notificacion_carga')->subject('Notificación de despacho de carga');
+        $asunto = 'Nuevo camión en ruta, destino '.$this->carga->destino->des_nombre;
+        return $this->view('emails.notificacion_carga')->subject($asunto);
     }
 }

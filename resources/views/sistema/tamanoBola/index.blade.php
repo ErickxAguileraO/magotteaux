@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Tamaño de bola')
 
 @section('content')
    <div class="contenido">
