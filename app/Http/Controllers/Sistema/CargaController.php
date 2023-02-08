@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Sistema;
 use App\Exports\Carga\CargaClienteExport;
 use App\Exports\Carga\CargaLogisticaExport;
 use App\Http\Controllers\Controller;
+
+use App\Mail\DespachoCarga\NotificacionCarga;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Carga\CreateCargaRequest;
 use App\Http\Resources\Carga\CargaClienteResource;
 use App\Http\Resources\Carga\CargaLogisticaResource;
 use App\Models\Carga;
 use App\Models\EmpresaTransporte;
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class CargaController extends Controller
 {
@@ -130,8 +135,26 @@ class CargaController extends Controller
         }
     }
 
-    public function sendEmail ()
+    public function detalleCarga ($id)
     {
-        return view('sistema.auth.recuperarContrasenna');
+        $detalleCarga = Carga::findOrFail($id);
+        return view('sistema.NotificacionCarga.detalle', compact('detalleCarga'));
+    }
+
+    public function sendEmail ($id)
+    {
+
+        $horaActual = Carbon::now();
+        $carga = Carga::findOrFail($id);
+        //dd($horaActual,$carga);
+        if ($carga->car_email_enviado == 0) {
+            return 'Error de envio, el correo ya fue enviado';
+        }
+        if ($carga->car_fecha_salida < $horaActual) {
+            return 'Error de envio, la fecha de salia es mejor a la actual, tiene que ser mayor o igual';
+        }
+
+        Mail::to($carga->usuario->usu_email)->send((new NotificacionCarga($carga)));
+        return redirect()->route('cliente.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
     }
 }
