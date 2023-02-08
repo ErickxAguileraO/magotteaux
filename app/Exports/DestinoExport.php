@@ -45,6 +45,7 @@ class DestinoExport implements WithMapping, WithHeadings, FromCollection, WithCo
         return [
             'ID',
             'Nombre',
+            'Cliente',
             'Estado',
         ];
     }
