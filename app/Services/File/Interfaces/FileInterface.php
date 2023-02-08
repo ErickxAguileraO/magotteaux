@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Src\Helpers\File\Interfaces;
+namespace App\Services\File\Interfaces;
 
 interface FileInterface
 {

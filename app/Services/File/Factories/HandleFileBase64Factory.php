@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Src\Helpers\File\Factories;
+namespace App\Services\File\Factories;
 
-use App\Src\Helpers\File\Classes\File;
-use App\Src\Helpers\File\Classes\Image;
-use App\Src\Helpers\File\Classes\Video;
+use App\Services\File\Classes\File;
+use App\Services\File\Classes\Image;
+use App\Services\File\Classes\Video;
 use Illuminate\Support\Arr;
 
 class HandleFileBase64Factory

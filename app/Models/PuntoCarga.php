@@ -21,9 +21,21 @@ class PuntoCarga extends Model
         'puc_planta_id',
     ];
 
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+
+    public function scopeActive($query)
+    {
+        return $query->where('puc_estado', 1);
+    }
+
+    /***********************************************************
+     *  Eloquent relationships
+     ************************************************************/
+
     public function planta()
     {
         return $this->belongsTo(Planta::class, 'puc_planta_id', 'pla_id');
     }
-
 }

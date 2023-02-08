@@ -71,14 +71,40 @@ window.addEventListener('load', () => {
     $('.load-relation').on('change', async function (e) {
         const select = e.currentTarget;
 
+        if (select.value == '') {
+            console.log('limpiar selects');
+            return;
+        };
+
         if (select.id == 'empresa') {
 
-            const response = await sendRequest("/empresa-transporte/" + select.value + "/chofer") ?? [];
+            let response = await sendRequest("/empresa-transporte/" + select.value + "/chofer") ?? [];
             const choferes = response.data ?? [];
-
             const select_chofer = document.querySelector('#chofer');
 
             updateOptions(select_chofer, choferes);
+
+            response = await sendRequest("/empresa-transporte/" + select.value + "/patente") ?? [];
+            const patentes = response.data ?? [];
+            const select_patente = document.querySelector('#patente');
+
+            updateOptions(select_patente, patentes);
+        }
+
+        if (select.id == 'planta') {
+            let response = await sendRequest("/planta/" + select.value + "/punto-carga") ?? [];
+            const puntos = response.data ?? [];
+            const select_punto = document.querySelector('#punto_carga');
+
+            updateOptions(select_punto, puntos);
+        }
+
+        if (select.id == 'cliente-carga') {
+            let response = await sendRequest("/cliente/" + select.value + "/destino") ?? [];
+            const destinos = response.data ?? [];
+            const select_destino = document.querySelector('#destino');
+
+            updateOptions(select_destino, destinos);
         }
     });
 });

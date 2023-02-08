@@ -24,39 +24,35 @@ class CreateCargaRequest extends FormRequest
      */
     public function rules()
     {
+        $hoy = now()->format('Y-m-d H:i');
+        $ayer = now()->subDay(1)->format('Y-m-d H:i');
+
         return [
-            'empresa' => ['required'],
-            'chofer' => ['required'],
-            // 'celular' => ['required', 'max:255'],
-            // 'email' => ['required', 'max:255', 'email:filter', Rule::unique('usuarios', 'usu_email')->whereNull('deleted_at')],
-            // 'contrasena' => ['required', 'max:255', 'min:8'],
-            // 'identificacion' => ['nullable', 'max:255'],
-            // 'tipo_usuario' => ['required', 'in:1,2,3'],
-            // 'cliente' => [
-            //     'nullable',
-            //     'required_if:tipo_usuario,2',
-            //     Rule::exists('clientes', 'cli_id')->whereNull('deleted_at')
-            // ],
-            // 'destino' => [
-            //     'nullable',
-            //     'required_if:tipo_usuario,2',
-            //     Rule::exists('destinos', 'des_id')->where('des_cliente_id', $this->cliente)->whereNull('deleted_at')
-            // ],
-            // 'planta' => [
-            //     'nullable',
-            //     'required_if:tipo_usuario,1',
-            //     Rule::exists('plantas', 'pla_id')->whereNull('deleted_at')
-            // ],
-            // 'estado' => ['required', 'boolean'],
+            'empresa' => ['required', Rule::exists('empresa_transportes', 'emt_id')->where('emt_estado', 1)->whereNull('deleted_at')],
+            'chofer' => ['required', Rule::exists('choferes', 'cho_id')->where('cho_estado', 1)->whereNull('deleted_at')],
+            'patente' => ['required', Rule::exists('patentes', 'pat_id')->where('pat_estado', 1)->whereNull('deleted_at')],
+            'tipo_carga' => ['required', Rule::exists('tipo_cargas', 'tic_id')->where('tic_estado', 1)->whereNull('deleted_at')],
+            'tamano_bola' => ['required', Rule::exists('tamano_bolas', 'tab_id')->where('tab_estado', 1)->whereNull('deleted_at')],
+            'fecha_carga' => ['required', 'date', 'date_format:Y-m-d\TH:i', 'before_or_equal:' . $hoy, 'after_or_equal:' . $ayer],
+            'fecha_salida' => ['required', 'date', 'date_format:Y-m-d\TH:i', 'after_or_equal:fecha_carga'],
+            'planta' => ['required', Rule::exists('plantas', 'pla_id')->where('pla_estado', 1)->whereNull('deleted_at')],
+            'punto_carga' => ['required', Rule::exists('punto_cargas', 'puc_id')->where('puc_estado', 1)->whereNull('deleted_at')],
+            'cliente' => ['required', Rule::exists('clientes', 'cli_id')->where('cli_estado', 1)->whereNull('deleted_at')],
+            'destino' => ['required', Rule::exists('destinos', 'des_id')->where('des_estado', 1)->whereNull('deleted_at')],
+            'guia_despacho' => ['required', 'file', 'mimes:pdf', 'max:5120'],
+            'certificado_calidad' => ['required', 'file', 'mimes:pdf', 'max:5120'],
+            'foto_patente' => ['required', 'file', 'mimes:png,jpeg,jpg', 'max:8192'],
+            'foto_carga' => ['required', 'file', 'mimes:png,jpeg,jpg', 'max:8192'],
         ];
     }
 
-    // public function messages()
-    // {
-    //     return [
-    //         'cliente.required_if' => 'El campo empresa es obligatorio cuando tipo usuario es cliente.',
-    //         'destino.required_if' => 'El campo destino es obligatorio cuando tipo usuario es cliente.',
-    //         'planta.required_if' => 'El campo planta es obligatorio cuando tipo usuario es logística.',
-    //     ];
-    // }
+    public function attributes()
+    {
+        return [
+            'guia_despacho' => 'guía de despacho',
+            'certificado_calidad' => 'certificado de calidad',
+            'foto_patente' => 'foto de patente',
+            'foto_carga' => 'foto de carga',
+        ];
+    }
 }
