@@ -104,6 +104,7 @@ class CargaController extends Controller
                 'car_cliente_id' => $request->post('cliente'),
                 'car_destino_id' => $request->post('destino'),
                 'car_punto_carga_id' => $request->post('punto_carga'),
+                'car_numero_guia_despacho' => $request->post('numero_guia_despacho'),
                 'car_token' => Str::random(40)
             ]);
 
@@ -160,6 +161,7 @@ class CargaController extends Controller
                 'car_cliente_id' => $request->post('cliente'),
                 'car_destino_id' => $request->post('destino'),
                 'car_punto_carga_id' => $request->post('punto_carga'),
+                'car_numero_guia_despacho' => $request->post('numero_guia_despacho'),
             ]);
 
             $this->cargaService->updateFiles($carga, $request);

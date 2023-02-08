@@ -210,6 +210,15 @@
             <div class="grid-carga-n g-3">
                <h3 class="subtitulo">Documentación</h3>
                <div class="label-input-n">
+                  <label for="numero_guia_despacho">N° guia de despacho</label>
+                  <input type="text" id="numero_guia_despacho" name="numero_guia_despacho" value="{{ old('numero_guia_despacho') }}">
+                  @error('numero_guia_despacho')
+                     <span class="invalid-feedback badge alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                     </span>
+                  @enderror
+               </div>
+               <div class="label-input-n">
                   <label for="">Guía de despacho</label>
                   <input type="text">
                   <div class="input-file-simple">

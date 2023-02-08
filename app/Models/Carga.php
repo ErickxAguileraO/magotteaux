@@ -33,6 +33,7 @@ class Carga extends Model
         'car_cliente_id',
         'car_destino_id',
         'car_punto_carga_id',
+        'car_numero_guia_despacho',
     ];
 
     protected $dates = [

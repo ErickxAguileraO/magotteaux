@@ -36,7 +36,7 @@
                      </a>
                   </div>
                   <input type="hidden" id="rolUser" value="{{ auth()->user()->getRoleId() }}">
-                  <div id="container-datagrid" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}" data-link-show="{{ route('carga.show', ['id' => ':id']) }}"></div>
+                  <div id="container-datagrid" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}" data-link-show="{{ route('carga.edit', ['id' => ':id']) }}"></div>
                </div>
             </div>
          </div>

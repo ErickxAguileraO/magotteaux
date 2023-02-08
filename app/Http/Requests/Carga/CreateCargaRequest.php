@@ -39,6 +39,7 @@ class CreateCargaRequest extends FormRequest
             'punto_carga' => ['required', Rule::exists('punto_cargas', 'puc_id')->where('puc_estado', 1)->whereNull('deleted_at')],
             'cliente' => ['required', Rule::exists('clientes', 'cli_id')->where('cli_estado', 1)->whereNull('deleted_at')],
             'destino' => ['required', Rule::exists('destinos', 'des_id')->where('des_estado', 1)->whereNull('deleted_at')],
+            'numero_guia_despacho' => ['required', 'min:3', 'max:255'],
             'guia_despacho' => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'certificado_calidad' => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'foto_patente' => ['required', 'file', 'mimes:png,jpeg,jpg', 'max:8192'],

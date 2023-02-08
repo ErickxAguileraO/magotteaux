@@ -34,8 +34,7 @@
          </div>
       </div>
       <div class="user-menu">
-         <img src="{{ asset('web/imagenes/user.svg ') }}" alt="">
-         <p>dgijon@aeurus.cl</p>
+         <p>{{ auth()->user()->usu_email }}</p>
          <img class="flecha-menu-user" src="{{ asset('web/imagenes/i-flecha-menu.svg') }}" alt="">
       </div>
       <div class="user-menu-drop">
@@ -43,10 +42,12 @@
             <img src="{{ asset('web/imagenes/i-menu-user.svg') }}" alt="">
             <p>Editar mi perfil</p>
          </a>
-         <a class="user-menu-n" href="">
-            <img src="{{ asset('web/imagenes/i-menu-admin.svg') }}" alt="">
-            <p>Administración</p>
-         </a>
+         @if (auth()->user()->hasRole('Admin'))
+            <a class="user-menu-n" href="{{ route('cliente.index') }}">
+               <img src="{{ asset('web/imagenes/i-menu-admin.svg') }}" alt="">
+               <p>Administración</p>
+            </a>
+         @endif
          <a class="user-menu-n" href="{{ route('web.logout') }}">
             <img src="{{ asset('web/imagenes/cerrar-sesion.svg') }}" alt="">
             <p>Cerrar sesión</p>

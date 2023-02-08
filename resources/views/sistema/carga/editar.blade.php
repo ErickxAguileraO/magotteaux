@@ -22,10 +22,12 @@
          <section class="head-nueva-carga">
             <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
             <h3>Actualizar carga</h3>
-            <a href="{{ route('carga.send.email', ['id' => $carga->car_id]) }}" class="btn-enviar-correo">
-               <p>Enviar correo</p>
-               {{-- <img src="{{ asset('web/imagenes/i-correo.svg') }}" alt=""> --}}
-            </a>
+            @if (auth()->user()->hasRole('Logistica'))
+               <a href="{{ route('carga.send.email', ['id' => $carga->car_id]) }}" class="btn-enviar-correo">
+                  <p>Enviar correo</p>
+                  {{-- <img src="{{ asset('web/imagenes/i-correo.svg') }}" alt=""> --}}
+               </a>
+            @endif
          </section>
 
          <div class="grid-nueva-carga">
@@ -217,6 +219,15 @@
             </div>
             <div class="grid-carga-n g-3">
                <h3 class="subtitulo">Documentación</h3>
+               <div class="label-input-n">
+                  <label for="numero_guia_despacho">N° guia de despacho</label>
+                  <input type="text" id="numero_guia_despacho" name="numero_guia_despacho" value="{{ old('numero_guia_despacho', $carga->car_numero_guia_despacho) }}">
+                  @error('numero_guia_despacho')
+                     <span class="invalid-feedback badge alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                     </span>
+                  @enderror
+               </div>
                <div class="label-input-n">
                   <label for="">Guía de despacho</label>
                   <input type="text">

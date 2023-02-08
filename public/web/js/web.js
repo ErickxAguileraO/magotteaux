@@ -75,15 +75,13 @@ window.addEventListener('load', () => {
         const select_punto = document.querySelector('#punto_carga');
         const select_destino = document.querySelector('#destino');
 
-        if (select.value == '') {
-            updateOptions(select_chofer, []);
-            updateOptions(select_patente, []);
-            updateOptions(select_punto, []);
-            updateOptions(select_destino, []);
-            return;
-        };
-
         if (select.id == 'empresa') {
+
+            if (select.value == '') {
+                updateOptions(select_chofer, []);
+                updateOptions(select_patente, []);
+                return;
+            }
 
             let response = await sendRequest("/empresa-transporte/" + select.value + "/chofer") ?? [];
             const choferes = response.data ?? [];
@@ -97,6 +95,12 @@ window.addEventListener('load', () => {
         }
 
         if (select.id == 'planta') {
+
+            if (select.value == '') {
+                updateOptions(select_punto, []);
+                return;
+            }
+
             let response = await sendRequest("/planta/" + select.value + "/punto-carga") ?? [];
             const puntos = response.data ?? [];
 
@@ -104,6 +108,12 @@ window.addEventListener('load', () => {
         }
 
         if (select.id == 'cliente-carga') {
+
+            if (select.value == '') {
+                updateOptions(select_destino, []);
+                return;
+            }
+
             let response = await sendRequest("/cliente/" + select.value + "/destino") ?? [];
             const destinos = response.data ?? [];
 
