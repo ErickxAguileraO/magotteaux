@@ -59,9 +59,9 @@ class Carga extends Model
         return $this->belongsTo(EmpresaTransporte::class, 'car_empresa_id', 'emt_id');
     }
 
-    public function cargas()
+    public function usuario()
     {
-        return $this->hasMany(Carga::class, 'car_empresa_id', 'emt_id');
+        return $this->belongsTo(User::class, 'car_usuario_id', 'usu_id');
     }
 
     public function patente()
@@ -69,19 +69,9 @@ class Carga extends Model
         return $this->belongsTo(Patente::class, 'car_patente_id', 'pat_id');
     }
 
-    public function tipo()
+    public function tipoCarga()
     {
         return $this->belongsTo(TipoCarga::class, 'car_tipo_id', 'tic_id');
-    }
-
-    public function cliente()
-    {
-        return $this->belongsTo(Cliente::class, 'car_cliente_id', 'cli_id');
-    }
-
-    public function planta()
-    {
-        return $this->belongsTo(Planta::class, 'car_planta_id', 'pla_id');
     }
 
     public function tamanoBola()
@@ -89,10 +79,39 @@ class Carga extends Model
         return $this->belongsTo(TamanoBola::class, 'car_tamano_bola_id', 'tab_id');
     }
 
-    public function usuario()
+
+    public function puntoCarga()
     {
-        return $this->belongsTo(User::class, 'car_usuario_id', 'usu_id');
+        return $this->belongsTo(PuntoCarga::class, 'car_punto_carga_id', 'puc_id');
     }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'car_cliente_id', 'cli_id');
+    }
+
+    public function destino()
+    {
+        return $this->belongsTo(Destino::class, 'car_destino_id', 'des_id');
+    }
+
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_empresa_id', 'emt_id');
+    }
+
+
+    public function tipo()
+    {
+        return $this->belongsTo(TipoCarga::class, 'car_tipo_id', 'tic_id');
+    }
+
+
+    public function planta()
+    {
+        return $this->belongsTo(Planta::class, 'car_planta_id', 'pla_id');
+    }
+
 
     /***********************************************************
      *  Auxiliary functions

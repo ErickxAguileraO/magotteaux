@@ -311,4 +311,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('delete/{id}', [PatenteController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
     });
+
+    Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
+        Route::get('', [CargaController::class, 'index'])->name('index');
+        Route::get('detalle-carga/{id}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
+        Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
+    });
 });
+Route::get('detalle-carga/{id}/{token}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
+

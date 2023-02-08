@@ -1,29 +1,28 @@
 <?php
 
-namespace App\Mail\RestaurarPassword;
+namespace App\Mail\DespachoCarga;
 
+use App\Models\Carga;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PasswordRestaurada extends Mailable
+class NotificacionCarga extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $usuario;
-    public $contrasena;
+    public $carga;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $usuario, string $contrasena)
+    public function __construct(Carga $carga)
     {
-        $this->usuario = $usuario;
-        $this->contrasena = $contrasena;
+        $this->carga = $carga;
     }
 
     /**
@@ -33,6 +32,6 @@ class PasswordRestaurada extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.restore_password')->subject('Nueva contraseña');
+        return $this->view('emails.notificacion_carga')->subject('Notificación de despacho de carga');
     }
 }
