@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Tipo de carga')
 
 @section('content')
     @push('extra-css')

@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Punto de carga')
 
 @section('content')
     @push('extra-css')
@@ -111,6 +111,12 @@
                {
                   dataField: 'nombre',
                   caption: 'Nombre',
+                  filterOperations: ["contains"],
+                  hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
+               },
+               {
+                  dataField: 'planta',
+                  caption: 'Planta',
                   filterOperations: ["contains"],
                   hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                },

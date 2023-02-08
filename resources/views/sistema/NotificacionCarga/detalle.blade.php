@@ -79,7 +79,7 @@
 </head>
 
 <body>
-    <form method="" action="{{ route('carga.detalle.carga',2) }}" class="">
+    <form method="" action="{{ route('carga.detalle.carga',$detalleCarga->car_id, $detalleCarga->car_token) }}" class="">
         @csrf
         <header>
             <img src="{{ asset('web/imagenes/logo-blanco.svg') }}" alt="">

@@ -17,6 +17,7 @@ class PuntoCargaResource extends JsonResource
         return [
             'id' => $this->puc_id,
             'nombre' => $this->puc_nombre,
+            'planta' => $this->planta->pla_nombre,
             'estado' => $this->puc_estado,
         ];
     }

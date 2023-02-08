@@ -60,9 +60,20 @@
     <div class="contenido">
         <img class="img-correo" src="{{ asset('web/imagenes/i-logo-color.svg') }}" alt="">
         <div class="txt">
-
             <p>
-                Enlace del detalle de la carga: <a href="{{ route('carga.detalle.carga', $carga->car_id, $carga->car_token) }}" class="link">Presione</a>
+
+                Estimados,<br>
+                        Con fecha {{ $carga->car_fecha_salida}} Se ha iniciado el despacho programado desde<br>
+                sucursal {{$carga->planta->pla_nombre}} perteneciente al cliente {{$carga->cliente->cli_nombre}} y con destino {{$carga->destino->des_nombre}}.
+                <br><br>
+                Para más información sobre despacho en curso, presionar el siguiente enlace:<br>
+                <a href="{{ route('carga.detalle.carga', $carga->car_id, $carga->car_token) }}" class="link">Enlace a seguimiento carga.</a>
+
+            </p>
+            <p>
+                Atte.
+                <br>
+                Magotteaux
             </p>
             <br>
 

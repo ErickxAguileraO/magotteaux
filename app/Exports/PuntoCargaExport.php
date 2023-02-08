@@ -35,6 +35,7 @@ class PuntoCargaExport implements WithMapping, WithHeadings, FromCollection, Wit
         return [
             $puntoCarga->puc_id,
             $puntoCarga->puc_nombre,
+            $puntoCarga->planta->pla_nombre,
             $puntoCarga->getEstado(),
         ];
     }
@@ -44,6 +45,7 @@ class PuntoCargaExport implements WithMapping, WithHeadings, FromCollection, Wit
         return [
             'ID',
             'Nombre',
+            'Planta',
             'Estado',
         ];
     }
