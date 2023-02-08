@@ -6,10 +6,10 @@ use App\Exports\EmpresaTransporteExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpresaTransporte\CreateEmpresaTransporteRequest;
 use App\Http\Requests\EmpresaTransporte\UpdateEmpresaTransporteRequest;
+use App\Http\Resources\ChoferByEmpresaTransporteResource;
 use App\Http\Resources\EmpresaTransporteResource;
+use App\Models\Chofer;
 use App\Models\EmpresaTransporte;
-use CreateEmpresaTransportesTable;
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EmpresaTransporteController extends Controller
@@ -22,6 +22,13 @@ class EmpresaTransporteController extends Controller
     public function list()
     {
         return EmpresaTransporteResource::collection(EmpresaTransporte::all());
+    }
+
+    public function listChoferes(int $id)
+    {
+        $choferes = Chofer::active()->where('cho_empresa_id', $id)->get();
+
+        return ChoferByEmpresaTransporteResource::collection($choferes);
     }
 
     public function create()
