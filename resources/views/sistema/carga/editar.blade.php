@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'cargas')
+@section('title', 'Actualizar cargas')
 
 @section('content')
    <div class="contenido">
@@ -13,16 +13,21 @@
             <p>Mantenedor de carga</p>
          </a>
          <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-         <a href="{{ route('carga.create') }}">
-            <p class="menu-seleccionado">Ingresar nueva carga</p>
+         <a href="{{ route('carga.edit', ['id' => $carga->car_id]) }}">
+            <p class="menu-seleccionado">Actualizar carga</p>
          </a>
       </nav>
-      <form action="{{ route('carga.store') }}" method="post" class="div-contenido" enctype='multipart/form-data'>
+      <form action="{{ route('carga.update', ['id' => $carga->car_id]) }}" method="post" class="div-contenido" enctype='multipart/form-data'>
          @csrf
          <section class="head-nueva-carga">
             <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
-            <h3>Ingresar nueva carga</h3>
+            <h3>Actualizar carga</h3>
+            <a href="{{ route('carga.send.email', ['id' => $carga->car_id]) }}" class="btn-enviar-correo">
+               <p>Enviar correo</p>
+               {{-- <img src="{{ asset('web/imagenes/i-correo.svg') }}" alt=""> --}}
+            </a>
          </section>
+
          <div class="grid-nueva-carga">
             <div class="grid-carga-n g-1">
                <h3 class="subtitulo">Datos del camión</h3>
@@ -32,7 +37,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($empresas as $empresa)
                         @php
-                           $selected = old('empresa') == $empresa->emt_id ? 'selected' : '';
+                           $selected = old('empresa', $carga->car_empresa_id) == $empresa->emt_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $empresa->emt_id }}" {{ $selected }}>{{ $empresa->emt_nombre }}</option>
                      @endforeach
@@ -50,7 +55,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($choferes as $chofer)
                         @php
-                           $selected = old('chofer') == $chofer->cho_id ? 'selected' : '';
+                           $selected = old('chofer', $carga->car_chofer_id) == $chofer->cho_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $chofer->cho_id }}" {{ $selected }}>{{ $chofer->cho_nombre }}</option>
                      @endforeach
@@ -68,7 +73,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($patentes as $patente)
                         @php
-                           $selected = old('patente') == $patente->pat_id ? 'selected' : '';
+                           $selected = old('patente', $carga->car_patente_id) == $patente->pat_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $patente->pat_id }}" {{ $selected }}>{{ $patente->pat_patente }}</option>
                      @endforeach
@@ -88,7 +93,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($tipo_cargas as $tipo_carga)
                         @php
-                           $selected = old('tipo_carga') == $tipo_carga->tic_id ? 'selected' : '';
+                           $selected = old('tipo_carga', $carga->car_tipo_id) == $tipo_carga->tic_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $tipo_carga->tic_id }}" {{ $selected }}>{{ $tipo_carga->tic_nombre }}</option>
                      @endforeach
@@ -106,7 +111,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($tamano_bolas as $tamano_bola)
                         @php
-                           $selected = old('tamano_bola') == $tamano_bola->tab_id ? 'selected' : '';
+                           $selected = old('tamano_bola', $carga->car_tamano_bola_id) == $tamano_bola->tab_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $tamano_bola->tab_id }}" {{ $selected }}>{{ $tamano_bola->tab_tamano }}</option>
                      @endforeach
@@ -122,7 +127,7 @@
                <h3 class="subtitulo">Ruta</h3>
                <div class="label-input-n">
                   <label for="fecha_carga">Fecha y hora de carga</label>
-                  <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" min="{{ now()->subDay(1)->format('Y-m-d 00:00') }}" max="{{ now()->format('Y-m-d\TH:i') }}" value="{{ old('fecha_carga') }}">
+                  <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" min="{{ now()->subDay(1)->format('Y-m-d 00:00') }}" max="{{ now()->format('Y-m-d\TH:i') }}" value="{{ old('fecha_carga', $carga->car_fecha_carga->format('Y-m-d\TH:i')) }}">
                   @error('fecha_carga')
                      <span class="invalid-feedback badge alert-danger" role="alert">
                         <strong>{{ $message }}</strong>
@@ -131,7 +136,10 @@
                </div>
                <div class="label-input-n">
                   <label for="fecha_salida">Fecha y hora de salida a destino</label>
-                  <input type="datetime-local" class="input-fecha" id="fecha_salida" name="fecha_salida" value="{{ old('fecha_salida') }}">
+                  @php
+                     $fecha_salida = $carga->car_fecha_salida ? $carga->car_fecha_salida->format('Y-m-d\TH:i') : '';
+                  @endphp
+                  <input type="datetime-local" class="input-fecha" id="fecha_salida" name="fecha_salida" value="{{ old('fecha_salida', $fecha_salida) }}">
                   @error('fecha_salida')
                      <span class="invalid-feedback badge alert-danger" role="alert">
                         <strong>{{ $message }}</strong>
@@ -144,7 +152,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($plantas as $planta)
                         @php
-                           $selected = old('planta') == $planta->pla_id ? 'selected' : '';
+                           $selected = old('planta', $carga->car_planta_id) == $planta->pla_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $planta->pla_id }}" {{ $selected }}>{{ $planta->pla_nombre }}</option>
                      @endforeach
@@ -161,7 +169,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($punto_cargas as $punto_carga)
                         @php
-                           $selected = old('punto_carga') == $punto_carga->puc_id ? 'selected' : '';
+                           $selected = old('punto_carga', $carga->car_punto_carga_id) == $punto_carga->puc_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $punto_carga->puc_id }}" {{ $selected }}>{{ $punto_carga->puc_nombre }}</option>
                      @endforeach
@@ -178,7 +186,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($clientes as $cliente)
                         @php
-                           $selected = old('cliente') == $cliente->cli_id ? 'selected' : '';
+                           $selected = old('cliente', $carga->car_cliente_id) == $cliente->cli_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $cliente->cli_id }}" {{ $selected }}>{{ $cliente->cli_nombre }}</option>
                      @endforeach
@@ -195,7 +203,7 @@
                      <option value="">Seleccione</option>
                      @foreach ($destinos as $destino)
                         @php
-                           $selected = old('destino') == $destino->des_id ? 'selected' : '';
+                           $selected = old('destino', $carga->car_destino_id) == $destino->des_id ? 'selected' : '';
                         @endphp
                         <option value="{{ $destino->des_id }}" {{ $selected }}>{{ $destino->des_nombre }}</option>
                      @endforeach
@@ -288,7 +296,7 @@
          <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
             <h2></h2>
             <div class="botones-contenido-inicio">
-               <button class="btn-contenido-inicio2">
+               <button type="button" class="btn-contenido-inicio2" onclick="location.href='{{ route('carga.index') }}'">
                   <p>Cancelar</p>
                   <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                </button>

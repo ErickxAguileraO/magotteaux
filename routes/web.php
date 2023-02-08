@@ -294,9 +294,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('store', [CargaController::class, 'store'])->name('store');
             Route::get('editar-carga/{id}', [CargaController::class, 'edit'])->name('edit')->whereNumber('id');
             Route::post('update/{id}', [CargaController::class, 'update'])->name('update')->whereNumber('id');
+            Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
         });
 
-        Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
         Route::get('delete/{id}', [CargaController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [CargaController::class, 'downloadExcel'])->name('download.excel');
     });
@@ -310,12 +310,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [PatenteController::class, 'update'])->name('update');
         Route::get('delete/{id}', [PatenteController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
-    });
-
-    Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
-        Route::get('', [CargaController::class, 'index'])->name('index');
-        Route::get('detalle-carga/{id}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
-        Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
     });
 });
 Route::get('detalle-carga/{id}/{token}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');

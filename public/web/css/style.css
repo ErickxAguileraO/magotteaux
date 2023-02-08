@@ -429,7 +429,8 @@ header{
     border-radius: 5px;
     margin-bottom: 15px;
 }
-.btn-contenido-inicio{
+.btn-contenido-inicio,
+.btn-enviar-correo{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -629,6 +630,10 @@ td:last-child{
     align-items: center;
     gap: 24px;
     margin-bottom: 40px;
+}
+
+.btn-enviar-correo{
+    margin-left: auto;
 }
 .head-nueva-carga h3{
     font-weight: 600;

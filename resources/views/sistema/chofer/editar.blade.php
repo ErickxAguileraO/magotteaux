@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Actualizar chofer')
+@section('title', 'Editar chofer')
 
 @section('content')
    <div class="contenido">
@@ -14,13 +14,13 @@
          </a>
          <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
          <a href="{{ route('chofer.edit', ['id' => $chofer->cho_id]) }}">
-            <p class="menu-seleccionado">Actualizar chofer</p>
+            <p class="menu-seleccionado">Editar chofer</p>
          </a>
       </nav>
       <form method="POST" action="{{ route('chofer.update', ['id' => $chofer->cho_id]) }}" class="formulario-crear-cliente">
          @csrf
          <div class="div-contenido">
-            <h3>Actualizar chofer</h3>
+            <h3>Editar chofer</h3>
             <div class="grid-mantenedor-n mantenedor-row-3">
                <div class="label-input-n">
                   <label for="nombre">Nombres</label>

@@ -24,8 +24,8 @@ class CreateCargaRequest extends FormRequest
      */
     public function rules()
     {
-        $hoy = now()->format('Y-m-d H:i');
-        $ayer = now()->subDay(1)->format('Y-m-d H:i');
+        $hoy = now()->format('Y-m-d\TH:i');
+        $ayer = now()->subDay(1)->format('Y-m-d 00:00');
 
         return [
             'empresa' => ['required', Rule::exists('empresa_transportes', 'emt_id')->where('emt_estado', 1)->whereNull('deleted_at')],
