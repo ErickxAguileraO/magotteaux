@@ -28,6 +28,14 @@ $('.cerrar-menu-sidebar-movil').click(function () {
     $(".cerrar-menu-sidebar-movil").css("display", "none");
 });
 
+$('.btn-verde, .btn-subir-imagen-2').click(function (e) {
+    e.preventDefault();
+
+    const element = e.target;
+
+    document.querySelector(element.getAttribute('data-click')).click();
+});
+
 
 // Imput file img
 const input = document.getElementById("input-file-preview");

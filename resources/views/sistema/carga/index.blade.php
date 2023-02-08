@@ -36,7 +36,7 @@
                      </a>
                   </div>
                   <input type="hidden" id="rolUser" value="{{ auth()->user()->getRoleId() }}">
-                  <div id="container-datagrid" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}"></div>
+                  <div id="container-datagrid" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}" data-link-show="{{ route('carga.edit', ['id' => ':id']) }}"></div>
                </div>
             </div>
          </div>
@@ -164,17 +164,16 @@
                   hidingPriority: 0, // prioridad para ocultar columna, 0 se oculta primero
                   cellTemplate(container, options) {
 
-                     const url_ver = $(grid).data('link-edit').replace(':id', options.data.id);
+                     const url_show = $(grid).data('link-show').replace(':id', options.data.id);
                      const url_edit = $(grid).data('link-edit').replace(':id', options.data.id);
                      const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
                      const icon_correo = options.data.email_enviado == 0 ? '<img src="/web/imagenes/i-correo-pendiente.svg" alt="">' : '<img src="/web/imagenes/i-correo-enviado.svg" alt="">';
-                     const link_ver = '<a href="' + url_ver + '" class="tooltip" title="Ver"><img src="/web/imagenes/i-ojo.svg" alt=""></a>';
-                     // const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
+                     const link_show = '<a href="' + url_show + '" class="tooltip" title="Ver"><img src="/web/imagenes/i-ojo.svg" alt=""></a>';
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta carga"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 
-                     return $(icon_correo + link_ver + link_edit + link_delete);
+                     return $(icon_correo + link_show + link_edit + link_delete);
                   },
                },
             ],

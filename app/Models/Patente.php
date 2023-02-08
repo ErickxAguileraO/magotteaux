@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patente extends Model
 {
-    use HasFactory, StatusConvert;
+    use HasFactory, StatusConvert, SoftDeletes;
 
     public $timestamps = false;
     protected $prefix = 'pat';

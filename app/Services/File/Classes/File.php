@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Src\Helpers\File\Classes;
+namespace App\Services\File\Classes;
 
-use App\Src\Helpers\File\Interfaces\FileInterface;
+use App\Services\File\Interfaces\FileInterface;
 use Illuminate\Support\Facades\Storage;
 
 class File implements FileInterface

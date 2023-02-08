@@ -6,10 +6,11 @@ use App\Exports\PlantaExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Planta\CreatePlantaRequest;
 use App\Http\Requests\Planta\UpdatePlantaRequest;
+use App\Http\Resources\PuntoCargaByPlantaResource;
 use App\Http\Resources\PlantaResource;
 use App\Models\Pais;
 use App\Models\Planta;
-use Illuminate\Http\Request;
+use App\Models\PuntoCarga;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PlantaController extends Controller
@@ -17,6 +18,13 @@ class PlantaController extends Controller
     public function index()
     {
         return view('sistema.plantas.index');
+    }
+
+    public function listPuntoCargas(int $id)
+    {
+        $punto_cargas = PuntoCarga::active()->where('puc_planta_id', $id)->get();
+
+        return PuntoCargaByPlantaResource::collection($punto_cargas);
     }
 
     public function list()

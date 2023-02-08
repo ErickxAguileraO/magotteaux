@@ -92,6 +92,11 @@ class User extends Authenticatable
         return $this->belongsTo(Planta::class, 'usu_planta_id', 'pla_id')->withTrashed();
     }
 
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_usuario_id', 'usu_id');
+    }
+
     /***********************************************************
      *  Auxiliary functions
      ************************************************************/

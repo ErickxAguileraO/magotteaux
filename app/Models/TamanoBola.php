@@ -20,4 +20,14 @@ class TamanoBola extends Model
         'tab_tamano',
         'tab_estado',
     ];
+
+
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+
+     public function scopeActive($query)
+     {
+         return $query->where('tab_estado', 1);
+     }
 }

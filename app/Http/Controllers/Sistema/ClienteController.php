@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Cliente\CreateClienteRequest;
 use App\Http\Requests\Cliente\UpdateClienteRequest;
 use App\Http\Resources\ClienteResource;
+use App\Http\Resources\DestinoByClienteResource;
 use App\Models\Cliente;
+use App\Models\Destino;
 use App\Models\Pais;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,6 +18,13 @@ class ClienteController extends Controller
     public function index()
     {
         return view('sistema.cliente.index');
+    }
+
+    public function listDestinos(int $id)
+    {
+        $destinos = Destino::active()->where('des_cliente_id', $id)->get();
+
+        return DestinoByClienteResource::collection($destinos);
     }
 
     public function list()

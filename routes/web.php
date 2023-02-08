@@ -165,15 +165,18 @@ Route::middleware(['auth'])->group(function () {
         Route::put('update', [CuentaController::class, 'update'])->name('update');
     });
 
-    Route::group(['prefix' => 'cliente', 'as' => 'cliente.', 'middleware' => ['role:Admin']], function () {
-        Route::get('', [ClienteController::class, 'index'])->name('index');
-        Route::get('list', [ClienteController::class, 'list'])->name('list');
-        Route::get('nuevo-cliente', [ClienteController::class, 'create'])->name('create');
-        Route::post('store', [ClienteController::class, 'store'])->name('store');
-        Route::get('editar-cliente/{id}', [ClienteController::class, 'edit'])->name('edit');
-        Route::post('update/{id}', [ClienteController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
-        Route::get('download-excel', [ClienteController::class, 'downloadExcel'])->name('download.excel');
+    Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function () {
+        Route::get('{id}/destino', [ClienteController::class, 'listDestinos'])->name('list.destino');
+        Route::middleware(['role:Admin'])->group(function () {
+            Route::get('', [ClienteController::class, 'index'])->name('index');
+            Route::get('list', [ClienteController::class, 'list'])->name('list');
+            Route::get('nuevo-cliente', [ClienteController::class, 'create'])->name('create');
+            Route::post('store', [ClienteController::class, 'store'])->name('store');
+            Route::get('editar-cliente/{id}', [ClienteController::class, 'edit'])->name('edit');
+            Route::post('update/{id}', [ClienteController::class, 'update'])->name('update');
+            Route::get('delete/{id}', [ClienteController::class, 'delete'])->name('delete')->whereNumber('id');
+            Route::get('download-excel', [ClienteController::class, 'downloadExcel'])->name('download.excel');
+        });
     });
 
     Route::group(['prefix' => 'destino', 'as' => 'destino.', 'middleware' => ['role:Admin']], function () {
@@ -198,15 +201,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('download-excel', [PaisController::class, 'downloadExcel'])->name('download.excel');
     });
 
-    Route::group(['prefix' => 'planta', 'as' => 'planta.', 'middleware' => ['role:Admin']], function () {
-        Route::get('', [PlantaController::class, 'index'])->name('index');
-        Route::get('list', [PlantaController::class, 'list'])->name('list');
-        Route::get('nuevo-planta', [PlantaController::class, 'create'])->name('create');
-        Route::post('store', [PlantaController::class, 'store'])->name('store');
-        Route::get('editar-planta/{id}', [PlantaController::class, 'edit'])->name('edit');
-        Route::post('update/{id}', [PlantaController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [PlantaController::class, 'delete'])->name('delete')->whereNumber('id');
-        Route::get('download-excel', [PlantaController::class, 'downloadExcel'])->name('download.excel');
+    Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
+        Route::get('{id}/punto-carga', [PlantaController::class, 'listPuntoCargas'])->name('list.punto.carga');
+        Route::middleware(['role:Admin'])->group(function () {
+            Route::get('', [PlantaController::class, 'index'])->name('index');
+            Route::get('list', [PlantaController::class, 'list'])->name('list');
+            Route::get('nuevo-planta', [PlantaController::class, 'create'])->name('create');
+            Route::post('store', [PlantaController::class, 'store'])->name('store');
+            Route::get('editar-planta/{id}', [PlantaController::class, 'edit'])->name('edit');
+            Route::post('update/{id}', [PlantaController::class, 'update'])->name('update');
+            Route::get('delete/{id}', [PlantaController::class, 'delete'])->name('delete')->whereNumber('id');
+            Route::get('download-excel', [PlantaController::class, 'downloadExcel'])->name('download.excel');
+        });
     });
 
     Route::group(['prefix' => 'punto-carga', 'as' => 'punto.carga.', 'middleware' => ['role:Admin']], function () {
@@ -220,16 +226,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('download-excel', [PuntoCargaController::class, 'downloadExcel'])->name('download.excel');
     });
 
-    Route::group(['prefix' => 'empresa-transporte', 'as' => 'empresa.transporte.', 'middleware' => ['role:Admin']], function () {
-        Route::get('', [EmpresaTransporteController::class, 'index'])->name('index');
+    Route::group(['prefix' => 'empresa-transporte', 'as' => 'empresa.transporte.'], function () {
         Route::get('{id}/chofer', [EmpresaTransporteController::class, 'listChoferes'])->name('list.choferes');
-        Route::get('list', [EmpresaTransporteController::class, 'list'])->name('list');
-        Route::get('nuevo-empresa-transporte', [EmpresaTransporteController::class, 'create'])->name('create');
-        Route::post('store', [EmpresaTransporteController::class, 'store'])->name('store');
-        Route::get('editar-empresa-transporte/{id}', [EmpresaTransporteController::class, 'edit'])->name('edit');
-        Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [EmpresaTransporteController::class, 'delete'])->name('delete')->whereNumber('id');
-        Route::get('download-excel', [EmpresaTransporteController::class, 'downloadExcel'])->name('download.excel');
+        Route::get('{id}/patente', [EmpresaTransporteController::class, 'listPatentes'])->name('list.patentes');
+        Route::middleware(['role:Admin'])->group(function () {
+            Route::get('', [EmpresaTransporteController::class, 'index'])->name('index');
+            Route::get('list', [EmpresaTransporteController::class, 'list'])->name('list');
+            Route::get('nuevo-empresa-transporte', [EmpresaTransporteController::class, 'create'])->name('create');
+            Route::post('store', [EmpresaTransporteController::class, 'store'])->name('store');
+            Route::get('editar-empresa-transporte/{id}', [EmpresaTransporteController::class, 'edit'])->name('edit');
+            Route::post('update/{id}', [EmpresaTransporteController::class, 'update'])->name('update');
+            Route::get('delete/{id}', [EmpresaTransporteController::class, 'delete'])->name('delete')->whereNumber('id');
+            Route::get('download-excel', [EmpresaTransporteController::class, 'downloadExcel'])->name('download.excel');
+        });
     });
 
     Route::group(['prefix' => 'tamano-bola', 'as' => 'tamano.bola.', 'middleware' => ['role:Admin']], function () {
@@ -285,9 +294,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('store', [CargaController::class, 'store'])->name('store');
             Route::get('editar-carga/{id}', [CargaController::class, 'edit'])->name('edit')->whereNumber('id');
             Route::post('update/{id}', [CargaController::class, 'update'])->name('update')->whereNumber('id');
+            Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
         });
 
-        Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
         Route::get('delete/{id}', [CargaController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [CargaController::class, 'downloadExcel'])->name('download.excel');
     });
@@ -301,12 +310,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [PatenteController::class, 'update'])->name('update');
         Route::get('delete/{id}', [PatenteController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
-    });
-
-    Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
-        Route::get('', [CargaController::class, 'index'])->name('index');
-        Route::get('detalle-carga/{id}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
-        Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
     });
 });
 Route::get('detalle-carga/{id}/{token}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
