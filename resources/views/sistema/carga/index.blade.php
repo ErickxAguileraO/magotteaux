@@ -104,10 +104,10 @@
                {
                   dataField: 'id',
                   caption: 'ID',
+                  dataType: 'string',
                   filterOperations: ["contains"],
-                  hidingPriority: 8, // prioridad para ocultar columna, 0 se oculta primero
-               },
-               {
+                  hidingPriority: 8,
+               }, {
                   dataField: 'patente',
                   caption: 'Patente',
                   filterOperations: ["contains"],
