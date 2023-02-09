@@ -24,7 +24,7 @@ class CreateCargaRequest extends FormRequest
      */
     public function rules()
     {
-        $hoy = now()->format('Y-m-d\TH:i');
+        $hoy = now()->format('Y-m-d 23:59');
         $ayer = now()->subDay(1)->format('Y-m-d 00:00');
 
         return [
