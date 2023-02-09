@@ -53,10 +53,25 @@
                 <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
                     <h2></h2>
                     <div class="botones-contenido-inicio">
-                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ url()->previous() }}'">
+                        @if (auth()->user()->hasRole('Logistica'))
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('carga.index') }}'">
                             <p>Cancelar</p>
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
+                        @endif
+                        @if (auth()->user()->hasRole('Cliente'))
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('carga.index') }}'">
+                            <p>Cancelar</p>
+                            <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
+                        </button>
+                        @endif
+                        @if (auth()->user()->hasRole('Admin'))
+                        <button type="button" class="btn-contenido-inicio2" onclick="location.href = '{{ route('cliente.index') }}'">
+                            <p>Cancelar</p>
+                            <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
+                        </button>
+                        @endif
+
                         <button type="submit" class="btn-contenido-inicio" id="btn_guardarClave">
                             <p class="mostrar-escritorio">Guardar contraseña</p>
                             <p class="mostrar-movil">Guardar</p>
