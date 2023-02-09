@@ -307,7 +307,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('', [CargaController::class, 'index'])->name('index');
         Route::get('detalle-carga/{id}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
         Route::get('{id}/correo', [CargaController::class, 'sendEmail'])->name('send.email');
+        Route::get('show/{id}', [CargaController::class, 'show'])->name('show');
     });
 });
-Route::get('detalle-carga/{id}/{token}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
+Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'detalleCargaCorreo'])->name('detalle.carga.correo');
 

@@ -1,19 +1,30 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Detalle de la carga')
 
 @section('content')
     @push('extra-css')
     @endpush
-    
+
     <div class="contenido">
         <nav class="sub-menu-nav">
-            <a><p>Usted está en</p></a>
+            <a>
+                <p>Usted está en</p>
+            </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/"><p>Control de carga</p></a>
+            <a href="/">
+                <p>Control de carga</p>
+            </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/detalle-carga"><p class="menu-seleccionado">Detalle carga</p></a>
+            @if (auth()->user()->hasRole('Logistica'))
+                <a href="{{ route('carga.edit', $carga->car_id) }}">
+                    <p class="menu-seleccionado">Detalle carga</p>
+                </a>
+            @endif
         </nav>
+
+        <form method="" action="{{ route('carga.detalle.carga',$carga->car_id, $carga->car_token) }}" class="">
+            @csrf
         <div class="div-contenido">
             <section class="head-nueva-carga grid-row-cargas">
                 <div>
@@ -24,38 +35,38 @@
                     <p>Editar</p>
                     <img src="{{ asset('web/imagenes/i-editar.svg') }}" alt="">
                 </a>
-           </section>
-           <div class="grid-carga-n">
+            </section>
+            <div class="grid-carga-n">
                 <div>
                     <h3>Datos del camión</h3>
                     <div class="datos-row">
                         <div>
                             <p>Empresa de transporte</p>
-                            <p class="bold">Empresa 1</p>
+                            <p class="bold">{{$carga->empresaTransporte->emt_nombre}}</p>
                         </div>
 
                         <div>
                             <p>Nombre del chofer</p>
-                            <p class="bold">Carlos Manríquez</p>
+                            <p class="bold">{{$carga->usuario->usu_nombre}}</p>
                         </div>
 
                         <div>
                             <p>Patente</p>
-                            <p class="bold">DDFF34</p>
+                            <p class="bold">{{$carga->patente->pat_patente}}</p>
                         </div>
 
                         <div>
                             <p>Tipo de carga</p>
-                            <p class="bold">Carga 1</p>
+                            <p class="bold">{{$carga->tipoCarga->tic_nombre}}</p>
                         </div>
 
                         <div>
                             <p>Tamaño de bola</p>
-                            <p class="bold">3</p>
+                            <p class="bold">{{$carga->tamanoBola->tab_tamano}}</p>
                         </div>
                     </div>
                 </div>
-           </div>
+            </div>
             <br>
             <div class="grid-carga-n">
                 <div>
@@ -63,39 +74,39 @@
                     <div class="datos-row">
                         <div>
                             <p>Fecha y hora de despacho</p>
-                            <p class="bold">22-02-2023 / 14:33</p>
+                            <p class="bold">{{$carga->car_fecha_salida->format('d-m-Y / H:i')}}</p>
                         </div>
 
                         <div>
                             <p>Guía de despacho</p>
-                            <p class="bold">N° 1234</p>
+                            <p class="bold">{{$carga->car_numero_guia_despacho}}</p>
                         </div>
 
                         <div>
                             <p>Planta de origen</p>
-                            <p class="bold">Antofagasta</p>
+                            <p class="bold">{{$carga->planta->pla_nombre}}</p>
                         </div>
 
                         <div>
                             <p>Punto de carga</p>
-                            <p class="bold">Planta 1</p>
+                            <p class="bold">{{$carga->puntoCarga->puc_nombre}}</p>
                         </div>
 
                         <div>
                             <p>Cliente</p>
-                            <p class="bold">BHP Minerals</p>
+                            <p class="bold">{{$carga->cliente->cli_nombre}}</p>
                         </div>
 
                         <div>
                             <p>Destino</p>
-                            <p class="bold">Minera Escondida</p>
+                            <p class="bold">{{$carga->destino->des_nombre}}</p>
                         </div>
                     </div>
                 </div>
-           </div>
+            </div>
 
-           <br>
-           <div class="grid-carga-n">
+            <br>
+            <div class="grid-carga-n">
                 <div>
                     <h3>Documentación</h3>
                     <div class="datos-row">
@@ -119,7 +130,7 @@
                     <p>Fotografía de la patente</p>
                     <img src="{{ asset('web/imagenes/img-1.svg') }}" alt="">
                 </div>
-                
+
                 <div>
                     <p>Fotografía de la carga (horizontal)</p>
                     <img src="{{ asset('web/imagenes/img-2.svg') }}" alt="">
@@ -129,7 +140,6 @@
     </div>
 
     @push('extra-js')
-   
     @endpush
 
 @endsection
