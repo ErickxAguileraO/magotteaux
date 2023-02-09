@@ -127,7 +127,7 @@ class CargaController extends Controller
         $destinos = Destino::active()->where('des_cliente_id', old('cliente', $carga->car_cliente_id))->get();
         $punto_cargas = PuntoCarga::active()->where('puc_planta_id', old('planta', $carga->car_planta_id))->get();
         $choferes = Chofer::active()->where('cho_empresa_id', old('empresa', $carga->car_empresa_id))->get();
-        $patentes = Patente::active()->where('pat_empresa_id', old('empresa', $carga->car_patente_id))->get();
+        $patentes = Patente::active()->where('pat_empresa_id', old('empresa', $carga->car_empresa_id))->get();
 
         return view('sistema.carga.editar', compact(
             'carga',
