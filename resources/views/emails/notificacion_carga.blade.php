@@ -67,7 +67,7 @@
                 sucursal {{$carga->planta->pla_nombre}} perteneciente al cliente {{$carga->cliente->cli_nombre}} y con destino {{$carga->destino->des_nombre}}.
                 <br><br>
                 Para más información sobre despacho en curso, presionar el siguiente enlace:<br>
-                <a href="{{ route('carga.detalle.carga', $carga->car_id, $carga->car_token) }}" class="link">Enlace a seguimiento carga.</a>
+                <a href="{{ route('detalle.carga.correo',['id'=>$carga->car_id, 'token'=>$carga->car_token]) }}" class="link">Enlace a seguimiento carga.</a>
 
             </p>
             <p>

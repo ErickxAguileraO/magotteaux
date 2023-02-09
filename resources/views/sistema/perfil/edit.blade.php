@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Cambiar contraseña')
 
 @section('content')
     <div class="contenido">

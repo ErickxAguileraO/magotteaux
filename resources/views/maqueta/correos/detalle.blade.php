@@ -81,22 +81,22 @@
                         <p>Empresa de transporte</p>
                         <p class="bold">Empresa 1</p>
                     </div>
-    
+
                     <div>
                         <p>Nombre del chofer</p>
                         <p class="bold">Carlos Manríquez</p>
                     </div>
-    
+
                     <div>
                         <p>Patente</p>
                         <p class="bold">DDFF34</p>
                     </div>
-    
+
                     <div>
                         <p>Tipo de carga</p>
                         <p class="bold">Carga 1</p>
                     </div>
-    
+
                     <div>
                         <p>Tamaño de bola</p>
                         <p class="bold">3</p>
@@ -113,27 +113,27 @@
                         <p>Fecha y hora de despacho</p>
                         <p class="bold">22-02-2023 / 14:33</p>
                     </div>
-    
+
                     <div>
                         <p>Guía de despacho</p>
                         <p class="bold">N° 1234</p>
                     </div>
-    
+
                     <div>
                         <p>Planta de origen</p>
                         <p class="bold">Antofagasta</p>
                     </div>
-    
+
                     <div>
                         <p>Punto de carga</p>
                         <p class="bold">Planta 1</p>
                     </div>
-    
+
                     <div>
                         <p>Cliente</p>
                         <p class="bold">BHP Minerals</p>
                     </div>
-    
+
                     <div>
                         <p>Destino</p>
                         <p class="bold">Minera Escondida</p>
@@ -141,7 +141,7 @@
                 </div>
             </div>
        </div>
-    
+
        <br>
        {{-- <div class="grid-carga-n">
             <div>
@@ -151,7 +151,7 @@
                         <p>Guía de despacho</p>
                         <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
                     </div>
-    
+
                     <div>
                         <p>Certificado de calidad</p>
                         <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
@@ -167,7 +167,7 @@
                     <p>Fotografía de la patente</p>
                     <img src="{{ asset('web/imagenes/img-1.svg') }}" alt="">
                 </div>
-                
+
                 <div>
                     <p>Fotografía de la carga (horizontal)</p>
                     <img src="{{ asset('web/imagenes/img-2.svg') }}" alt="">

@@ -36,7 +36,7 @@
                      </a>
                   </div>
                   <input type="hidden" id="rolUser" value="{{ auth()->user()->getRoleId() }}">
-                  <div id="container-datagrid" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}" data-link-show="{{ route('carga.edit', ['id' => ':id']) }}"></div>
+                  <div id="container-datagrid" data-link-show="{{ route('carga.show', ':id') }}" data-link="{{ route('carga.list') }}" data-link-edit="{{ route('carga.edit', ':id') }}" data-link-delete="{{ route('carga.delete', ':id') }}"></div>
                </div>
             </div>
          </div>
@@ -170,6 +170,7 @@
 
                      const icon_correo = options.data.email_enviado == 0 ? '<a href="#" class="disable-click"><img src="/web/imagenes/i-correo-pendiente.svg" alt=""></a>' : '<a href="#" class="disable-click"><img src="/web/imagenes/i-correo-enviado.svg" alt=""></a>';
                      const link_show = '<a href="' + url_show + '" class="tooltip" title="Ver"><img src="/web/imagenes/i-ojo.svg" alt=""></a>';
+                     // const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta carga"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 

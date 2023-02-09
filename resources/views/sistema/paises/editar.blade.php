@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Home')
+@section('title', 'Editar paises')
 
 @section('content')
 
