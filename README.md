@@ -1,64 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 
 
-## About Laravel
+## Proyecto Maggoteaux
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Plataforma para la gestion de carga, entrada, salida de camiones.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Participantes
 
-## Learning Laravel
+| Nombre            | Labor                 |
+| ----------------- | -------------         |
+| Daniel Morales    | Jefe de proyecto      |
+| Jorge Ovalle      | Jefe de proyecto      |
+| Bastian Coloma    | Desarrolador Frontend |
+| Juan Rios         | Desarrolador Backend  |
+| Erick Aguilera    | Desarrolador Backend  |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Dependencias
 
-## Laravel Sponsors
+- [PHP 7.4.29]() 
+- [Laravel 8](https://laravel.com/docs/8.x) 
+- [Laravel Excel](https://laravel-excel.com/)
+- [Spatie Permissions](https://spatie.be/docs/laravel-permission/v5/installation-laravel)
+#
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Instalacion con xampp:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+En este caso deberas descargar alguna de las versiones que cuenten con `PHP 7.2.49`.
 
-## Contributing
+Puedes ver el listado de versiones aqui: https://www.apachefriends.org/download.html
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#
 
-## Code of Conduct
+## Instalacion de dependencias
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Ahora instalaremos todas las dependecias que se encuentran en la carpeta de `vendor`.
 
-## Security Vulnerabilities
+Ejecutaremos los siguientes comandos:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```php
+#En xampp:
+composer install
+```
+Ahora crearemos una copia del archivo `.env.example` y lo dejaremos en la raiz del proyecto, con el nombre `.env`, posteriormente generaremos una key
 
-## License
+```php
+#En xampp:
+php artisan key:generate
+```
+Ahora ejecutaremos las migraciones
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```php
+#En xampp:
+php artisan migrate
+```
+
+Una vez seguido estos pasos, habremos montado el proyecto en nuestro entorno local :monkey_face: :thumbsup:
+
+#
+
+## Patrones de diseño
+
+Este proyecto no contiene patrones de diseño, ya que al no ser muy grande el desarrollo, se evaluo y se decidio no optar por implementarlo.
+
+De todas formas, si quieres implemtar logica adicional o encuentras que algun metodo en un controlador esta usando mucho espacio, puedes crear un servicio, que haga referencia a la misma clase de controller.
+
+Un ejemplo claro, es si queremos implemtar una nueva funcionalidad en `CargaController` y esta contiene mucha logica, podemos crear un servicio en `App/Services/CargaService/`, luego lo incoporamos en el controller mediante el constructor.
+
+#
+
+## :warning::warning:Consideraciones importantes:warning::warning:
+
+El proyecto cuenta con traducciones al español, si en un futuro se agregan nuevas validaciones, no hace falta escribir una respuesta a menos que quieras customizar el mensaje
+
+```php
+public function rules()
+{
+    return [
+        'nombre' => ['required', 'string', 'max:255'],
+    ];
+}
+
+
+//esto solo es requerido si quieres customizar el mensaje
+public function messages()
+{
+    return [
+        'required' => 'El :attribute no debe estar vacio',
+    ];
+}
+```
+
+Asi mismo, la obtencion de fechas mediante `Carbon` o `PHP`, es manejada con una zona horaria seteada en `America/Santiago`.
