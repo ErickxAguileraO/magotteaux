@@ -102,6 +102,12 @@
                // filtro en cabecera para DATE filterOperations:[ "=", "<>", "<", ">", "<=", ">=", "between" ],
                // en caso de tener 2 o más filtros, para dejar uno por defecto se usa selectedFilterOperation: "between",
                {
+                  dataField: 'id',
+                  caption: 'ID',
+                  dataType: 'string',
+                  filterOperations: ["contains"],
+                  hidingPriority: 8,
+               }, {
                   dataField: 'patente',
                   caption: 'Patente',
                   filterOperations: ["contains"],
