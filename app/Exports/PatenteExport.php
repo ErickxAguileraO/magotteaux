@@ -45,6 +45,7 @@ class PatenteExport implements WithMapping, WithHeadings, FromCollection, WithCo
         return [
             'ID',
             'Nombre',
+            'Empresa de transporte',
             'Estado',
         ];
     }

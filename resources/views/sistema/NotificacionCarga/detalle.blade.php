@@ -79,7 +79,7 @@
 </head>
 
 <body>
-    <form method="" action="{{ route('carga.detalle.carga',$detalleCarga->car_id, $detalleCarga->car_token) }}" class="">
+    <form method="" action="{{ route('detalle.carga.correo',['id'=>$detalleCarga->car_id, 'token'=>$detalleCarga->car_token]) }}" class="">
         @csrf
         <header>
             <img src="{{ asset('web/imagenes/logo-blanco.svg') }}" alt="">
@@ -92,17 +92,6 @@
                     <h3>Datos del camión</h3>
                     <div class="datos-row">
                         <div>
-                            <p>Empresa de transporte</p>
-
-                            <p class="bold">{{$detalleCarga->empresaTransporte->emt_nombre}}</p>
-                        </div>
-
-                        <div>
-                            <p>Nombre del chofer</p>
-                            <p class="bold">{{$detalleCarga->usuario->usu_nombre}}</p>
-                        </div>
-
-                        <div>
                             <p>Patente</p>
                             <p class="bold">{{$detalleCarga->patente->pat_patente}}</p>
                         </div>
@@ -113,9 +102,10 @@
                         </div>
 
                         <div>
-                            <p>Tamaño de bola</p>
-                            <p class="bold">{{$detalleCarga->tamanoBola->tab_tamano}}</p>
+                            <p>Nombre del chofer</p>
+                            <p class="bold">{{$detalleCarga->usuario->usu_nombre}}</p>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -126,17 +116,7 @@
                     <div class="datos-row">
                         <div>
                             <p>Fecha y hora de despacho</p>
-                            <p class="bold">{{$detalleCarga->car_fecha_salida}}</p>
-                        </div>
-
-                        <div>
-                            <p>Guía de despacho</p>
-                            <p class="bold">N° 1234</p>
-                        </div>
-
-                        <div>
-                            <p>Planta de origen</p>
-                            <p class="bold">{{$detalleCarga->planta->pla_nombre}}</p>
+                            <p class="bold">{{$detalleCarga->car_fecha_salida->format('d-m-Y / H:i')}}</p>
                         </div>
 
                         <div>
@@ -148,32 +128,11 @@
                             <p>Cliente</p>
                             <p class="bold">{{$detalleCarga->cliente->cli_nombre}}</p>
                         </div>
-
-                        <div>
-                            <p>Destino</p>
-                            <p class="bold">{{$detalleCarga->destino->des_nombre}}</p>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <br>
-            {{-- <div class="grid-carga-n">
-            <div>
-                <h3>Documentación</h3>
-                <div class="datos-row">
-                    <div>
-                        <p>Guía de despacho</p>
-                        <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
-                    </div>
-
-                    <div>
-                        <p>Certificado de calidad</p>
-                        <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         </div>
         <div class="div-contenido">
             <h3>Imágenes</h3>
