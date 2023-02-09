@@ -112,12 +112,12 @@
                     <div class="datos-row">
                         <div>
                             <p>Guía de despacho</p>
-                            <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
+                            <a href="{{ route('download.file', ['url' => base64_encode($carga->car_guia_despacho)]) }}" class="link-verde">DESCARGAR ARCHIVO</a>
                         </div>
 
                         <div>
                             <p>Certificado de calidad</p>
-                            <a href="" class="link-verde">DESCARGAR ARCHIVO</a>
+                            <a href="{{ route('download.file', ['url' => base64_encode($carga->car_certificado_calidad)]) }}" class="link-verde">DESCARGAR ARCHIVO</a>
                         </div>
                     </div>
                 </div>
@@ -128,12 +128,12 @@
             <div class="grid-img-cargas">
                 <div>
                     <p>Fotografía de la patente</p>
-                    <img src="{{ asset('web/imagenes/img-1.svg') }}" alt="">
+                    <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_patente)]) }}" alt="">
                 </div>
 
                 <div>
                     <p>Fotografía de la carga (horizontal)</p>
-                    <img src="{{ asset('web/imagenes/img-2.svg') }}" alt="">
+                    <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_carga)]) }}" alt="">
                 </div>
             </div>
         </div>

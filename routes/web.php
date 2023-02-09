@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Sistema\ClienteController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Sistema\ArchivoController;
 use App\Http\Controllers\Sistema\CargaController;
 use App\Http\Controllers\Sistema\ChoferController;
 use App\Http\Controllers\Sistema\CuentaController;
@@ -313,9 +314,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
     });
 
-    Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
-
-    });
+    Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
 });
 Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'detalleCargaCorreo'])->name('detalle.carga.correo');
 
