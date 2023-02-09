@@ -8,8 +8,10 @@ use App\Http\Requests\EmpresaTransporte\CreateEmpresaTransporteRequest;
 use App\Http\Requests\EmpresaTransporte\UpdateEmpresaTransporteRequest;
 use App\Http\Resources\ChoferByEmpresaTransporteResource;
 use App\Http\Resources\EmpresaTransporteResource;
+use App\Http\Resources\PatenteByEmpresaTransporteResource;
 use App\Models\Chofer;
 use App\Models\EmpresaTransporte;
+use App\Models\Patente;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EmpresaTransporteController extends Controller
@@ -29,6 +31,13 @@ class EmpresaTransporteController extends Controller
         $choferes = Chofer::active()->where('cho_empresa_id', $id)->get();
 
         return ChoferByEmpresaTransporteResource::collection($choferes);
+    }
+
+    public function listPatentes(int $id)
+    {
+        $patentes = Patente::active()->where('pat_empresa_id', $id)->get();
+
+        return PatenteByEmpresaTransporteResource::collection($patentes);
     }
 
     public function create()

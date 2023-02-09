@@ -24,16 +24,6 @@
                             <p>Crear nuevo cliente</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
-                        <br><br>
-                        <a style="width: 90%" href="{{ route('carga.detalle.carga', 2) }}" class="btn-contenido-inicio">
-                            <p>Detalle de la carga</p>
-                            <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
-                        </a>
-                        <br>
-                        <a href="{{ route('carga.send.email', 2) }}" class="btn-contenido-inicio">
-                            <p>Enviar correo</p>
-                            <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
-                        </a>
                     </div>
                 </div>
                 <div class="div-contenido">

@@ -16,7 +16,6 @@ class Carga extends Model
     protected $table = 'cargas';
     protected $primaryKey = 'car_id';
     protected $fillable = [
-        'car_id',
         'car_fecha_carga',
         'car_fecha_salida',
         'car_guia_despacho',
@@ -25,6 +24,21 @@ class Carga extends Model
         'car_imagen_carga',
         'car_email_enviado',
         'car_token',
+        'car_empresa_id',
+        'car_planta_id',
+        'car_tipo_id',
+        'car_tamano_bola_id',
+        'car_patente_id',
+        'car_chofer_id',
+        'car_cliente_id',
+        'car_destino_id',
+        'car_punto_carga_id',
+        'car_numero_guia_despacho',
+    ];
+
+    protected $dates = [
+        'car_fecha_carga',
+        'car_fecha_salida',
     ];
     protected $dates = [
         'car_fecha_carga',
@@ -40,11 +54,6 @@ class Carga extends Model
     /***********************************************************
      *  Local scope
      ************************************************************/
-
-    public function scopeActive($query)
-    {
-        return $query->where('car_estado', 1);
-    }
 
     public function scopeForClient($query)
     {
@@ -83,7 +92,6 @@ class Carga extends Model
         return $this->belongsTo(TamanoBola::class, 'car_tamano_bola_id', 'tab_id');
     }
 
-
     public function puntoCarga()
     {
         return $this->belongsTo(PuntoCarga::class, 'car_punto_carga_id', 'puc_id');
@@ -104,16 +112,19 @@ class Carga extends Model
         return $this->hasMany(Carga::class, 'car_empresa_id', 'emt_id');
     }
 
-
     public function tipo()
     {
         return $this->belongsTo(TipoCarga::class, 'car_tipo_id', 'tic_id');
     }
 
-
     public function planta()
     {
         return $this->belongsTo(Planta::class, 'car_planta_id', 'pla_id');
+    }
+
+    public function chofer()
+    {
+        return $this->belongsTo(Chofer::class, 'car_chofer_id', 'cho_id');
     }
 
 

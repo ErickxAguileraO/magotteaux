@@ -10,15 +10,37 @@ use App\Mail\DespachoCarga\NotificacionCarga;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Carga\CreateCargaRequest;
+use App\Http\Requests\Carga\UpdateCargaRequest;
 use App\Http\Resources\Carga\CargaClienteResource;
 use App\Http\Resources\Carga\CargaLogisticaResource;
 use App\Models\Carga;
+use App\Models\Chofer;
+use App\Models\Cliente;
+use App\Models\Destino;
 use App\Models\EmpresaTransporte;
+use App\Models\Patente;
+use App\Models\Planta;
+use App\Models\PuntoCarga;
+use App\Models\TamanoBola;
+use App\Models\TipoCarga;
+use App\Services\CargaService;
+use App\Services\File\Factories\HandleFileFactory;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 
 class CargaController extends Controller
 {
+
+    private $handleFileFactory;
+    private $cargaService;
+
+    public function __construct(HandleFileFactory $handleFileFactory, CargaService $cargaService)
+    {
+        $this->handleFileFactory = $handleFileFactory;
+        $this->cargaService = $cargaService;
+    }
+
     public function index()
     {
         return view('sistema.carga.index');
@@ -43,64 +65,112 @@ class CargaController extends Controller
 
     public function create()
     {
-        $empresas = EmpresaTransporte::with([
-            'choferes' => function ($query) {
-                $query->active();
-            },
-            'patentes' => function ($query) {
-                $query->active();
-            },
-        ])->active()->get();
+        $empresas = EmpresaTransporte::active()->get();
+        $tipo_cargas = TipoCarga::active()->get();
+        $tamano_bolas = TamanoBola::active()->get();
+        $plantas = Planta::active()->get();
+        $clientes = Cliente::active()->get();
+        $destinos = Destino::active()->where('des_cliente_id', old('cliente'))->get();
+        $punto_cargas = PuntoCarga::active()->where('puc_planta_id', old('planta'))->get();
+        $choferes = Chofer::active()->where('cho_empresa_id', old('empresa'))->get();
+        $patentes = Patente::active()->where('pat_empresa_id', old('empresa'))->get();
 
-        $choferes = $empresas->firstWhere('emt_id', old('empresa'))->choferes ?? [];
-
-        return view('sistema.carga.crear', compact('empresas', 'choferes'));
+        return view('sistema.carga.crear', compact(
+            'empresas',
+            'choferes',
+            'patentes',
+            'tipo_cargas',
+            'tamano_bolas',
+            'plantas',
+            'punto_cargas',
+            'clientes',
+            'destinos',
+        ));
     }
 
     public function store(CreateCargaRequest $request)
     {
-        // try {
-        //     Chofer::create([
-        //         'cho_nombre' => $request->post('nombre'),
-        //         'cho_apellido' => $request->post('apellido'),
-        //         'cho_identificacion' => $request->post('identificacion'),
-        //         'cho_empresa_id' => $request->post('empresa'),
-        //         'cho_estado' => $request->post('estado'),
-        //     ]);
+        try {
 
-        //     return redirect()->route('chofer.index')->with(['message' => 'Se creo un nuevo chofer correctamente', 'type' => 'success']);
-        // } catch (\Throwable $th) {
-        //     return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear el chofer', 'type' => 'error']);
-        // }
+            $carga = auth()->user()->cargas()->create([
+                'car_fecha_carga' => $request->post('fecha_carga'),
+                'car_fecha_salida' => $request->post('fecha_salida'),
+                'car_empresa_id' => $request->post('empresa'),
+                'car_planta_id' => $request->post('planta'),
+                'car_tipo_id' => $request->post('tipo_carga'),
+                'car_tamano_bola_id' => $request->post('tamano_bola'),
+                'car_patente_id' => $request->post('patente'),
+                'car_chofer_id' => $request->post('chofer'),
+                'car_cliente_id' => $request->post('cliente'),
+                'car_destino_id' => $request->post('destino'),
+                'car_punto_carga_id' => $request->post('punto_carga'),
+                'car_numero_guia_despacho' => $request->post('numero_guia_despacho'),
+                'car_token' => Str::random(40)
+            ]);
+
+            $this->cargaService->storeFiles($carga, $request);
+
+            return redirect()->route('carga.index')->with(['message' => 'Se creo un nueva carga correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear la carga', 'type' => 'error']);
+        }
     }
 
-    // public function edit(int $id)
-    // {
-    //     $chofer = Chofer::findOrFail($id);
-    //     $empresas = EmpresaTransporte::active()->get();
+    public function edit(int $id)
+    {
+        $carga = Carga::findOrFail($id);
+        $empresas = EmpresaTransporte::active()->get();
+        $tipo_cargas = TipoCarga::active()->get();
+        $tamano_bolas = TamanoBola::active()->get();
+        $plantas = Planta::active()->get();
+        $clientes = Cliente::active()->get();
+        $destinos = Destino::active()->where('des_cliente_id', old('cliente', $carga->car_cliente_id))->get();
+        $punto_cargas = PuntoCarga::active()->where('puc_planta_id', old('planta', $carga->car_planta_id))->get();
+        $choferes = Chofer::active()->where('cho_empresa_id', old('empresa', $carga->car_empresa_id))->get();
+        $patentes = Patente::active()->where('pat_empresa_id', old('empresa', $carga->car_patente_id))->get();
 
-    //     return view('sistema.chofer.editar', compact('chofer', 'empresas'));
-    // }
+        return view('sistema.carga.editar', compact(
+            'carga',
+            'empresas',
+            'choferes',
+            'patentes',
+            'tipo_cargas',
+            'tamano_bolas',
+            'plantas',
+            'punto_cargas',
+            'clientes',
+            'destinos',
+        ));
+    }
 
-    // public function update(UpdateChoferRequest $request, int $id)
-    // {
-    //     try {
+    public function update(UpdateCargaRequest $request, int $id)
+    {
+        try {
 
-    //         $chofer = Chofer::findOrFail($id);
+            $carga = auth()->user()->cargas()->findOrFail($id);
 
-    //         $chofer->update([
-    //             'cho_nombre' => $request->post('nombre'),
-    //             'cho_apellido' => $request->post('apellido'),
-    //             'cho_identificacion' => $request->post('identificacion'),
-    //             'cho_empresa_id' => $request->post('empresa'),
-    //             'cho_estado' => $request->post('estado'),
-    //         ]);
+            $carga->update([
+                'car_fecha_carga' => $request->post('fecha_carga'),
+                'car_fecha_salida' => $request->post('fecha_salida'),
+                'car_empresa_id' => $request->post('empresa'),
+                'car_planta_id' => $request->post('planta'),
+                'car_tipo_id' => $request->post('tipo_carga'),
+                'car_tamano_bola_id' => $request->post('tamano_bola'),
+                'car_patente_id' => $request->post('patente'),
+                'car_chofer_id' => $request->post('chofer'),
+                'car_cliente_id' => $request->post('cliente'),
+                'car_destino_id' => $request->post('destino'),
+                'car_punto_carga_id' => $request->post('punto_carga'),
+                'car_numero_guia_despacho' => $request->post('numero_guia_despacho'),
+            ]);
 
-    //         return redirect()->route('chofer.index')->with(['message' => 'Se edito el chofer correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar el chofer', 'type' => 'error']);
-    //     }
-    // }
+            $this->cargaService->updateFiles($carga, $request);
+
+            return redirect()->route('carga.index')->with(['message' => 'Se edito la carga correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar la carga', 'type' => 'error']);
+        }
+    }
 
     public function delete(int $id)
     {
@@ -135,16 +205,15 @@ class CargaController extends Controller
         }
     }
 
-    public function detalleCargaCorreo ($id,$token)
+    public function detalleCargaCorreo($id,$token)
     {
         $detalleCarga = Carga::where('car_token',$token)->findOrFail($id);
 
         return view('sistema.NotificacionCarga.detalle', compact('detalleCarga'));
     }
 
-    public function sendEmail ($id)
+    public function sendEmail($id)
     {
-
         $horaActual = Carbon::now();
         $carga = Carga::findOrFail($id);
         if ($carga->car_email_enviado == 0) {
