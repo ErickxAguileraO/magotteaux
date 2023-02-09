@@ -47,7 +47,7 @@
 
                         <div>
                             <p>Nombre del chofer</p>
-                            <p class="bold">{{$carga->usuario->usu_nombre}}</p>
+                            <p class="bold">{{$carga->chofer->cho_nombre}}</p>
                         </div>
 
                         <div>
