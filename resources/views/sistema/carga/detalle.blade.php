@@ -3,8 +3,6 @@
 @section('title', 'Detalle de la carga')
 
 @section('content')
-    @push('extra-css')
-    @endpush
 
     <div class="contenido">
         <nav class="sub-menu-nav">
@@ -16,11 +14,9 @@
                 <p>Control de carga</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            @if (auth()->user()->hasRole('Logistica'))
-                <a href="{{ route('carga.edit', $carga->car_id) }}">
-                    <p class="menu-seleccionado">Detalle carga</p>
-                </a>
-            @endif
+            <a href="{{ route('carga.show', $carga->car_id) }}">
+                <p class="menu-seleccionado">Detalle carga</p>
+            </a>
         </nav>
 
         <form method="" action="{{ route('carga.show',$carga->car_id, $carga->car_token) }}" class="">
@@ -31,10 +27,12 @@
                     <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
                     <h3>Resumen de carga</h3>
                 </div>
-                <a href="{{ route('carga.edit', ['id' => $carga->car_id]) }}" class="btn-contenido-inicio">
-                    <p>Editar</p>
-                    <img src="{{ asset('web/imagenes/i-editar.svg') }}" alt="">
-                </a>
+                @if (auth()->user()->hasRole('Logistica'))
+                    <a href="{{ route('carga.edit', ['id' => $carga->car_id]) }}" class="btn-contenido-inicio">
+                        <p>Editar</p>
+                        <img src="{{ asset('web/imagenes/i-editar.svg') }}" alt="">
+                    </a>
+                @endif
             </section>
             <div class="grid-carga-n">
                 <div>

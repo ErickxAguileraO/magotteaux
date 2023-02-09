@@ -173,8 +173,11 @@
                      // const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta carga"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                     let links = icon_correo + link_show;
 
-                     return $(icon_correo + link_show + link_edit + link_delete);
+                     if (rol == 1) links += link_edit + link_delete;
+
+                     return $(links);
                   },
                },
             ],

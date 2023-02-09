@@ -122,7 +122,7 @@
                <h3 class="subtitulo">Ruta</h3>
                <div class="label-input-n">
                   <label for="fecha_carga">Fecha y hora de carga</label>
-                  <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" min="{{ now()->subDay(1)->format('Y-m-d 00:00') }}" max="{{ now()->format('Y-m-d\TH:i') }}" value="{{ old('fecha_carga') }}">
+                  <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" min="{{ now()->subDay(1)->format('Y-m-d 00:00') }}" max="{{ now()->format('Y-m-d 23:59') }}" value="{{ old('fecha_carga') }}">
                   @error('fecha_carga')
                      <span class="invalid-feedback badge alert-danger" role="alert">
                         <strong>{{ $message }}</strong>
@@ -261,16 +261,6 @@
                   <input type="file" name="foto_patente" id="input-file-preview2" class="file-simple input-file-preview" accept=".jpg,.jpeg,.png">
                   <img src="" alt="" id="image-selected2" class="image-selected">
                </div>
-               <div class="btn-input-file">
-                  <button class="btn-verde" data-click="#input-file-preview2">
-                     <p>Subir imagen</p>
-                     <img src="{{ asset('web/imagenes/i-picture.svg') }}" alt="">
-                  </button>
-                  <button class="btn-rojo">
-                     <p>Eliminar imagen</p>
-                     <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                  </button>
-               </div>
                @error('foto_patente')
                   <span class="invalid-feedback badge alert-danger" role="alert">
                      <strong>{{ $message }}</strong>
@@ -286,7 +276,6 @@
                   <input type="file" name="foto_carga" id="input-file-preview" class="file-simple input-file-preview" accept=".jpg,.jpeg,.png">
                   <img src="" alt="" id="image-selected" class="image-selected">
                </div>
-               <button class="btn-contenido-inicio btn-subir-imagen-2" data-click="#input-file-preview">Subir imagen<img src="{{ asset('web/imagenes/i-picture.svg') }}" alt=""></button>
                @error('foto_carga')
                   <span class="invalid-feedback badge alert-danger" role="alert">
                      <strong>{{ $message }}</strong>
