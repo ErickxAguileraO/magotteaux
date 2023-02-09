@@ -230,7 +230,7 @@
                </div>
                <div class="label-input-n">
                   <label for="">Guía de despacho</label>
-                  <input type="text">
+                  <a class="btn-download-file" href="{{ route('download.file', ['url' => base64_encode($carga->car_guia_despacho)]) }}">Descargar guía</a>
                   <div class="input-file-simple">
                      <div>
                         <p>Subir guía de despacho</p>
@@ -246,7 +246,7 @@
                </div>
                <div class="label-input-n">
                   <label for="">Certificado de calidad</label>
-                  <input type="text">
+                  <a class="btn-download-file" href="{{ route('download.file', ['url' => base64_encode($carga->car_certificado_calidad)]) }}">Descargar certificado</a>
                   <div class="input-file-simple">
                      <div>
                         <p>Subir certificado de calidad</p>
@@ -269,17 +269,7 @@
                <div class="input-file-pro">
                   <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
                   <input type="file" name="foto_patente" id="input-file-preview2" class="file-simple input-file-preview" accept=".jpg,.jpeg,.png">
-                  <img src="" alt="" id="image-selected2" class="image-selected">
-               </div>
-               <div class="btn-input-file">
-                  <button class="btn-verde" data-click="#input-file-preview2">
-                     <p>Subir imagen</p>
-                     <img src="{{ asset('web/imagenes/i-picture.svg') }}" alt="">
-                  </button>
-                  <button class="btn-rojo">
-                     <p>Eliminar imagen</p>
-                     <img src="{{ asset('web/imagenes/i-borrar-red.svg') }}" alt="">
-                  </button>
+                  <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_patente)]) }}" alt="" id="image-selected2" class="image-selected">
                </div>
                @error('foto_patente')
                   <span class="invalid-feedback badge alert-danger" role="alert">
@@ -294,9 +284,8 @@
                <div class="input-file-pro">
                   <img src="{{ asset('web/imagenes/i-file-img.svg') }}" alt="">
                   <input type="file" name="foto_carga" id="input-file-preview" class="file-simple input-file-preview" accept=".jpg,.jpeg,.png">
-                  <img src="" alt="" id="image-selected" class="image-selected">
+                  <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_carga)]) }}" alt="" id="image-selected" class="image-selected">
                </div>
-               <button class="btn-contenido-inicio btn-subir-imagen-2" data-click="#input-file-preview">Subir imagen<img src="{{ asset('web/imagenes/i-picture.svg') }}" alt=""></button>
                @error('foto_carga')
                   <span class="invalid-feedback badge alert-danger" role="alert">
                      <strong>{{ $message }}</strong>

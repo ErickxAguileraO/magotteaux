@@ -168,7 +168,7 @@
                      const url_edit = $(grid).data('link-edit').replace(':id', options.data.id);
                      const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
-                     const icon_correo = options.data.email_enviado == 0 ? '<img src="/web/imagenes/i-correo-pendiente.svg" alt="">' : '<img src="/web/imagenes/i-correo-enviado.svg" alt="">';
+                     const icon_correo = options.data.email_enviado == 0 ? '<a href="#" class="disable-click"><img src="/web/imagenes/i-correo-pendiente.svg" alt=""></a>' : '<a href="#" class="disable-click"><img src="/web/imagenes/i-correo-enviado.svg" alt=""></a>';
                      const link_show = '<a href="' + url_show + '" class="tooltip" title="Ver"><img src="/web/imagenes/i-ojo.svg" alt=""></a>';
                      const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
                      const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta carga"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';

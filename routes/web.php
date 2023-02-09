@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Sistema\ClienteController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Sistema\ArchivoController;
 use App\Http\Controllers\Sistema\CargaController;
 use App\Http\Controllers\Sistema\ChoferController;
 use App\Http\Controllers\Sistema\CuentaController;
@@ -311,6 +312,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('delete/{id}', [PatenteController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
     });
+
+    Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
 });
 Route::get('detalle-carga/{id}/{token}', [CargaController::class, 'detalleCarga'])->name('detalle.carga');
 
