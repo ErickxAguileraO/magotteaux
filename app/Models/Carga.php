@@ -40,10 +40,6 @@ class Carga extends Model
         'car_fecha_carga',
         'car_fecha_salida',
     ];
-    protected $dates = [
-        'car_fecha_carga',
-        'car_fecha_salida',
-    ];
 
 
     /***********************************************************

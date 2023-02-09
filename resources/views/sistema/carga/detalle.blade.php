@@ -23,7 +23,7 @@
             @endif
         </nav>
 
-        <form method="" action="{{ route('carga.detalle.carga',$carga->car_id, $carga->car_token) }}" class="">
+        <form method="" action="{{ route('carga.show',$carga->car_id, $carga->car_token) }}" class="">
             @csrf
         <div class="div-contenido">
             <section class="head-nueva-carga grid-row-cargas">
@@ -31,7 +31,7 @@
                     <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
                     <h3>Resumen de carga</h3>
                 </div>
-                <a href="" class="btn-contenido-inicio">
+                <a href="{{ route('carga.edit', ['id' => $carga->car_id]) }}" class="btn-contenido-inicio">
                     <p>Editar</p>
                     <img src="{{ asset('web/imagenes/i-editar.svg') }}" alt="">
                 </a>

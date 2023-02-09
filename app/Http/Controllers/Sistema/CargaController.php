@@ -216,14 +216,18 @@ class CargaController extends Controller
     {
         $horaActual = Carbon::now();
         $carga = Carga::findOrFail($id);
-        if ($carga->car_email_enviado == 0) {
-            return 'Error de envio, el correo ya fue enviado';
+        if ($carga->car_email_enviado == 1) {
+            return redirect()->route('carga.index')->with(['message' => 'Error de envio, no se puede enviar el correo más de una vez', 'type' => 'error']);
+
         }
         if ($carga->car_fecha_salida > $horaActual) {
-            return 'Error de envio, la fecha de salia es mejor a la actual, tiene que ser mayor o igual';
+            return redirect()->route('carga.index')->with(['message' => 'Error de envio, la fecha de salia es mejor a la actual, tiene que ser mayor o igual', 'type' => 'error']);
         }
+        $carga->update([
+            'car_email_enviado' => 1,
+        ]);
         Mail::to($carga->usuario->usu_email)->send((new NotificacionCarga($carga)));
-        return redirect()->route('cliente.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
+        return redirect()->route('carga.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
     }
 
     public function show($id)
