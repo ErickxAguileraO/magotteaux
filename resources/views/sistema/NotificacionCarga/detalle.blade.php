@@ -103,7 +103,7 @@
 
                         <div>
                             <p>Nombre del chofer</p>
-                            <p class="bold">{{$detalleCarga->usuario->usu_nombre}}</p>
+                            <p class="bold">{{$detalleCarga->chofer->cho_nombre}}</p>
                         </div>
 
                     </div>
@@ -139,12 +139,12 @@
             <div class="grid-img-cargas">
                 <div>
                     <p>Fotografía de la patente</p>
-                    <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_patente)]) }}" alt="">
+                    <img src="{{ route('download.file', ['url' => base64_encode($detalleCarga->car_imagen_patente)]) }}" alt="">
                 </div>
 
                 <div>
                     <p>Fotografía de la carga (horizontal)</p>
-                    <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_carga)]) }}" alt="">
+                    <img src="{{ route('download.file', ['url' => base64_encode($detalleCarga->car_imagen_carga)]) }}" alt="">
                 </div>
             </div>
         </div>
