@@ -63,7 +63,7 @@
             <p>
 
                 Estimados,<br>
-                        Con fecha {{ $carga->car_fecha_salida}} Se ha iniciado el despacho programado desde<br>
+                        Con fecha {{ $carga->car_fecha_salida->format('d-m-Y / H:i')}} Se ha iniciado el despacho programado desde<br>
                 sucursal {{$carga->planta->pla_nombre}} perteneciente al cliente {{$carga->cliente->cli_nombre}} y con destino {{$carga->destino->des_nombre}}.
                 <br><br>
                 Para más información sobre despacho en curso, presionar el siguiente enlace:<br>
