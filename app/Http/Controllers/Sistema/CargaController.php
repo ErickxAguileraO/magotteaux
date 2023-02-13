@@ -69,7 +69,7 @@ class CargaController extends Controller
         $empresas = EmpresaTransporte::active()->get();
         $tipo_cargas = TipoCarga::active()->get();
         $tamano_bolas = TamanoBola::active()->get();
-        $plantas = Planta::active()->get();
+        $plantas = Planta::active()->where('pla_id', auth()->user()->usu_planta_id)->get();
         $clientes = Cliente::active()->get();
         $destinos = Destino::active()->where('des_cliente_id', old('cliente'))->get();
         $punto_cargas = PuntoCarga::active()->where('puc_planta_id', old('planta'))->get();
@@ -123,7 +123,7 @@ class CargaController extends Controller
         $empresas = EmpresaTransporte::active()->get();
         $tipo_cargas = TipoCarga::active()->get();
         $tamano_bolas = TamanoBola::active()->get();
-        $plantas = Planta::active()->get();
+        $plantas = Planta::active()->where('pla_id', auth()->user()->usu_planta_id)->get();
         $clientes = Cliente::active()->get();
         $destinos = Destino::active()->where('des_cliente_id', old('cliente', $carga->car_cliente_id))->get();
         $punto_cargas = PuntoCarga::active()->where('puc_planta_id', old('planta', $carga->car_planta_id))->get();
