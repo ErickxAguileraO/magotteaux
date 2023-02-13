@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Actualizar usuario')
+@section('title', 'Editar usuario')
 
 @section('content')
    <div class="contenido">
@@ -14,13 +14,13 @@
          </a>
          <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
          <a href="{{ route('usuario.create') }}">
-            <p class="menu-seleccionado">Actualizar usuario</p>
+            <p class="menu-seleccionado">Editar usuario</p>
          </a>
       </nav>
       <form method="POST" action="{{ route('usuario.update', ['id' => $usuario->usu_id]) }}" class="formulario-crear-cliente">
          @csrf
          <div class="div-contenido">
-            <h3>Actualizar usuario</h3>
+            <h3>Editar usuario</h3>
             <div class="grid-mantenedor-n mantenedor-row-3">
                <div class="label-input-n">
                   <label for="nombre">Nombres</label>
@@ -172,8 +172,8 @@
                      <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                   </button>
                   <button class="btn-contenido-inicio">
-                     <p class="mostrar-escritorio">Guardar nuevo usuario</p>
-                     <p class="mostrar-movil">Guardar</p>
+                     <p class="mostrar-escritorio">Editar usuario</p>
+                     <p class="mostrar-movil">Editar</p>
                      <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
                   </button>
                </div>
