@@ -39,4 +39,9 @@ class Planta extends Model
     {
         return $this->belongsTo(Pais::class, 'pla_pais_id', 'pai_id');
     }
+
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_planta_id', 'pla_id');
+    }
 }

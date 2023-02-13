@@ -30,4 +30,9 @@ class TamanoBola extends Model
      {
          return $query->where('tab_estado', 1);
      }
+
+     public function cargas()
+     {
+         return $this->hasMany(Carga::class, 'car_tamano_bola_id', 'tab_id');
+     }
 }

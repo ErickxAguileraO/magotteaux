@@ -64,8 +64,10 @@ class TipoCargaController extends Controller
     public function delete(int $id)
     {
         try {
-            TipoCarga::findOrFail($id)->delete();
+            $tipoCarga = TipoCarga::withExists('cargas')->findOrFail($id);
 
+            if($tipoCarga->cargas_exists) return redirect()->route('tipo.carga.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $tipoCarga->delete();
             return redirect()->route('tipo.carga.index')->with(['message' => 'Tipo de carga eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 

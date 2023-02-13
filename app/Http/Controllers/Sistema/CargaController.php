@@ -205,9 +205,9 @@ class CargaController extends Controller
         }
     }
 
-    public function detalleCargaCorreo($id,$token)
+    public function detalleCargaCorreo($id, $token)
     {
-        $detalleCarga = Carga::where('car_token',$token)->findOrFail($id);
+        $detalleCarga = Carga::where('car_token', $token)->findOrFail($id);
 
         return view('sistema.NotificacionCarga.detalle', compact('detalleCarga'));
     }
@@ -216,9 +216,20 @@ class CargaController extends Controller
     {
         $horaActual = Carbon::now();
         $carga = Carga::findOrFail($id);
+        if ($carga->car_usuario_id) {
+            $correosCliente = [$carga->usuario->usu_email,];
+        }
+        dd($correosCliente);
+        $correosCliente = [];
+        $correosLogistica = [];
+        foreach ($carga as $cargas) {
+            $correosCliente = [$carga->usuario->usu_email,];
+            //$correosLogistica = [$carga->usuario->usu_email,];
+        }
+
+
         if ($carga->car_email_enviado == 1) {
             return redirect()->route('carga.index')->with(['message' => 'No se puede enviar el correo más de una vez', 'type' => 'error']);
-
         }
         if ($carga->car_fecha_salida > $horaActual) {
             return redirect()->route('carga.index')->with(['message' => 'La fecha de salia es mayor a la actual, la fecha actual tiene que ser mayor o igual a la de salida', 'type' => 'error']);
@@ -226,6 +237,8 @@ class CargaController extends Controller
         $carga->update([
             'car_email_enviado' => 1,
         ]);
+
+
         Mail::to($carga->usuario->usu_email)->send((new NotificacionCarga($carga)));
         return redirect()->route('carga.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
     }
@@ -236,5 +249,4 @@ class CargaController extends Controller
 
         return view('sistema.carga.detalle', compact('carga'));
     }
-
 }
