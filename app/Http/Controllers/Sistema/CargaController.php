@@ -216,16 +216,16 @@ class CargaController extends Controller
     {
         $horaActual = Carbon::now();
         $carga = Carga::findOrFail($id);
-        if ($carga->car_usuario_id) {
-            $correosCliente = [$carga->usuario->usu_email,];
-        }
-        dd($correosCliente);
-        $correosCliente = [];
-        $correosLogistica = [];
-        foreach ($carga as $cargas) {
-            $correosCliente = [$carga->usuario->usu_email,];
-            //$correosLogistica = [$carga->usuario->usu_email,];
-        }
+        // if ($carga->car_usuario_id) {
+        //     $correosCliente = [$carga->usuario->usu_email,];
+        // }
+        // dd($correosCliente);
+        // $correosCliente = [];
+        // $correosLogistica = [];
+        // foreach ($carga as $cargas) {
+        //     $correosCliente = [$carga->usuario->usu_email,];
+        //     //$correosLogistica = [$carga->usuario->usu_email,];
+        // }
 
 
         if ($carga->car_email_enviado == 1) {
