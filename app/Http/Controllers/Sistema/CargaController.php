@@ -23,6 +23,7 @@ use App\Models\Planta;
 use App\Models\PuntoCarga;
 use App\Models\TamanoBola;
 use App\Models\TipoCarga;
+use App\Models\User;
 use App\Services\CargaService;
 use App\Services\File\Factories\HandleFileFactory;
 use Maatwebsite\Excel\Facades\Excel;
@@ -216,17 +217,22 @@ class CargaController extends Controller
     {
         $horaActual = Carbon::now();
         $carga = Carga::findOrFail($id);
-        // if ($carga->car_usuario_id) {
-        //     $correosCliente = [$carga->usuario->usu_email,];
-        // }
-        // dd($correosCliente);
-        // $correosCliente = [];
-        // $correosLogistica = [];
-        // foreach ($carga as $cargas) {
-        //     $correosCliente = [$carga->usuario->usu_email,];
-        //     //$correosLogistica = [$carga->usuario->usu_email,];
-        // }
+        $usuarioCliente = User::role('Cliente')->get();
+        $usuarioLogistica = User::role('Logistica')->get();
+        $correoLogistica = [];
+        $correoClientes = [];
 
+        foreach ($usuarioCliente as $clientes) {
+            if ($clientes['usu_destino_id'] == $carga->car_destino_id) {
+                $correoClientes[] = $clientes['usu_email'];
+            }
+        }
+
+        foreach ($usuarioLogistica as $logistica) {
+            if ($logistica['usu_planta_id'] == $carga->car_planta_id) {
+                $correoLogistica[] = $logistica['usu_email'];
+            }
+        }
 
         if ($carga->car_email_enviado == 1) {
             return redirect()->route('carga.index')->with(['message' => 'No se puede enviar el correo más de una vez', 'type' => 'error']);
@@ -239,7 +245,7 @@ class CargaController extends Controller
         ]);
 
 
-        Mail::to($carga->usuario->usu_email)->send((new NotificacionCarga($carga)));
+        Mail::to($correoClientes)->bcc($correoLogistica)->send((new NotificacionCarga($carga)));
         return redirect()->route('carga.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
     }
 
