@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Magotteaux</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind&display=swap');
 
@@ -79,7 +79,7 @@
 </head>
 
 <body>
-    <form method="" action="{{ route('detalle.carga.correo',['id'=>$detalleCarga->car_id, 'token'=>$detalleCarga->car_token]) }}" class="">
+    <form method="" action="{{ route('detalle.carga.correo', ['id' => $detalleCarga->car_id, 'token' => $detalleCarga->car_token]) }}" class="">
         @csrf
         <header>
             <img src="{{ asset('web/imagenes/logo-blanco.svg') }}" alt="">
@@ -93,17 +93,17 @@
                     <div class="datos-row">
                         <div>
                             <p>Patente</p>
-                            <p class="bold">{{$detalleCarga->patente->pat_patente}}</p>
+                            <p class="bold">{{ $detalleCarga->patente->pat_patente }}</p>
                         </div>
 
                         <div>
                             <p>Tipo de carga</p>
-                            <p class="bold">{{$detalleCarga->tipoCarga->tic_nombre}}</p>
+                            <p class="bold">{{ $detalleCarga->tipoCarga->tic_nombre }}</p>
                         </div>
 
                         <div>
                             <p>Nombre del chofer</p>
-                            <p class="bold">{{$detalleCarga->chofer->cho_nombre}}</p>
+                            <p class="bold">{{ $detalleCarga->chofer->cho_nombre }}</p>
                         </div>
 
                     </div>
@@ -116,17 +116,17 @@
                     <div class="datos-row">
                         <div>
                             <p>Fecha y hora de despacho</p>
-                            <p class="bold">{{$detalleCarga->car_fecha_salida->format('d-m-Y / H:i')}}</p>
+                            <p class="bold">{{ $detalleCarga->car_fecha_salida->format('d-m-Y / H:i') }}</p>
                         </div>
 
                         <div>
                             <p>Punto de carga</p>
-                            <p class="bold">{{$detalleCarga->puntoCarga->puc_nombre}}</p>
+                            <p class="bold">{{ $detalleCarga->puntoCarga->puc_nombre }}</p>
                         </div>
 
                         <div>
                             <p>Cliente</p>
-                            <p class="bold">{{$detalleCarga->cliente->cli_nombre}}</p>
+                            <p class="bold">{{ $detalleCarga->cliente->cli_nombre }}</p>
                         </div>
                     </div>
                 </div>
