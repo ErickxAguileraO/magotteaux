@@ -83,7 +83,7 @@ class ChoferController extends Controller
         try {
             $chofer = Chofer::withExists('cargas')->findOrFail($id);
 
-            if($chofer->cargas_exists) return redirect()->route('chofer.index')->with(['message' => 'No puedes eliminar un chofer ya asociado a una carga.', 'type' => 'success']);
+            if($chofer->cargas_exists) return redirect()->route('chofer.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
 
             $chofer->delete();
 

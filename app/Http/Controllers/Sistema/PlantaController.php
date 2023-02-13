@@ -77,8 +77,10 @@ class PlantaController extends Controller
     public function delete(int $id)
     {
         try {
-            Planta::findOrFail($id)->delete();
+            $planta = Planta::withExists('cargas')->findOrFail($id);
 
+            if($planta->cargas_exists) return redirect()->route('planta.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $planta->delete();
             return redirect()->route('planta.index')->with(['message' => 'Planta eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 

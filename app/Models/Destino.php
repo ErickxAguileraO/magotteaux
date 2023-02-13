@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Destino extends Model
 {
-    use HasFactory, StatusConvert;
+    use HasFactory, StatusConvert, SoftDeletes;
 
     public $timestamps = false;
     protected $prefix = 'des';
@@ -37,5 +38,10 @@ class Destino extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'des_cliente_id', 'cli_id');
+    }
+
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_destino_id', 'des_id');
     }
 }
