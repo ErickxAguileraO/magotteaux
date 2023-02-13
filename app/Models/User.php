@@ -77,7 +77,7 @@ class User extends Authenticatable
     /***********************************************************
      *  Local scope
      ************************************************************/
- 
+
      public function scopeIgnoreFirstUser($query)
      {
          return $query->where('usu_id', '!=', 1);
