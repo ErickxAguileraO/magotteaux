@@ -39,4 +39,9 @@ class Patente extends Model
     {
         return $this->belongsTo(EmpresaTransporte::class, 'pat_empresa_id', 'emt_id');
     }
+
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_patente_id', 'pat_id');
+    }
 }

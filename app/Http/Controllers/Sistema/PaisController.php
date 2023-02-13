@@ -66,8 +66,12 @@ class PaisController extends Controller
     public function delete(int $id)
     {
         try {
-            Pais::findOrFail($id)->delete();
+            $cliente = Pais::withExists('clientes')->findOrFail($id);
+            $planta = Pais::withExists('plantas')->findOrFail($id);
 
+            if($cliente->clientes_exists) return redirect()->route('pais.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            if($planta->plantas_exists) return redirect()->route('pais.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $cliente->delete();
             return redirect()->route('pais.index')->with(['message' => 'País eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 

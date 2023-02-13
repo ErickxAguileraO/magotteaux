@@ -84,9 +84,16 @@ class EmpresaTransporteController extends Controller
     public function delete(int $id)
     {
         try {
-            EmpresaTransporte::findOrFail($id)->delete();
 
-            return redirect()->route('empresa.transporte.index')->with(['message' => 'Empresa  de transporte eliminado correctamente', 'type' => 'success']);
+            $empresaTransporte = EmpresaTransporte::withExists('cargas')->findOrFail($id);
+            $patente = EmpresaTransporte::withExists('patentes')->findOrFail($id);
+            $chofer = EmpresaTransporte::withExists('choferes')->findOrFail($id);
+
+            if($empresaTransporte->cargas_exists) return redirect()->route('empresa.transporte.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            if($patente->patentes_exists) return redirect()->route('empresa.transporte.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            if($chofer->choferes_exists) return redirect()->route('empresa.transporte.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $empresaTransporte->delete();
+            return redirect()->route('empresa.transporte.index')->with(['message' => 'Empresa transporte eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar una empresa de transporte', 'type' => 'error']);

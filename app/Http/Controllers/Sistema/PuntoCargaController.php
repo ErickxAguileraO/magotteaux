@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PuntoCarga\CreatePuntoCargaRequest;
 use App\Http\Requests\PuntoCarga\UpdatePuntoCargaRequest;
 use App\Http\Resources\PuntoCargaResource;
+use App\Models\Carga;
 use App\Models\Planta;
 use App\Models\PuntoCarga;
 use Illuminate\Http\Request;
@@ -68,13 +69,17 @@ class PuntoCargaController extends Controller
     public function delete(int $id)
     {
         try {
-            PuntoCarga::findOrFail($id)->delete();
+        $puntoCarga = PuntoCarga::withExists('cargas')->findOrFail($id);
 
-            return redirect()->route('punto.carga.index')->with(['message' => 'Punto de carga eliminado correctamente', 'type' => 'success']);
-        } catch (\Throwable $th) {
+        if($puntoCarga->cargas_exists) return redirect()->route('punto.carga.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
 
-            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el punto de carga', 'type' => 'error']);
-        }
+        $puntoCarga->delete();
+        return redirect()->route('punto.carga.index')->with(['message' => 'Punto de carga eliminado correctamente', 'type' => 'success']);
+
+         } catch (\Throwable $th) {
+
+             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el punto de carga', 'type' => 'error']);
+          }
     }
 
     public function downloadExcel()
@@ -83,10 +88,9 @@ class PuntoCargaController extends Controller
             $puntoCarga = PuntoCarga::all();
 
             return Excel::download(new PuntoCargaExport($puntoCarga), 'Puntodecarga.xlsx');
+        } catch (\Throwable $th) {
 
-         } catch (\Throwable $th) {
-
-             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-         }
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
     }
 }

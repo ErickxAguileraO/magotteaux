@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EmpresaTransporte extends Model
 {
-    use HasFactory, StatusConvert;
+    use HasFactory, StatusConvert, SoftDeletes;
 
     public $timestamps = false;
     protected $prefix = 'emt';
@@ -36,5 +37,10 @@ class EmpresaTransporte extends Model
     public function patentes()
     {
         return $this->hasMany(Patente::class, 'pat_empresa_id', 'emt_id');
+    }
+
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_empresa_id', 'emt_id');
     }
 }

@@ -129,6 +129,10 @@ class UsuarioController extends Controller
     public function delete(int $id)
     {
         try {
+            $usuario = User::withExists('cargas')->findOrFail($id);
+
+            if($usuario->cargas_exists) return redirect()->route('usuario.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+
             User::ignoreFirstUser()->findOrFail($id)->delete();
 
             return redirect()->route('usuario.index')->with(['message' => 'Usuario eliminado correctamente', 'type' => 'success']);

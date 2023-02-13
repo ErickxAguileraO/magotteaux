@@ -69,8 +69,10 @@ class TamanoBolaController extends Controller
     public function delete(int $id)
     {
         try {
-            TamanoBola::findOrFail($id)->delete();
+            $tamanoBola = TamanoBola::withExists('cargas')->findOrFail($id);
 
+            if($tamanoBola->cargas_exists) return redirect()->route('tamano.bola.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $tamanoBola->delete();
             return redirect()->route('tamano.bola.index')->with(['message' => 'Tamaño de bola eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 

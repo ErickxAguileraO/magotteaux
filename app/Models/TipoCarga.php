@@ -25,4 +25,9 @@ class TipoCarga extends Model
     {
         return $query->where('tic_estado', 1);
     }
+
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_tipo_id', 'tic_id');
+    }
 }

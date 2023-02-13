@@ -69,9 +69,13 @@ class DestinoController extends Controller
     public function delete(int $id)
     {
         try {
-            Destino::findOrFail($id)->delete();
+            $destino = Destino::withExists('cargas')->findOrFail($id);
 
-            return redirect()->route('destino.index')->with(['message' => 'Esta destino fue eliminado correctamente', 'type' => 'success']);
+            if($destino->cargas_exists) return redirect()->route('destino.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+
+            $destino->delete();
+            return redirect()->route('destino.index')->with(['message' => 'Destino eliminado correctamente', 'type' => 'success']);
+
         } catch (\Throwable $th) {
 
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar un destino', 'type' => 'error']);

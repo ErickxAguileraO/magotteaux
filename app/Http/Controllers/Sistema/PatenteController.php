@@ -69,9 +69,11 @@ class PatenteController extends Controller
     public function delete(int $id)
     {
         try {
-            Patente::findOrFail($id)->delete();
+            $patente = Patente::withExists('cargas')->findOrFail($id);
 
-            return redirect()->route('destino.index')->with(['message' => 'Esta destino fue eliminado correctamente', 'type' => 'success']);
+            if($patente->cargas_exists) return redirect()->route('patente.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $patente->delete();
+            return redirect()->route('patente.index')->with(['message' => 'Patente eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar un destino', 'type' => 'error']);

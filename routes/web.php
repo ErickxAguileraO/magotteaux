@@ -314,7 +314,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
     });
 
-    Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
+
 });
+Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
 Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'detalleCargaCorreo'])->name('detalle.carga.correo');
 

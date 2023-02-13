@@ -79,8 +79,13 @@ class ClienteController extends Controller
     public function delete(int $id)
     {
         try {
-            Cliente::findOrFail($id)->delete();
 
+            $cliente = Cliente::withExists('cargas')->findOrFail($id);
+            $destino = Cliente::withExists('destinos')->findOrFail($id);
+
+            if($cliente->cargas_exists) return redirect()->route('cliente.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            if($destino->destinos_exists) return redirect()->route('cliente.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            $cliente->delete();
             return redirect()->route('cliente.index')->with(['message' => 'Cliente eliminado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
 

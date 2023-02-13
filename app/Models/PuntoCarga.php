@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\StatusConvert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PuntoCarga extends Model
 {
-    use HasFactory, StatusConvert;
+    use HasFactory, StatusConvert, SoftDeletes;
 
     public $timestamps = false;
     protected $prefix = 'puc';
@@ -37,5 +38,9 @@ class PuntoCarga extends Model
     public function planta()
     {
         return $this->belongsTo(Planta::class, 'puc_planta_id', 'pla_id');
+    }
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class, 'car_punto_carga_id', 'puc_id');
     }
 }
