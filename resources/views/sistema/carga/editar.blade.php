@@ -22,12 +22,6 @@
          <section class="head-nueva-carga">
             <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
             <h3>Actualizar carga</h3>
-            @if (auth()->user()->hasRole('Logistica'))
-               <a href="{{ route('carga.send.email', ['id' => $carga->car_id]) }}" class="btn-enviar-correo">
-                  <p>Enviar correo</p>
-                  {{-- <img src="{{ asset('web/imagenes/i-correo.svg') }}" alt=""> --}}
-               </a>
-            @endif
          </section>
 
          <div class="grid-nueva-carga">

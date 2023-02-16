@@ -40,6 +40,7 @@ class CargaClienteExport implements WithMapping, WithHeadings, FromCollection, W
             $cargas->car_fecha_carga,
             $cargas->car_fecha_salida,
             $cargas->empresaTransporte->emt_nombre,
+            $cargas->car_numero_guia_despacho,
         ];
     }
 
@@ -54,12 +55,13 @@ class CargaClienteExport implements WithMapping, WithHeadings, FromCollection, W
             'Fecha de carga',
             'Fecha de salida',
             'Empresa',
+            'N° Guia despacho',
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:H1')->getFont()->setBold(true);
+        $sheet->getStyle('A1:I1')->getFont()->setBold(true);
     }
 
     public function defaultStyles(Style $defaultStyle)
