@@ -25,7 +25,6 @@ use App\Models\TamanoBola;
 use App\Models\TipoCarga;
 use App\Models\User;
 use App\Services\CargaService;
-use App\Services\File\Factories\HandleFileFactory;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
 
@@ -33,12 +32,10 @@ use Illuminate\Support\Str;
 class CargaController extends Controller
 {
 
-    private $handleFileFactory;
     private $cargaService;
 
-    public function __construct(HandleFileFactory $handleFileFactory, CargaService $cargaService)
+    public function __construct(CargaService $cargaService)
     {
-        $this->handleFileFactory = $handleFileFactory;
         $this->cargaService = $cargaService;
     }
 
@@ -50,17 +47,18 @@ class CargaController extends Controller
     public function list()
     {
         $relations = ['empresaTransporte', 'patente', 'tipo', 'cliente'];
-
-        if (auth()->user()->hasRole('Cliente')) {
+        $usuario = auth()->user();
+        
+        if ($usuario->hasRole('Cliente')) {
             $cargas = Carga::with($relations)->forClient()->get();
-
+            
             return CargaClienteResource::collection($cargas);
         }
-
+        
         $relations = array_merge($relations, ['planta']);
-
-        $cargas = Carga::with($relations)->orderBy('car_email_enviado')->get();
-
+        
+        $cargas = Carga::with($relations)->where('car_planta_id', $usuario->usu_planta_id)->orderBy('car_email_enviado')->get();
+        
         return CargaLogisticaResource::collection($cargas);
     }
 
@@ -119,7 +117,7 @@ class CargaController extends Controller
 
     public function edit(int $id)
     {
-        $carga = Carga::findOrFail($id);
+        $carga = Carga::emailNotSent()->findOrFail($id);
         $empresas = EmpresaTransporte::active()->get();
         $tipo_cargas = TipoCarga::active()->get();
         $tamano_bolas = TamanoBola::active()->get();
@@ -206,11 +204,11 @@ class CargaController extends Controller
         }
     }
 
-    public function detalleCargaCorreo($id, $token)
+    public function cargaDetail(int $id, string $token)
     {
-        $detalleCarga = Carga::where('car_token', $token)->findOrFail($id);
+        $carga = Carga::where('car_token', $token)->findOrFail($id);
 
-        return view('sistema.NotificacionCarga.detalle', compact('detalleCarga'));
+        return view('sistema.NotificacionCarga.detalle', compact('carga'));
     }
 
     public function sendEmail($id)

@@ -67,7 +67,7 @@
          </p>
          <p>Contraseña: {{ $contrasena }}</p>
          <p>
-            Enlace plataforma: <a href="http://magotteaux.aeurus.cl/login" class="link">http://magotteaux.aeurus.cl/login</a>
+            Enlace plataforma: <a href="{{ route('web.login') }}" class="link">{{ route('web.login') }}</a>
          </p>
          Atte.
          <br>

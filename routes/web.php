@@ -29,120 +29,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('maqueta.home');
-// });
-// Route::get('login', function () {
-//     return view('maqueta.login.index');
-// });
-Route::get('confimarcion-nueva-contraseña', function () {
-    return view('maqueta.login.mensajeNuevaContrasenna');
-});
-
-Route::get('confirmacion-recuperar-contraseña', function () {
-    return view('maqueta.login.mensajeRecuperarContrasenna');
-});
-
-Route::get('correo-detalle', function () {
-    return view('maqueta.correos.detalle');
-});
-
-Route::get('nueva-contraseña', function () {
-    return view('maqueta.login.nuevaContrasenna');
-});
-
-Route::get('recuperar-contraseña', function () {
-    return view('maqueta.login.recuperarContrasenna');
-});
-
-// Route::get('nueva-carga', function () {
-//     return view('maqueta.ingresarCarga.index');
-// });
-// Route::get('detalle-carga', function () {
-//     return view('maqueta.ingresarCarga.detalle');
-// });
-
-// Route::get('clientes', function () {
-//     return view('maqueta.clientes.index');
-// });
-//Route::get('nuevo-cliente', function () {
-//  return view('sistema.cliente.crear');
-//});
-
-// Route::get('destinos', function () {
-//     return view('maqueta.destinos.index');
-// });
-// Route::get('nuevo-destino', function () {
-//     return view('maqueta.destinos.crear');
-// });
-
-// Route::get('plantas', function () {
-//     return view('maqueta.plantas.index');
-// });
-// Route::get('nueva-planta', function () {
-//     return view('maqueta.plantas.crear');
-// });
-
-// Route::get('puntos-de-carga', function () {
-//     return view('maqueta.puntosCarga.index');
-// });
-// Route::get('nuevo-punto-de-carga', function () {
-//     return view('maqueta.puntosCarga.crear');
-// });
-
-// Route::get('empresa-de-transporte', function () {
-//     return view('maqueta.empresaTransporte.index');
-// });
-// Route::get('nueva-empresa-de-transporte', function () {
-//     return view('maqueta.empresaTransporte.crear');
-// });
-
-// Route::get('tipos-de-carga', function () {
-//     return view('maqueta.tiposCarga.index');
-// });
-// Route::get('nuevo-tipo-de-carga', function () {
-//     return view('maqueta.tiposCarga.crear');
-// });
-
-// Route::get('tamaños-de-bola', function () {
-//     return view('maqueta.tamañosBola.index');
-// });
-// Route::get('nuevo-tamaño-de-bola', function () {
-//     return view('maqueta.tamañosBola.crear');
-// });
-
-// Route::get('paises', function () {
-//     return view('maqueta.paises.index');
-// });
-// Route::get('nuevo-pais', function () {
-//     return view('maqueta.paises.crear');
-// });
-
-// Route::get('usuarios', function () {
-//     return view('maqueta.usuarios.index');
-// });
-// Route::get('nuevo-usuario', function () {
-//     return view('maqueta.usuarios.crear');
-// });
-
-// Route::get('patentes', function () {
-//     return view('maqueta.patentes.index');
-// });
-// Route::get('nueva-patente', function () {
-//     return view('maqueta.patentes.crear');
-// });
-
-// Route::get('choferes', function () {
-//     return view('maqueta.choferes.index');
-// });
-// Route::get('nuevo-chofer', function () {
-//     return view('maqueta.choferes.crear');
-// });
-
-// Route::get('editar-perfil', function () {
-//     return view('maqueta.perfil.index');
-// });
-
 Route::group(['as' => 'web.'], function () {
     Route::middleware(['guest'])->group(function () {
         Route::get('', [AuthController::class, 'login'])->name('index');
@@ -317,5 +203,5 @@ Route::middleware(['auth'])->group(function () {
 
 });
 Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
-Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'detalleCargaCorreo'])->name('detalle.carga.correo');
+Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'cargaDetail'])->name('detalle.carga.correo');
 
