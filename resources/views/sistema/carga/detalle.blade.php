@@ -27,11 +27,10 @@
                         <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
                         <h3>Resumen de carga</h3>
                     </div>
-                    @if (auth()->user()->hasRole('Logistica'))
+                    @if (auth()->user()->hasRole('Logistica') && !$carga->car_email_enviado)
                         <div>
                             <a href="{{ route('carga.send.email', ['id' => $carga->car_id]) }}" class="btn-enviar-correo">
                                 <p style="width:90px;">Enviar correo</p>
-                                {{-- <img src="{{ asset('/web/imagenes/i-correo-enviado.svg') }}" alt=""> --}}
                             </a>
                             <a href="{{ route('carga.edit', ['id' => $carga->car_id]) }}" class="btn-contenido-inicio">
                                 <p>Editar</p>
