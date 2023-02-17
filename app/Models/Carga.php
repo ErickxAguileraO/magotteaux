@@ -11,6 +11,9 @@ class Carga extends Model
 {
     use HasFactory, StatusConvert, SoftDeletes;
 
+    const EMAIL_ENVIADO = 1;
+    const EMAIL_NO_ENVIADO = 0;
+
     public $timestamps = false;
     protected $prefix = 'car';
     protected $table = 'cargas';
@@ -50,6 +53,16 @@ class Carga extends Model
     /***********************************************************
      *  Local scope
      ************************************************************/
+
+    public function scopeEmailSent($query)
+    {
+        return $query->where('car_email_enviado', self::EMAIL_ENVIADO);
+    }
+
+    public function scopeEmailNotSent($query)
+    {
+        return $query->where('car_email_enviado', self::EMAIL_NO_ENVIADO);
+    }
 
     public function scopeForClient($query)
     {

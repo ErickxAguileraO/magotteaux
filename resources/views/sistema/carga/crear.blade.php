@@ -220,7 +220,6 @@
                </div>
                <div class="label-input-n">
                   <label for="">Guía de despacho</label>
-                  <input type="text">
                   <div class="input-file-simple">
                      <div>
                         <p>Subir guía de despacho</p>
@@ -236,7 +235,6 @@
                </div>
                <div class="label-input-n">
                   <label for="">Certificado de calidad</label>
-                  <input type="text">
                   <div class="input-file-simple">
                      <div>
                         <p>Subir certificado de calidad</p>
