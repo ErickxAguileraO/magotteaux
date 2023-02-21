@@ -48,17 +48,17 @@ class CargaController extends Controller
     {
         $relations = ['empresaTransporte', 'patente', 'tipo', 'cliente'];
         $usuario = auth()->user();
-        
+
         if ($usuario->hasRole('Cliente')) {
             $cargas = Carga::with($relations)->forClient()->get();
-            
+
             return CargaClienteResource::collection($cargas);
         }
-        
+
         $relations = array_merge($relations, ['planta']);
-        
+
         $cargas = Carga::with($relations)->where('car_planta_id', $usuario->usu_planta_id)->orderBy('car_email_enviado')->get();
-        
+
         return CargaLogisticaResource::collection($cargas);
     }
 
@@ -109,9 +109,12 @@ class CargaController extends Controller
 
             $this->cargaService->storeFiles($carga, $request);
 
-            return redirect()->route('carga.index')->with(['message' => 'Se creo un nueva carga correctamente', 'type' => 'success']);
+            session()->flash('message', 'Se creo un nueva carga correctamente');
+            session()->flash('type', 'success');
+
+            return response()->json(['status' => 'success', 'redirect' => route('carga.index')]);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar crear la carga', 'type' => 'error']);
+            return response()->json(['message' => 'Ocurrio un error al intentar crear la carga', 'status' => 'error']);
         }
     }
 
@@ -165,9 +168,12 @@ class CargaController extends Controller
 
             $this->cargaService->updateFiles($carga, $request);
 
-            return redirect()->route('carga.index')->with(['message' => 'Se edito la carga correctamente', 'type' => 'success']);
+            session()->flash('message', 'Se edito la carga correctamente');
+            session()->flash('type', 'success');
+
+            return response()->json(['status' => 'success', 'redirect' => route('carga.index')]);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar la carga', 'type' => 'error']);
+            return response()->json(['message' => 'Ocurrio un error al intentar editar la carga', 'status' => 'error']);
         }
     }
 

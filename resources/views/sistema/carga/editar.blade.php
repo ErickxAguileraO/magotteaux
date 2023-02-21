@@ -38,11 +38,7 @@
                         <option value="{{ $empresa->emt_id }}" {{ $selected }}>{{ $empresa->emt_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('empresa')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_empresa"></p>
                </div>
 
                <div class="label-input-n">
@@ -56,11 +52,7 @@
                         <option value="{{ $chofer->cho_id }}" {{ $selected }}>{{ $chofer->cho_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('chofer')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_chofer"></p>
                </div>
 
                <div class="label-input-n">
@@ -74,11 +66,7 @@
                         <option value="{{ $patente->pat_id }}" {{ $selected }}>{{ $patente->pat_patente }}</option>
                      @endforeach
                   </select>
-                  @error('patente')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_patente"></p>
                </div>
 
                <h3 class="subtitulo">Datos de la carga</h3>
@@ -94,11 +82,7 @@
                         <option value="{{ $tipo_carga->tic_id }}" {{ $selected }}>{{ $tipo_carga->tic_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('tipo_carga')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_tipo_carga"></p>
                </div>
 
                <div class="label-input-n">
@@ -112,11 +96,7 @@
                         <option value="{{ $tamano_bola->tab_id }}" {{ $selected }}>{{ $tamano_bola->tab_tamano }}</option>
                      @endforeach
                   </select>
-                  @error('tamano_bola')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_tamano_bola"></p>
                </div>
             </div>
             <div class="grid-carga-n g-2">
@@ -124,11 +104,7 @@
                <div class="label-input-n">
                   <label for="fecha_carga">Fecha y hora de carga</label>
                   <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" min="{{ now()->subDay(1)->format('Y-m-d 00:00') }}" max="{{ now()->format('Y-m-d\TH:i') }}" value="{{ old('fecha_carga', $carga->car_fecha_carga->format('Y-m-d\TH:i')) }}">
-                  @error('fecha_carga')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_fecha_carga"></p>
                </div>
                <div class="label-input-n">
                   <label for="fecha_salida">Fecha y hora de salida a destino</label>
@@ -136,11 +112,7 @@
                      $fecha_salida = $carga->car_fecha_salida ? $carga->car_fecha_salida->format('Y-m-d\TH:i') : '';
                   @endphp
                   <input type="datetime-local" class="input-fecha" id="fecha_salida" name="fecha_salida" value="{{ old('fecha_salida', $fecha_salida) }}">
-                  @error('fecha_salida')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_fecha_carga"></p>
                </div>
                <div class="label-input-n">
                   <label for="planta">Planta de origen</label>
@@ -153,11 +125,7 @@
                         <option value="{{ $planta->pla_id }}" {{ $selected }}>{{ $planta->pla_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('planta')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_planta"></p>
                </div>
                <div class="label-input-n">
                   <label for="punto_carga">Punto de carga</label>
@@ -170,11 +138,7 @@
                         <option value="{{ $punto_carga->puc_id }}" {{ $selected }}>{{ $punto_carga->puc_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('punto_carga')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_punto_carga"></p>
                </div>
                <div class="label-input-n">
                   <label for="cliente-carga">Cliente</label>
@@ -187,11 +151,7 @@
                         <option value="{{ $cliente->cli_id }}" {{ $selected }}>{{ $cliente->cli_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('cliente')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_cliente"></p>
                </div>
                <div class="label-input-n">
                   <label for="destino">Destino</label>
@@ -204,11 +164,7 @@
                         <option value="{{ $destino->des_id }}" {{ $selected }}>{{ $destino->des_nombre }}</option>
                      @endforeach
                   </select>
-                  @error('destino')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_destino"></p>
                </div>
             </div>
             <div class="grid-carga-n g-3">
@@ -216,11 +172,7 @@
                <div class="label-input-n">
                   <label for="numero_guia_despacho">N° guia de despacho</label>
                   <input type="text" id="numero_guia_despacho" name="numero_guia_despacho" value="{{ old('numero_guia_despacho', $carga->car_numero_guia_despacho) }}">
-                  @error('numero_guia_despacho')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_numero_guia_despacho"></p>
                </div>
                <div class="label-input-n">
                   <label for="">Guía de despacho</label>
@@ -232,11 +184,7 @@
                      </div>
                      <input type="file" name="guia_despacho" id="guia_despacho" class="file-simple" accept=".pdf">
                   </div>
-                  @error('guia_despacho')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_guia_despacho"></p>
                </div>
                <div class="label-input-n">
                   <label for="">Certificado de calidad</label>
@@ -248,11 +196,7 @@
                      </div>
                      <input type="file" name="certificado_calidad" id="certificado_calidad" class="file-simple" accept=".pdf">
                   </div>
-                  @error('certificado_calidad')
-                     <span class="invalid-feedback badge alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                  @enderror
+                  <p class="contenedor_errores" id="err_certificado_calidad"></p>
                </div>
             </div>
          </div>
@@ -265,11 +209,7 @@
                   <input type="file" name="foto_patente" id="input-file-preview2" class="file-simple input-file-preview" accept=".jpg,.jpeg,.png">
                   <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_patente)]) }}" alt="" id="image-selected2" class="image-selected">
                </div>
-               @error('foto_patente')
-                  <span class="invalid-feedback badge alert-danger" role="alert">
-                     <strong>{{ $message }}</strong>
-                  </span>
-               @enderror
+               <p class="contenedor_errores" id="err_foto_patente"></p>
             </div>
 
             <div class="label-input-n">
@@ -280,11 +220,7 @@
                   <input type="file" name="foto_carga" id="input-file-preview" class="file-simple input-file-preview" accept=".jpg,.jpeg,.png">
                   <img src="{{ route('download.file', ['url' => base64_encode($carga->car_imagen_carga)]) }}" alt="" id="image-selected" class="image-selected">
                </div>
-               @error('foto_carga')
-                  <span class="invalid-feedback badge alert-danger" role="alert">
-                     <strong>{{ $message }}</strong>
-                  </span>
-               @enderror
+               <p class="contenedor_errores" id="err_foto_carga"></p>
             </div>
          </div>
          <div class="div-contenido-inicio-2 mostrar-nueva-carga" style="margin-top: 10px;">
@@ -294,7 +230,7 @@
                   <p>Cancelar</p>
                   <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                </button>
-               <button type="submit" class="btn-contenido-inicio">
+               <button type="submit" class="btn-contenido-inicio btn-guardar-carga">
                   <p class="mostrar-escritorio">Editar carga</p>
                   <p class="mostrar-movil">Guardar</p>
                   <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
