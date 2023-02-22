@@ -41,7 +41,7 @@ class CargaLogisticaExport implements WithMapping, WithHeadings, FromCollection,
             $cargas->car_fecha_carga,
             $cargas->car_fecha_salida,
             $cargas->empresaTransporte->emt_nombre,
-            $cargas->usuario->usu_nombre,
+            $cargas->usuario->usu_nombre . ' ' . $cargas->usuario->usu_apellido ,
             $cargas->car_numero_guia_despacho,
         ];
     }

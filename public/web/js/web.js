@@ -120,6 +120,56 @@ window.addEventListener('load', () => {
             updateOptions(select_destino, destinos);
         }
     });
+
+    $('.btn-guardar-carga').on('click', function (e) {
+        e.preventDefault();
+
+        const errores = document.querySelectorAll('.contenedor_errores');
+        const boton = e.currentTarget;
+        const form = boton.closest('form');
+
+        const formData = new FormData(form);
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: form.action,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': formData.get('_token'),
+            }
+        }).done(function (result) {
+
+            errores.forEach(e => e.innerHTML = '');
+
+            if (result.status == 'error') return showNotificacion('error', result.message);
+
+            window.location.href = result.redirect;
+
+        }).fail(function (xhr) {
+
+            const response = xhr.responseJSON;
+            const error_span = `<span class="invalid-feedback badge alert-danger" role="alert"><strong style="color: #dc3545;">[message]</strong></span>`;
+
+            errores.forEach(e => e.innerHTML = '');
+
+            if (!response.errors) {
+                showNotificacion('error', 'Complete correctamente los datos solicitados');
+            } else {
+                showNotificacion('error', 'Ocurrio un error al intentar guarda los datos');
+            }
+
+            for (const key in response.errors) {
+                const mensaje = response.errors[key][0];
+                const html = error_span.replace('[message]', mensaje);
+
+                $("#err_" + key).html(html);
+            }
+        });
+    });
 });
 
 /**********************************
