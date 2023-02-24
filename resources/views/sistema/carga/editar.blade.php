@@ -103,7 +103,7 @@
                <h3 class="subtitulo">Ruta</h3>
                <div class="label-input-n">
                   <label for="fecha_carga">Fecha y hora de carga</label>
-                  <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" min="{{ now()->subDay(1)->format('Y-m-d 00:00') }}" max="{{ now()->format('Y-m-d\TH:i') }}" value="{{ old('fecha_carga', $carga->car_fecha_carga->format('Y-m-d\TH:i')) }}">
+                  <input type="datetime-local" class="input-fecha" id="fecha_carga" name="fecha_carga" readonly value="{{ old('fecha_carga', $carga->car_fecha_carga->format('Y-m-d\TH:i')) }}">
                   <p class="contenedor_errores" id="err_fecha_carga"></p>
                </div>
                <div class="label-input-n">

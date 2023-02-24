@@ -148,11 +148,10 @@ class CargaController extends Controller
     public function update(UpdateCargaRequest $request, int $id)
     {
         try {
-
-            $carga = auth()->user()->cargas()->findOrFail($id);
+            
+            $carga = Carga::findOrFail($id);
 
             $carga->update([
-                'car_fecha_carga' => $request->post('fecha_carga'),
                 'car_fecha_salida' => $request->post('fecha_salida'),
                 'car_empresa_id' => $request->post('empresa'),
                 'car_planta_id' => $request->post('planta'),
