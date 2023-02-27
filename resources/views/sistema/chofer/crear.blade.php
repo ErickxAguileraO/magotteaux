@@ -17,7 +17,7 @@
             <p class="menu-seleccionado">Nuevo chofer</p>
          </a>
       </nav>
-      <form method="POST" action="{{ route('chofer.store') }}" class="formulario-crear-cliente">
+      <form method="POST" action="{{ route('chofer.store') }}" onsubmit="myFunction()" class="formulario-crear-cliente">
          @csrf
          <div class="div-contenido">
             <h3>Nuevo chofer</h3>
@@ -87,7 +87,7 @@
                      <p>Cancelar</p>
                      <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                   </button>
-                  <button class="btn-contenido-inicio">
+                  <button class="btn-contenido-inicio" id="btn">
                      <p class="mostrar-escritorio">Guardar nuevo chofer</p>
                      <p class="mostrar-movil">Guardar</p>
                      <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
@@ -98,3 +98,12 @@
       </form>
    </div>
 @endsection
+
+@push('extra-js')
+
+<script>
+    function myFunction() {
+        document.getElementById("btn").disabled = true;
+    }
+</script>
+@endpush
