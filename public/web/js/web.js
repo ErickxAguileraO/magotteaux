@@ -128,6 +128,8 @@ window.addEventListener('load', () => {
         const boton = e.currentTarget;
         const form = boton.closest('form');
 
+        boton.disabled = true;
+
         const formData = new FormData(form);
 
         $.ajax({
@@ -142,7 +144,7 @@ window.addEventListener('load', () => {
                 'X-CSRF-TOKEN': formData.get('_token'),
             }
         }).done(function (result) {
-
+            boton.disabled = true;
             errores.forEach(e => e.innerHTML = '');
 
             if (result.status == 'error') return showNotificacion('error', result.message);
@@ -150,7 +152,7 @@ window.addEventListener('load', () => {
             window.location.href = result.redirect;
 
         }).fail(function (xhr) {
-
+            boton.disabled = false;
             const response = xhr.responseJSON;
             const error_span = `<span class="invalid-feedback badge alert-danger" role="alert"><strong style="color: #dc3545;">[message]</strong></span>`;
 
