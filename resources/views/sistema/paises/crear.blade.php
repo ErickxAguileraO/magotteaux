@@ -19,7 +19,7 @@
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('pais.store') }}" class="formulario-crear-pais">
+        <form method="POST" action="{{ route('pais.store') }}" onsubmit="myFunction()" class="formulario-crear-pais">
             @csrf
             @method('post')
             <div class="div-contenido">
@@ -54,7 +54,7 @@
                             <p>Cancelar</p>
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
-                        <button type="submit" class="btn-contenido-inicio">
+                        <button type="submit" id="btn" class="btn-contenido-inicio">
                             <p class="mostrar-escritorio">Guardar nuevo país</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
@@ -66,7 +66,13 @@
         </form>
     </div>
 
-    @push('extra-js')
-    @endpush
-
 @endsection
+
+@push('extra-js')
+
+<script>
+    function myFunction() {
+        document.getElementById("btn").disabled = true;
+    }
+</script>
+@endpush
