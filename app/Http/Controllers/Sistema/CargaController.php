@@ -244,7 +244,7 @@ class CargaController extends Controller
             return redirect()->route('carga.index')->with(['message' => 'La fecha de salia es mayor a la actual, la fecha actual tiene que ser mayor o igual a la de salida', 'type' => 'error']);
         }
         if ($carga->car_certificado_calidad == null) {
-            return redirect()->route('carga.index')->with(['message' => 'No se puede enviar el correo sin el certificado de calidad', 'type' => 'error']);
+            return redirect()->route('carga.show', ['id' => $carga->car_id])->with(['message' => 'No se puede enviar el correo sin el certificado de calidad', 'type' => 'error']);
         }
         $carga->update([
             'car_email_enviado' => 1,
