@@ -148,7 +148,7 @@ class CargaController extends Controller
     public function update(UpdateCargaRequest $request, int $id)
     {
         try {
-            
+
             $carga = Carga::findOrFail($id);
 
             $carga->update([
@@ -242,6 +242,9 @@ class CargaController extends Controller
         }
         if ($carga->car_fecha_salida > $horaActual) {
             return redirect()->route('carga.index')->with(['message' => 'La fecha de salia es mayor a la actual, la fecha actual tiene que ser mayor o igual a la de salida', 'type' => 'error']);
+        }
+        if ($carga->car_certificado_calidad == null) {
+            return redirect()->route('carga.index')->with(['message' => 'No se puede enviar el correo sin el certificado de calidad', 'type' => 'error']);
         }
         $carga->update([
             'car_email_enviado' => 1,

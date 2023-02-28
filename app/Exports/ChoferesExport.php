@@ -34,7 +34,7 @@ class ChoferesExport implements WithMapping, WithHeadings, FromCollection, WithC
     {
         return [
             $choferes->cho_id,
-            $choferes->cho_nombre,
+            $choferes->cho_nombre.' '.$choferes->cho_apellido,
             $choferes->empresaTransporte->emt_nombre,
             $choferes->getEstado(),
         ];
