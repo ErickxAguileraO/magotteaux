@@ -40,8 +40,7 @@ class CreateCargaRequest extends FormRequest
             'cliente' => ['required', Rule::exists('clientes', 'cli_id')->where('cli_estado', 1)->whereNull('deleted_at')],
             'destino' => ['required', Rule::exists('destinos', 'des_id')->where('des_estado', 1)->whereNull('deleted_at')],
             'numero_guia_despacho' => ['required', 'min:3', 'max:255'],
-            'guia_despacho' => ['required', 'file', 'mimes:pdf', 'max:5120'],
-            'certificado_calidad' => ['required', 'file', 'mimes:pdf', 'max:5120'],
+            'certificado_calidad' => ['nullable', 'file', 'mimes:pdf', 'max:5120'],
             'foto_patente' => ['required', 'file', 'mimes:png,jpeg,jpg', 'max:8192'],
             'foto_carga' => ['required', 'file', 'mimes:png,jpeg,jpg', 'max:8192'],
         ];
@@ -50,7 +49,6 @@ class CreateCargaRequest extends FormRequest
     public function attributes()
     {
         return [
-            'guia_despacho' => 'guía de despacho',
             'certificado_calidad' => 'certificado de calidad',
             'foto_patente' => 'foto de patente',
             'foto_carga' => 'foto de carga',
