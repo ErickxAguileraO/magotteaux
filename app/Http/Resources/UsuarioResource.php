@@ -17,7 +17,7 @@ class UsuarioResource extends JsonResource
         return [
             'id' => $this->usu_id,
             'tipo' => $this->getRoleId(),
-            'nombre' => $this->usu_nombre,
+            'nombre' => $this->usu_nombre.' '.$this->usu_apellido,
             'planta' => $this->planta->pla_nombre ?? '- - -',
             'estado' => $this->usu_estado,
         ];
