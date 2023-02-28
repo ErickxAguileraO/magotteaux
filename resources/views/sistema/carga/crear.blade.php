@@ -173,17 +173,6 @@
                         <p class="contenedor_errores" id="err_numero_guia_despacho"></p>
                     </div>
                     <div class="label-input-n">
-                        <label for="">Guía de despacho</label>
-                        <div class="input-file-simple">
-                            <div>
-                                <p>Subir guía de despacho</p>
-                                <img src="{{ asset('web/imagenes/i-file.svg') }}" alt="">
-                            </div>
-                            <input type="file" name="guia_despacho" id="guia_despacho" class="file-simple" accept=".pdf">
-                        </div>
-                        <p class="contenedor_errores" id="err_guia_despacho"></p>
-                    </div>
-                    <div class="label-input-n">
                         <label for="">Certificado de calidad</label>
                         <div class="input-file-simple">
                             <div>

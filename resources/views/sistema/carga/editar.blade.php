@@ -175,20 +175,10 @@
                   <p class="contenedor_errores" id="err_numero_guia_despacho"></p>
                </div>
                <div class="label-input-n">
-                  <label for="">Guía de despacho</label>
-                  <a class="btn-download-file" href="{{ route('download.file', ['url' => base64_encode($carga->car_guia_despacho)]) }}">Descargar guía</a>
-                  <div class="input-file-simple">
-                     <div>
-                        <p>Subir guía de despacho</p>
-                        <img src="{{ asset('web/imagenes/i-file.svg') }}" alt="">
-                     </div>
-                     <input type="file" name="guia_despacho" id="guia_despacho" class="file-simple" accept=".pdf">
-                  </div>
-                  <p class="contenedor_errores" id="err_guia_despacho"></p>
-               </div>
-               <div class="label-input-n">
                   <label for="">Certificado de calidad</label>
-                  <a class="btn-download-file" href="{{ route('download.file', ['url' => base64_encode($carga->car_certificado_calidad)]) }}">Descargar certificado</a>
+                  @if ($carga->car_certificado_calidad)
+                     <a class="btn-download-file" href="{{ route('download.file', ['url' => base64_encode($carga->car_certificado_calidad)]) }}">Descargar certificado</a>
+                  @endif
                   <div class="input-file-simple">
                      <div>
                         <p>Subir certificado de calidad</p>
