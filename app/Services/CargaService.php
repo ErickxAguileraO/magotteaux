@@ -22,22 +22,24 @@ class CargaService
     {
         $foto_patente = $this->handleFileFactory->instance($request->file('foto_patente'));
         $foto_carga = $this->handleFileFactory->instance($request->file('foto_carga'));
-        $certificado_calidad = $this->handleFileFactory->instance($request->file('certificado_calidad'));
-        $guia_despacho = $this->handleFileFactory->instance($request->file('guia_despacho'));
 
         $directorio = 'private/documentos/' . $carga->car_id . '/';
 
-        $carga->update([
-            'car_guia_despacho' => $directorio . $guia_despacho->getFullName(),
-            'car_certificado_calidad' => $directorio . $certificado_calidad->getFullName(),
-            'car_imagen_patente' => $directorio . $foto_patente->getFullName(),
-            'car_imagen_carga' => $directorio . $foto_carga->getFullName(),
-        ]);
+        $carga->car_imagen_patente = $directorio . $foto_patente->getFullName();
+        $carga->car_imagen_carga = $directorio . $foto_carga->getFullName();
 
         $foto_patente->upload($directorio);
         $foto_carga->upload($directorio);
-        $certificado_calidad->upload($directorio);
-        $guia_despacho->upload($directorio);
+
+        if ($request->file('certificado_calidad')) {
+            $certificado_calidad = $this->handleFileFactory->instance($request->file('certificado_calidad'));
+
+            $carga->car_certificado_calidad = $directorio . $certificado_calidad->getFullName();
+
+            $certificado_calidad->upload($directorio);
+        }
+
+        $carga->update();
     }
 
     public function updateFiles($carga, $request)
@@ -65,14 +67,6 @@ class CargaService
 
             $imagen = $this->handleFileFactory->instance($request->file('certificado_calidad'));
             $carga->update(['car_certificado_calidad' => $directorio . $imagen->getFullName()]);
-            $imagen->upload($directorio);
-        }
-
-        if ($request->file('guia_despacho')) {
-            $this->deleteFileService->delete($carga->getOriginal('car_guia_despacho'));
-
-            $imagen = $this->handleFileFactory->instance($request->file('guia_despacho'));
-            $carga->update(['car_guia_despacho' => $directorio . $imagen->getFullName()]);
             $imagen->upload($directorio);
         }
     }
