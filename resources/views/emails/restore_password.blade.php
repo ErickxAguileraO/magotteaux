@@ -61,7 +61,7 @@
       <img class="img-correo" src="{{ asset('web/imagenes/i-logo-color.svg') }}" alt="">
       <div class="txt">
         <p>Asunto: Su contraseña ha sido cambiada</p>
-         <p>Estimado: {{ $usuario->usu_nombre }}</p>
+         <p>Estimado: {{ $usuario->usu_nombre.' '.$usuario->usu_apellido }}</p>
          <p>
             Su contraseña ha sido cambiada: {{ $contrasena }}
          </p>
