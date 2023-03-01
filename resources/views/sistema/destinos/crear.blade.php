@@ -19,7 +19,7 @@
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('destino.store') }}" class="formulario-crear-destino">
+        <form method="POST" action="{{ route('destino.store') }}" onsubmit="myFunction()" class="formulario-crear-destino">
             @csrf
             @method('post')
             <div class="div-contenido">
@@ -74,7 +74,7 @@
                             <p>Cancelar</p>
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
-                        <button type="submit" class="btn-contenido-inicio">
+                        <button type="submit" id="btn" class="btn-contenido-inicio">
                             <p class="mostrar-escritorio">Guardar nuevo destino</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
@@ -87,3 +87,12 @@
     </div>
 
 @endsection
+
+@push('extra-js')
+
+<script>
+    function myFunction() {
+        document.getElementById("btn").disabled = true;
+    }
+</script>
+@endpush

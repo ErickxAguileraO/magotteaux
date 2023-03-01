@@ -113,13 +113,12 @@
                <h3>Documentación</h3>
                <div class="datos-row">
                   <div>
-                     <p>Guía de despacho</p>
-                     <a href="{{ route('download.file', ['url' => base64_encode($carga->car_guia_despacho)]) }}" class="link-verde">DESCARGAR ARCHIVO</a>
-                  </div>
-
-                  <div>
                      <p>Certificado de calidad</p>
-                     <a href="{{ route('download.file', ['url' => base64_encode($carga->car_certificado_calidad)]) }}" class="link-verde">DESCARGAR ARCHIVO</a>
+                     @if ($carga->car_certificado_calidad)
+                        <a href="{{ route('download.file', ['url' => base64_encode($carga->car_certificado_calidad)]) }}" class="link-verde">DESCARGAR ARCHIVO</a>
+                     @else
+                        <span>SIN DOCUMENTO</span>
+                     @endif
                   </div>
                </div>
             </div>

@@ -157,6 +157,8 @@
                   selectedFilterOperation: "between",
                   filterOperations: ["between"],
                   hidingPriority: 4, // prioridad para ocultar columna, 0 se oculta primero
+                  sortIndex: 1, // al cargar, ordena por esta columna
+                  sortOrder: "desc", // orden descendente
                },
                {
                   dataField: 'empresa',

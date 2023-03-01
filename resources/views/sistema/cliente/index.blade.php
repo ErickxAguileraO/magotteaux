@@ -111,7 +111,7 @@
                     },
                     {
                         dataField: 'nombre',
-                        caption: 'Nombre',
+                        caption: 'Razón social',
                         filterOperations: ["contains"],
                         hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                     },

@@ -35,7 +35,7 @@ class UsuariosExport implements WithMapping, WithHeadings, FromCollection, WithC
         return [
             $usuarios->usu_id,
             $usuarios->getRoleNames()->first(),
-            $usuarios->usu_nombre,
+            $usuarios->usu_nombre.' '.$usuarios->usu_apellido,
             $usuarios->planta->pla_nombre ?? '- - -',
             $usuarios->getEstado(),
         ];

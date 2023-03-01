@@ -149,10 +149,9 @@ class CargaController extends Controller
     {
         try {
 
-            $carga = auth()->user()->cargas()->findOrFail($id);
+            $carga = Carga::findOrFail($id);
 
             $carga->update([
-                'car_fecha_carga' => $request->post('fecha_carga'),
                 'car_fecha_salida' => $request->post('fecha_salida'),
                 'car_empresa_id' => $request->post('empresa'),
                 'car_planta_id' => $request->post('planta'),
@@ -243,6 +242,9 @@ class CargaController extends Controller
         }
         if ($carga->car_fecha_salida > $horaActual) {
             return redirect()->route('carga.index')->with(['message' => 'La fecha de salia es mayor a la actual, la fecha actual tiene que ser mayor o igual a la de salida', 'type' => 'error']);
+        }
+        if ($carga->car_certificado_calidad == null) {
+            return redirect()->route('carga.show', ['id' => $carga->car_id])->with(['message' => 'No se puede enviar el correo sin el certificado de calidad', 'type' => 'error']);
         }
         $carga->update([
             'car_email_enviado' => 1,
