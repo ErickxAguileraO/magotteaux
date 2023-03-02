@@ -50,7 +50,7 @@
 
                      <div>
                         <p>Nombre del chofer</p>
-                        <p class="bold">{{ $carga->chofer->cho_nombre }}</p>
+                        <p class="bold">{{ $carga->chofer->cho_nombre.' '.$carga->chofer->cho_apellido }}</p>
                      </div>
 
                      <div>
