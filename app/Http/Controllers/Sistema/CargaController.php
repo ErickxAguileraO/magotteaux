@@ -200,7 +200,7 @@ class CargaController extends Controller
             }
 
             $relations = array_merge($relations, ['usuario', 'planta']);
-            $cargas = Carga::with($relations)->orderBy('car_email_enviado')->get();
+            $cargas = Carga::with($relations)->orderBy('car_fecha_salida', 'desc')->get();
 
             return Excel::download(new CargaLogisticaExport($cargas), 'cargas.xlsx');
         } catch (\Throwable $th) {

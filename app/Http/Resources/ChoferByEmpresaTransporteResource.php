@@ -16,7 +16,7 @@ class ChoferByEmpresaTransporteResource extends JsonResource
     {
         return [
             'id' => $this->cho_id,
-            'nombre' => $this->cho_nombre,
+            'nombre' => $this->cho_nombre.' '.$this->cho_apellido,
         ];
     }
 }
