@@ -50,7 +50,7 @@
                                 @php
                                     $selected = old('chofer') == $chofer->cho_id ? 'selected' : '';
                                 @endphp
-                                <option value="{{ $chofer->cho_id }}" {{ $selected }}>{{ $chofer->cho_nombre }}</option>
+                                <option value="{{ $chofer->cho_id }}" {{ $selected }}>{{ $chofer->cho_nombre.' '.$chofer->cho_apellido }}</option>
                             @endforeach
                         </select>
                         <p class="contenedor_errores" id="err_chofer"></p>
