@@ -26,6 +26,6 @@ steps:
     runOptions: 'commands'
     commands: |
       cd /home/magotteauxaeurus/public_html/
-      chmod -fR magotteauxaeurus:magotteauxaeurus
+      chown -fR magotteauxaeurus:magotteauxaeurus .
       php artisan migrate
     readyTimeout: '20000'
