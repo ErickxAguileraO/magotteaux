@@ -25,7 +25,5 @@ steps:
     sshEndpoint: 'Desarrollo'
     runOptions: 'commands'
     commands: |
-      cd /home/magotteauxaeurus/public_html/
-      chown -fR magotteauxaeurus:magotteauxaeurus .
-      php artisan migrate
+      cd /home/magotteauxaeurus/public_html/ && chown -fR magotteauxaeurus:magotteauxaeurus . && php artisan migrate
     readyTimeout: '20000'
