@@ -18,7 +18,7 @@
 
             <img src="{{ asset('/web/imagenes/Logo.svg') }}" alt="">
             <div class="sub-txt-login">
-               <p>Hola, Te damos la bienvenida a</p>
+               <p>¡Hola! Te damos la bienvenida a</p>
                <h2>Plataforma de control de carga</h2>
                <span>Un sistema pensado por MGTX</span>
             </div>
