@@ -226,17 +226,17 @@ class CargaController extends Controller
         $correoClientes = [];
 
         foreach ($usuarioCliente as $clientes) {
-            if ($clientes['usu_destino_id'] == $carga->car_destino_id) {
+            if ($clientes['usu_destino_id'] == $carga->car_destino_id && $clientes['usu_estado'] == 1) {
                 $correoClientes[] = $clientes['usu_email'];
             }
         }
 
         foreach ($usuarioLogistica as $logistica) {
-            if ($logistica['usu_planta_id'] == $carga->car_planta_id) {
+            if ($logistica['usu_planta_id'] == $carga->car_planta_id && $logistica['usu_estado'] == 1) {
                 $correoLogistica[] = $logistica['usu_email'];
             }
         }
-
+        dd($correoClientes,$correoLogistica);
         if ($carga->car_email_enviado == 1) {
             return redirect()->route('carga.index')->with(['message' => 'No se puede enviar el correo más de una vez', 'type' => 'error']);
         }
@@ -251,8 +251,8 @@ class CargaController extends Controller
         ]);
 
 
-        Mail::to($correoClientes)->bcc($correoLogistica)->send((new NotificacionCarga($carga)));
-        return redirect()->route('carga.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
+        // Mail::to($correoClientes)->bcc($correoLogistica)->send((new NotificacionCarga($carga)));
+        // return redirect()->route('carga.index')->with(['message' => 'Se envió el correo exitosamente', 'type' => 'success']);
     }
 
     public function show($id)
