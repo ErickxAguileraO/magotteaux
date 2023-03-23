@@ -226,13 +226,13 @@ class CargaController extends Controller
         $correoClientes = [];
 
         foreach ($usuarioCliente as $clientes) {
-            if ($clientes['usu_destino_id'] == $carga->car_destino_id) {
+            if ($clientes['usu_destino_id'] == $carga->car_destino_id && $clientes['usu_estado'] == 1) {
                 $correoClientes[] = $clientes['usu_email'];
             }
         }
 
         foreach ($usuarioLogistica as $logistica) {
-            if ($logistica['usu_planta_id'] == $carga->car_planta_id) {
+            if ($logistica['usu_planta_id'] == $carga->car_planta_id && $logistica['usu_estado'] == 1) {
                 $correoLogistica[] = $logistica['usu_email'];
             }
         }
