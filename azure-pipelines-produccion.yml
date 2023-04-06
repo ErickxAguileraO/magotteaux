@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- produccion
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'Produccion'
+    contents:  |
+      **
+      !.git/**
+      !.env
+    targetFolder: '/home/magotteauxplataf/public_html/'
+    readyTimeout: '20000'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'Produccion'
+    runOptions: 'commands'
+    commands: |
+      cd /home/magotteauxplataf/public_html/ && chown -fR magotteauxplataf:magotteauxplataf . && php artisan migrate
+    readyTimeout: '20000'
