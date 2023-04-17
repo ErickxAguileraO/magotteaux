@@ -10,15 +10,16 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- task: CopyFilesOverSSH@0
+- task: CopyFiles@2
   inputs:
-    sshEndpoint: 'Desarrollo'
-    contents:  |
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
       **
       !.git/**
-      !.env
-    targetFolder: '/home/magotteauxaeurus/public_html/'
-    readyTimeout: '20000'
+      !.env/**
+    TargetFolder: '/home/magotteauxaeurus/public_html/'
+    CleanTargetFolder: true
+    OverWrite: true
 
 - task: SSH@0
   inputs:
