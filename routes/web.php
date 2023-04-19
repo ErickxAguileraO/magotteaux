@@ -205,3 +205,15 @@ Route::middleware(['auth'])->group(function () {
 Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
 Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'cargaDetail'])->name('detalle.carga.correo');
 
+
+
+
+
+// Otras rutas
+Route::get('/notificaciones', function () {
+    return view('sistema.notificaciones.index');
+});
+
+Route::get('/crear-notificacion', function () {
+    return view('sistema.notificaciones.crear');
+});
