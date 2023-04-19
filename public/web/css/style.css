@@ -502,7 +502,7 @@ header{
 .div-contenido-inicio{
     display: grid;
     grid-template-columns: 1fr 260px;
-    margin-bottom: 44px;
+    margin-bottom: 0px;
 }
 .div-contenido-inicio-2{
     display: grid;
@@ -852,6 +852,9 @@ td:last-child{
 /**************************************************** 
 *   CSS adicional
 *****************************************************/
+#container-datagrid{
+    margin-top: 20px !important;
+}
 
 .alert-danger {
     display: block;
@@ -1132,6 +1135,7 @@ td:last-child{
         flex-direction: column;
         align-items: center;
     }
+    
     .btn-contenido-inicio{
         display: flex;
         flex-direction: row;
