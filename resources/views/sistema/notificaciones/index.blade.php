@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Clientes')
+@section('title', 'Notificaciones')
 
 @section('content')
     <div class="contenido">
