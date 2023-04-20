@@ -28,7 +28,7 @@
                     <div class="label-input-n">
                         <label for="">Empresa</label>
                         <select name="empresa" id="empresa">
-                            <option value="">Selecciona una empresa</option>
+                            <option value="">Seleccione una empresa</option>
                             @foreach ($clientes as $cliente)
                                 @continue($cliente->cli_estado == 0)
                                 @php
@@ -47,7 +47,7 @@
                     <div class="label-input-n">
                         <label for="">Frecuencia de envío</label>
                         <select name="frecuencia" id="frecuencia" value="{{ old('frecuencia') }}">
-                            <option value="">Selecciona una frecuencia</option>
+                            <option value="">Seleccione una frecuencia</option>
                             <option value="Inmediato" {{ old('frecuencia') == 'Inmediato' ? 'selected' : '' }}>Inmediato</option>
                             <option value="Semanal" {{ old('frecuencia') == 'Semanal' ? 'selected' : '' }}>Semanal</option>
                             <option value="Quincenal" {{ old('frecuencia') == 'Quincenal' ? 'selected' : '' }}>Quincenal</option>
