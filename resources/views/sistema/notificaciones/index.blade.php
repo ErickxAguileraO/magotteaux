@@ -9,7 +9,7 @@
                 <p>Usted está en</p>
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
-            <a href="/notificaciones">
+            <a href="#">
                 <p class="menu-seleccionado">Mantenedor de notificaciones</p>
             </a>
         </nav>
@@ -20,7 +20,7 @@
                     <div class="div-contenido-inicio">
                         <h2>Mantenedor de notificaciones</h2>
 
-                        <a href="/crear-notificacion" class="btn-contenido-inicio">
+                        <a href="{{ route('notificacion.create') }}" class="btn-contenido-inicio">
                             <p>Crear nueva notificación</p>
                             <img src="{{ asset('web/imagenes/i-mas-white.svg') }}" alt="">
                         </a>
@@ -30,11 +30,12 @@
                     <div class="div-contenido-escritorio">
                         <div class="div-contenido-inicio">
                             <h2>Detalle</h2>
-                            <a href="{{ route('cliente.download.excel') }}" class="btn-contenido-inicio">
+                            <a href="{{ route('notificacion.download.excel') }}" class="btn-contenido-inicio">
                                 <p>Descargar Excel</p>
                                 <img src="{{ asset('web/imagenes/i-exel.svg') }}" alt="">
                             </a>
                         </div>
+                        <div id="container-datagrid" data-link="{{ route('notificacion.list') }}" data-link-edit="{{ route('notificacion.edit', ':id') }}" data-link-delete="{{ route('notificacion.delete', ':id') }}"></div>
                     </div>
                 </div>
 
@@ -109,36 +110,16 @@
                         sortOrder: "desc", // orden descendente
                     },
                     {
-                        dataField: 'nombre',
-                        caption: 'Razón social',
+                        dataField: 'cliente',
+                        caption: 'Cliente Empresa',
                         filterOperations: ["contains"],
                         hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                     },
                     {
-                        dataField: 'estado',
-                        caption: 'Estado',
+                        dataField: 'nombre',
+                        caption: 'Frecuencia',
                         filterOperations: ["contains"],
-                        lookup: {
-                            dataSource: {
-                                store: {
-                                    type: 'array',
-                                    data: [{
-                                            id: 0,
-                                            name: 'Inactivo'
-                                        },
-                                        {
-                                            id: 1,
-                                            name: 'Activo'
-                                        }
-                                    ],
-                                    key: "id"
-                                },
-                                pageSize: 10,
-                                paginate: true
-                            },
-                            valueExpr: 'id',
-                            displayExpr: 'name'
-                        },
+                        hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
                     },
                     {
                         caption: 'Opciones',
@@ -150,7 +131,7 @@
                             const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
                             const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
-                            const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este cliente"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                            const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="esta notificación"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
 
                             return $(link_edit + link_delete);
                         },

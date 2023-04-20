@@ -8,6 +8,7 @@ use App\Http\Controllers\Sistema\ChoferController;
 use App\Http\Controllers\Sistema\CuentaController;
 use App\Http\Controllers\Sistema\DestinoController;
 use App\Http\Controllers\Sistema\EmpresaTransporteController;
+use App\Http\Controllers\Sistema\NotificacionController;
 use App\Http\Controllers\Sistema\PaisController;
 use App\Http\Controllers\Sistema\PatenteController;
 use App\Http\Controllers\Sistema\PlantaController;
@@ -200,6 +201,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('download-excel', [PatenteController::class, 'downloadExcel'])->name('download.excel');
     });
 
+    Route::group(['prefix' => 'notificacion', 'as' => 'notificacion.'], function () {
+        Route::get('', [NotificacionController::class, 'index'])->name('index');
+        Route::get('list', [NotificacionController::class, 'list'])->name('list');
+        Route::get('nueva-notificacion', [NotificacionController::class, 'create'])->name('create');
+        Route::post('store', [NotificacionController::class, 'store'])->name('store');
+        Route::get('editar-notificacion/{id}', [NotificacionController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [NotificacionController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [NotificacionController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [NotificacionController::class, 'downloadExcel'])->name('download.excel');
+    });
+
 
 });
 Route::get('download-file/{url}', [ArchivoController::class, 'downloadFile'])->name('download.file');
@@ -209,11 +221,11 @@ Route::get('detalle-carga-correo/{id}/{token}', [CargaController::class, 'cargaD
 
 
 
-// Otras rutas
-Route::get('/notificaciones', function () {
-    return view('sistema.notificaciones.index');
-});
+// // Otras rutas
+// Route::get('/notificaciones', function () {
+//     return view('sistema.notificaciones.index');
+// });
 
-Route::get('/crear-notificacion', function () {
-    return view('sistema.notificaciones.crear');
-});
+// Route::get('/crear-notificacion', function () {
+//     return view('sistema.notificaciones.crear');
+// });

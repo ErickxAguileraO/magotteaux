@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('title', 'Crear notificación')
+@section('title', 'Editar notificación')
 
 @section('content')
 
@@ -15,22 +15,22 @@
             </a>
             <img src="{{ asset('web/imagenes/i-flecha-derecha.svg') }}" alt="">
             <a href="#">
-                <p class="menu-seleccionado">Nueva notificación</p>
+                <p class="menu-seleccionado">Editar notificación</p>
             </a>
         </nav>
 
-        <form method="POST" action="{{ route('notificacion.store') }}" onsubmit="myFunction()" class="formulario-crear-notificacion">
+        <form method="POST" action="{{ route('notificacion.update', ['id' => $frecuencias->fre_id]) }}" class="formulario-editar-notificacion">
             @csrf
-            @method('post')
             <div class="div-contenido">
-                <h3>Nueva notificación</h3>
+                <h3>Editar notificación</h3>
                 <div class="grid-mantenedor-n mantenedor-row-2">
                     <div class="label-input-n">
                         <label for="">Empresa</label>
                         <select name="empresa" id="empresa">
-                            <option value="">Selecciona una empresa</option>
+                            <option value="{{ $frecuencias->cliente->cli_id }}">{{ old($frecuencias->cliente->cli_nombre, $frecuencias->cliente->cli_nombre) }}</option>
                             @foreach ($clientes as $cliente)
                                 @continue($cliente->cli_estado == 0)
+                                @continue($cliente->cli_id == $frecuencias->cliente->cli_id || $cliente->cli_estado == 0)
                                 @php
                                     $selected = old('empresa') == $cliente->cli_id ? 'selected' : '';
                                 @endphp
@@ -47,11 +47,10 @@
                     <div class="label-input-n">
                         <label for="">Frecuencia de envío</label>
                         <select name="frecuencia" id="frecuencia" value="{{ old('frecuencia') }}">
-                            <option value="">Selecciona una frecuencia</option>
-                            <option value="Inmediato" {{ old('frecuencia') == 'Inmediato' ? 'selected' : '' }}>Inmediato</option>
-                            <option value="Semanal" {{ old('frecuencia') == 'Semanal' ? 'selected' : '' }}>Semanal</option>
-                            <option value="Quincenal" {{ old('frecuencia') == 'Quincenal' ? 'selected' : '' }}>Quincenal</option>
-                            <option value="Mensual" {{ old('frecuencia') == 'Mensual' ? 'selected' : '' }}>Mensual</option>
+                            <option value="Inmediato" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Inmediato' ? 'selected' : '' }}>Inmediato</option>
+                            <option value="Semanal" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Semanal' ? 'selected' : '' }}>Semanal</option>
+                            <option value="Quincenal" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Quincenal' ? 'selected' : '' }}>Quincenal</option>
+                            <option value="Mensual" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Mensual' ? 'selected' : '' }}>Mensual</option>
                         </select>
                         @error('frecuencia')
                             <span class="invalid-feedback badge alert-danger" role="alert">
@@ -68,7 +67,7 @@
                             <img src="{{ asset('web/imagenes/i-x.svg') }}" alt="">
                         </button>
                         <button type="submit" id="btn" class="btn-contenido-inicio">
-                            <p class="mostrar-escritorio">Guardar nueva notificacion</p>
+                            <p class="mostrar-escritorio">Editar notificacion</p>
                             <p class="mostrar-movil">Guardar</p>
                             <img src="{{ asset('web/imagenes/i-guardar.svg') }}" alt="">
                         </button>
@@ -81,11 +80,3 @@
 
 
 @endsection
-@push('extra-js')
-
-<script>
-    function myFunction() {
-        document.getElementById("btn").disabled = true;
-    }
-</script>
-@endpush
