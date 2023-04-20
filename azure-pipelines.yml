@@ -7,23 +7,16 @@ trigger:
 - Desarrollo
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- task: CopyFilesOverSSH@0
-  inputs:
-    sshEndpoint: 'Desarrollo'
-    contents:  |
-      **
-      !.git/**
-      !.env
-    targetFolder: '/home/magotteauxaeurus/public_html/'
-    readyTimeout: '20000'
+- script: |
+    sudo apt-get install -y sshpass
+    export SSHPASS="h=oR84,F63[v"
+    rsync -auv --chown=magotteauxaeurus:magotteauxaeurus  --exclude='.htaccess' --exclude='CHANGELOG' --exclude='.gitlab-ci.yml' --exclude='.git' --exclude='.env' --exclude='BD' . root@209.126.108.6:/home/magotteauxaeurus/public_html/
+  displayName: 'Rsync a servidor de desarrollo'
 
 - task: SSH@0
   inputs:
     sshEndpoint: 'Desarrollo'
     runOptions: 'commands'
     commands: |
-      cd /home/magotteauxaeurus/public_html/ && chown -fR magotteauxaeurus:magotteauxaeurus . && php artisan migrate
+      cd /home/magotteauxaeurus/public_html/ && php artisan migrate && composer update && php artisan optimize
     readyTimeout: '20000'
