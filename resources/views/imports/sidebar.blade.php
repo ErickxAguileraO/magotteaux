@@ -19,7 +19,7 @@
         <img src="{{ asset('web/imagenes/i-clientes-sb.svg') }}" alt="">
         <p>Clientes</p>
     </a>
-    <a href="/notificaciones" class="op-sidebar">
+    <a href="{{ route('notificacion.index') }}" class="op-sidebar">
         <img src="{{ asset('web/imagenes/i-notificaciones.svg') }}" alt="">
         <p>Notificaciones</p>
     </a>
