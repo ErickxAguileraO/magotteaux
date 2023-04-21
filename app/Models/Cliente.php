@@ -67,6 +67,11 @@ class Cliente extends Model
         return $this->hasMany(Carga::class, 'car_cliente_id', 'cli_id');
     }
 
+    public function frecuencias()
+    {
+        return $this->hasMany(Frecuencia::class, 'fre_cliente_id', 'cli_id');
+    }
+
     /***********************************************************
      *  Auxiliary functions
      ************************************************************/

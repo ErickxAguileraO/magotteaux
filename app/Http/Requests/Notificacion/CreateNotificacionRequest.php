@@ -24,7 +24,7 @@ class CreateNotificacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'empresa' => 'required|max:255',
+            'empresa' => 'required|max:255|unique:frecuencias,fre_cliente_id',
             'frecuencia' => 'required|max:255',
         ];
     }

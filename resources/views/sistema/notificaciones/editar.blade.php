@@ -26,16 +26,15 @@
                 <div class="grid-mantenedor-n mantenedor-row-2">
                     <div class="label-input-n">
                         <label for="">Empresa</label>
-                        <select name="empresa" id="empresa">
+                        <select name="empresa" id="empresa" >
                             <option value="{{ $frecuencias->cliente->cli_id }}">{{ old($frecuencias->cliente->cli_nombre, $frecuencias->cliente->cli_nombre) }}</option>
-                            @foreach ($clientes as $cliente)
-                                @continue($cliente->cli_estado == 0)
+                            {{-- @foreach ($clientes as $cliente)
                                 @continue($cliente->cli_id == $frecuencias->cliente->cli_id || $cliente->cli_estado == 0)
                                 @php
                                     $selected = old('empresa') == $cliente->cli_id ? 'selected' : '';
                                 @endphp
                                 <option value="{{ $cliente->cli_id }}" {{ $selected }}>{{ $cliente->cli_nombre }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                         @error('empresa')
                             <span class="invalid-feedback badge alert-danger" role="alert">
@@ -47,7 +46,7 @@
                     <div class="label-input-n">
                         <label for="">Frecuencia de envío</label>
                         <select name="frecuencia" id="frecuencia" value="{{ old('frecuencia') }}">
-                            <option value="Inmediato" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Inmediato' ? 'selected' : '' }}>Inmediato</option>
+                            <option value="Diaria" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Diaria' ? 'selected' : '' }}>Diaria</option>
                             <option value="Semanal" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Semanal' ? 'selected' : '' }}>Semanal</option>
                             <option value="Quincenal" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Quincenal' ? 'selected' : '' }}>Quincenal</option>
                             <option value="Mensual" {{ old('frecuencia', $frecuencias->fre_frecuencia) == 'Mensual' ? 'selected' : '' }}>Mensual</option>
