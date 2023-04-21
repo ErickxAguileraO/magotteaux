@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Frecuencia extends Model
 {
-    use HasFactory, StatusConvert, SoftDeletes;
+    use HasFactory, StatusConvert;
 
     public $timestamps = false;
     protected $prefix = 'fre';

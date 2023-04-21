@@ -24,7 +24,6 @@ class UpdateNotificacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'empresa' => 'required|max:255',
             'frecuencia' => 'required|max:255',
         ];
     }

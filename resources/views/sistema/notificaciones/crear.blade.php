@@ -48,7 +48,7 @@
                         <label for="">Frecuencia de envío</label>
                         <select name="frecuencia" id="frecuencia" value="{{ old('frecuencia') }}">
                             <option value="">Seleccione una frecuencia</option>
-                            <option value="Inmediato" {{ old('frecuencia') == 'Inmediato' ? 'selected' : '' }}>Inmediato</option>
+                            <option value="Diaria" {{ old('frecuencia') == 'Diaria' ? 'selected' : '' }}>Diaria</option>
                             <option value="Semanal" {{ old('frecuencia') == 'Semanal' ? 'selected' : '' }}>Semanal</option>
                             <option value="Quincenal" {{ old('frecuencia') == 'Quincenal' ? 'selected' : '' }}>Quincenal</option>
                             <option value="Mensual" {{ old('frecuencia') == 'Mensual' ? 'selected' : '' }}>Mensual</option>
