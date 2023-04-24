@@ -70,6 +70,22 @@
                 <a href="{{ route('detalle.carga.correo',['id'=>$carga->car_id, 'token'=>$carga->car_token]) }}" class="link">Enlace a seguimiento carga.</a>
 
             </p>
+            <br>
+            @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Diaria')
+                Sus correos llegaran todos los dias de lunes a viernes <br>
+                Esto en el caso que no lo envie de forma manual se envia automaticamente a las 23:59 diariamente.
+            @endif
+            @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Semanal')
+                Sus correos llegaran de todos los lunes a las 08:00 AM <br>
+            @endif
+            @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Quincenal')
+                Sus correos llegaran de forma dos veces al mes el dia 15 si este es fin de semana, llegara el lunes siguiente a las 8:00 AM <br>
+                tambien le llegara el último día hábil del mes a las 8:00 AM<br>
+            @endif
+            @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Mensual')
+                Sus correos llegaran el último día hábil del mes <br>
+            @endif
+
             <p>
                 Atte.
                 <br>
