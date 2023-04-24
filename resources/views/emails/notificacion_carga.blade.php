@@ -72,8 +72,8 @@
             </p>
             <br>
             @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Diaria')
-                Sus correos llegaran todos los dias de lunes a viernes <br>
-                Esto en el caso que no lo envie de forma manual se envia automaticamente a las 23:59 diariamente.
+                Sus correos llegarán todos los días de Lunes a Viernes.<br>
+                En el caso que no lo envie de forma manual, se enviará automáticamente a las 23:59Hrs de forma diaria.
             @endif
             @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Semanal')
                 Sus correos llegaran de todos los lunes a las 08:00 AM <br>
