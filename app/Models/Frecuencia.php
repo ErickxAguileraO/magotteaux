@@ -15,6 +15,11 @@ class Frecuencia extends Model
     protected $prefix = 'fre';
     protected $table = 'frecuencias';
     protected $primaryKey = 'fre_id';
+    protected $fillable = [
+        'fre_id',
+        'fre_frecuencia',
+        'fre_cliente_id',
+    ];
 
 
     // /***********************************************************
