@@ -19,8 +19,6 @@ steps:
       !.env
     targetFolder: '/home/magotteauxplataf/public_html/'
     readyTimeout: '20000'
-    CleanTargetFolder: false
-    OverWrite: false
 
 - task: SSH@0
   inputs:
