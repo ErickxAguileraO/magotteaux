@@ -44,7 +44,7 @@ class EnviarFormulariosCarga extends Command
     public function handle()
     {
             // Enviar correos diariamente a las 23:59, de lunes a viernes
-            if (date('H:i') === '16:38' && date('N') <= 5) {
+            if (date('H:i') === '23:59' && date('N') <= 5) {
 
                 $cargas = Carga::where('car_email_enviado', 0)
                                 ->where(function($query){
@@ -174,9 +174,52 @@ class EnviarFormulariosCarga extends Command
                 }
             }
 
-            // Enviar correo mensualmente el último día hábil del mes a las 8:00 am
-            if (date('H:i') === '08:00' && date('t') === date('d') && date('N') <= 5) {
+            $currentDate = Carbon::now();
+            $isLastBusinessDayOfMonth = $currentDate->isLastOfMonth() && $currentDate->isWeekday();
+            // La condición se cumple si es la 08:00 am y hoy es el último día hábil del mes actual
+            if ($currentDate->format('H:i') === '08:00' && $isLastBusinessDayOfMonth) {
+                // Obtener el último día hábil del mes anterior
+                $lastSentDate = Carbon::parse('previous weekday')->format('Y-m-d');
 
+                // Obtener el último día hábil del mes actual
+                $endDate = now()->endOfMonth()->format('Y-m-d');
+
+                $cargas = Carga::where('car_email_enviado', 0)
+                                ->whereNotNull('car_certificado_calidad')
+                                ->whereBetween('car_fecha_salida', [$lastSentDate, $endDate])
+                                ->whereHas('cliente.frecuencias', function($query) {
+                                    $query->where('fre_frecuencia', 'Mensual');
+                                })
+                                ->get();
+
+                foreach ($cargas as $carga) {
+                    // enviar correo y actualizar estado
+                    $usuarioCliente = User::role('Cliente')->get();
+                    $usuarioLogistica = User::role('Logistica')->get();
+                    $correoLogistica = [];
+                    $correoClientes = [];
+
+                    foreach ($usuarioCliente as $clientes) {
+                        if ($clientes['usu_destino_id'] == $carga->car_destino_id && $clientes['usu_estado'] == 1) {
+                            $correoClientes[] = $clientes['usu_email'];
+                        }
+                    }
+
+                    foreach ($usuarioLogistica as $logistica) {
+                        if ($logistica['usu_planta_id'] == $carga->car_planta_id && $logistica['usu_estado'] == 1) {
+                            $correoLogistica[] = $logistica['usu_email'];
+                        }
+                    }
+
+                    $carga->update([
+                        'car_email_enviado' => 1,
+                    ]);
+
+                    Mail::to($correoClientes)->bcc($correoLogistica)->send((new NotificacionCarga($carga)));
+                }
+            }
+            // La condición se cumple si hoy es el primer día hábil después del último día hábil del mes anterior y es la 08:00 am
+            elseif (!$isLastBusinessDayOfMonth && $currentDate->startOfMonth()->addMonth()->lastWeekday()->format('d') === $currentDate->format('d') && $currentDate->format('H:i') === '08:00') {
                 // Obtener el último día hábil del mes anterior
                 $lastSentDate = Carbon::parse('previous weekday')->format('Y-m-d');
 
