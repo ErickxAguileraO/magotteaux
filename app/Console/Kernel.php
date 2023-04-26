@@ -48,18 +48,19 @@ class Kernel extends ConsoleKernel
                });
                 // Enviar correo mensualmente el último día hábil del mes a las 8:00 am si este último día cae en un día no hábil se enviará el día hábil siguiente al último día del mes
                 $schedule->command('enviar:formularios-carga')
-                    ->monthlyOn(date('t'), '08:00') // Programa el comando para que se ejecute el último día del mes a las 8:00 AM
-                    ->when(function () {
-                    // Verifica si el último día del mes es un día hábil
-                    $lastDayOfMonth = CarbonImmutable::today()->lastOfMonth(); // Obtén la fecha del último día del mes
-                    if ($lastDayOfMonth->isWeekend()) { // Verifica si el último día del mes es un fin de semana
-                        $nextBusinessDay = $lastDayOfMonth->nextWeekday(); // Obtén el siguiente día hábil después del último día del mes
-                        $message = "El último día del mes es un fin de semana, se enviará el comando el siguiente día hábil: " . $nextBusinessDay->format('Y-m-d');
-                        Log::info($message); // Registra el mensaje en el registro de Laravel
-                        return $nextBusinessDay; // Devuelve la fecha del siguiente día hábil
+                ->monthlyOn('L', '08:00')
+                ->when(function () {
+                    $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
+                    $ultimoDiaMes = $fechaActual->endOfMonth()->dayOfWeek === CarbonImmutable::SUNDAY
+                        ? $fechaActual->endOfMonth()->nextWeekday()
+                        : $fechaActual->endOfMonth();
+
+                    // Verifica si es el último día del mes o un día hábil posterior al último día del mes
+                    if ($fechaActual->equalTo($ultimoDiaMes) || $fechaActual->isAfter($ultimoDiaMes)) {
+                        return true;
                     }
-                    return true; // Si el último día del mes es un día hábil, devuelve verdadero para que se ejecute el comando
-                    });
+                    return false;
+                });
     }
 
     /**

@@ -123,10 +123,11 @@ class EnviarFormulariosCarga extends Command
         // Enviar correo quincenalmente los días 15 y último día hábil del mes validado que sean dia habiles
 
         $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
-
-        // Verifica si es el 15 o un día hábil posterior al 15
-        if ($fechaActual->day >= 15 && $fechaActual->isWeekday()) {
-            // Código a ejecutar en caso de que se cumpla la condición
+        if (
+            ($fechaActual->day === 15 && $fechaActual->isWeekday())
+            || ($fechaActual->day === 16 && $fechaActual->isWeekday() && !$fechaActual->subDay()->isWeekday())
+            || ($fechaActual->day === 17 && $fechaActual->isWeekday() && !$fechaActual->subDays(2)->isWeekday() && !$fechaActual->subDays(1)->isWeekday())
+        ) {
             $cargas = Carga::where('car_email_enviado', 0)
                 ->whereDate('car_fecha_salida', '<=', today())
                 ->whereHas('cliente.frecuencias', function ($query) {
@@ -160,57 +161,16 @@ class EnviarFormulariosCarga extends Command
 
                 Mail::to($correoClientes)->bcc($correoLogistica)->send((new NotificacionCarga($carga)));
             }
-        } elseif ($fechaActual->day < 15) {
-            $siguienteDiaHabil = $fechaActual->nextWeekday();
-            if ($siguienteDiaHabil->day === 15) {
-                // Código a ejecutar en caso de que se cumpla la condición
-                $cargas = Carga::where('car_email_enviado', 0)
-                    ->whereDate('car_fecha_salida', '<=', today())
-                    ->whereHas('cliente.frecuencias', function ($query) {
-                        $query->where('fre_frecuencia', 'Quincenal');
-                    })
-                    ->whereNotNull('car_certificado_calidad')
-                    ->get();
-
-                foreach ($cargas as $carga) {
-                    // enviar correo y actualizar estado
-                    $usuarioCliente = User::role('Cliente')->get();
-                    $usuarioLogistica = User::role('Logistica')->get();
-                    $correoLogistica = [];
-                    $correoClientes = [];
-
-                    foreach ($usuarioCliente as $clientes) {
-                        if ($clientes['usu_destino_id'] == $carga->car_destino_id && $clientes['usu_estado'] == 1) {
-                            $correoClientes[] = $clientes['usu_email'];
-                        }
-                    }
-
-                    foreach ($usuarioLogistica as $logistica) {
-                        if ($logistica['usu_planta_id'] == $carga->car_planta_id && $logistica['usu_estado'] == 1) {
-                            $correoLogistica[] = $logistica['usu_email'];
-                        }
-                    }
-
-                    $carga->update([
-                        'car_email_enviado' => 1,
-                    ]);
-
-                    Mail::to($correoClientes)->bcc($correoLogistica)->send((new NotificacionCarga($carga)));
-                }
-            }
         }
 
-        $lastDayOfMonth = CarbonImmutable::today()->lastOfMonth();
-        $nextBusinessDay = null;
+        $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
+        $ultimoDiaMes = $fechaActual->endOfMonth()->dayOfWeek === CarbonImmutable::SUNDAY
+            ? $fechaActual->endOfMonth()->nextWeekday()
+            : $fechaActual->endOfMonth();
 
-        if ($lastDayOfMonth->isWeekend()) {
-            $nextBusinessDay = $lastDayOfMonth->nextWeekday();
-            $message = "El último día del mes es un fin de semana, se enviará el comando el siguiente día hábil: " . $nextBusinessDay->format('Y-m-d');
-            Log::info($message);
-        }
-
-        if ($nextBusinessDay) {
-            // Lógica para enviar el comando en el siguiente día hábil
+        // Verifica si es el último día del mes o un día hábil posterior al último día del mes
+        if ($fechaActual->equalTo($ultimoDiaMes) || $fechaActual->isAfter($ultimoDiaMes)) {
+            // Código a ejecutar en caso de que se cumpla la condición
             $cargas = Carga::where('car_email_enviado', 0)
                 ->whereDate('car_fecha_salida', '<=', today())
                 ->whereHas('cliente.frecuencias', function ($query) {
