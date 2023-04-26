@@ -27,44 +27,39 @@ class Kernel extends ConsoleKernel
 
                 // Enviar correo semanalmente los lunes a las 8:00 am
                 $schedule->command('enviar:formularios-carga')
-                    ->mondays()
-                    ->at('08:00');
+                ->weeklyOn(1, '8:00');
 
                 // Enviar correo quincenalmente los días 15 y último día hábil del mes
                 $schedule->command('enviar:formularios-carga')
-                    ->monthlyOn(date('t'), '08:00')
-                    ->when(function () {
-                        $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
+                ->monthlyOn(15, '08:00')
+                ->when(function () {
+                   $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
 
-                        // Verifica si es el último día hábil del mes
-                        $ultimoDiaMes = $fechaActual->lastOfMonth();
-                        if ($ultimoDiaMes->isWeekend()) {
-                            $ultimoDiaHabil = $ultimoDiaMes->nextWeekday();
-                            $esUltimoDiaHabil = $ultimoDiaHabil->day === $fechaActual->day && $ultimoDiaHabil->format('H:i') === '08:00';
-                        } else {
-                            $esUltimoDiaHabil = $fechaActual->day === $ultimoDiaMes->day && $fechaActual->format('H:i') === '08:00';
-                        }
-
-                        // Verifica si es el 15, 16 o 17 del mes
-                        $esDiaEspecifico = $fechaActual->day >= 15 && $fechaActual->day <= 17 && $fechaActual->isWeekday() && $fechaActual->format('H:i') === '08:00';
-
-                        return $esUltimoDiaHabil || $esDiaEspecifico;
-                    });
-
+                   // Verifica si es el 15 o un día hábil posterior al 15
+                   if ($fechaActual->day >= 15 && $fechaActual->isWeekday()) {
+                       return true;
+                   } elseif ($fechaActual->day < 15) {
+                       $siguienteDiaHabil = $fechaActual->nextWeekday();
+                       if ($siguienteDiaHabil->day === 15) {
+                           return true;
+                       }
+                   }
+                   return false;
+               });
                 // Enviar correo mensualmente el último día hábil del mes a las 8:00 am si este último día cae en un día no hábil se enviará el día hábil siguiente al último día del mes
                 $schedule->command('enviar:formularios-carga')
-                ->monthlyOn(date('t'), '08:00') // Programa el comando para que se ejecute el último día del mes a las 8:00 AM
-                ->when(function () {
-                // Verifica si el último día del mes es un día hábil
-                $lastDayOfMonth = CarbonImmutable::today()->lastOfMonth(); // Obtén la fecha del último día del mes
-                if ($lastDayOfMonth->isWeekend()) { // Verifica si el último día del mes es un fin de semana
-                    $nextBusinessDay = $lastDayOfMonth->nextWeekday(); // Obtén el siguiente día hábil después del último día del mes
-                    $message = "El último día del mes es un fin de semana, se enviará el comando el siguiente día hábil: " . $nextBusinessDay->format('Y-m-d');
-                    Log::info($message); // Registra el mensaje en el registro de Laravel
-                    return $nextBusinessDay; // Devuelve la fecha del siguiente día hábil
-                }
-                return true; // Si el último día del mes es un día hábil, devuelve verdadero para que se ejecute el comando
-                });
+                    ->monthlyOn(date('t'), '08:00') // Programa el comando para que se ejecute el último día del mes a las 8:00 AM
+                    ->when(function () {
+                    // Verifica si el último día del mes es un día hábil
+                    $lastDayOfMonth = CarbonImmutable::today()->lastOfMonth(); // Obtén la fecha del último día del mes
+                    if ($lastDayOfMonth->isWeekend()) { // Verifica si el último día del mes es un fin de semana
+                        $nextBusinessDay = $lastDayOfMonth->nextWeekday(); // Obtén el siguiente día hábil después del último día del mes
+                        $message = "El último día del mes es un fin de semana, se enviará el comando el siguiente día hábil: " . $nextBusinessDay->format('Y-m-d');
+                        Log::info($message); // Registra el mensaje en el registro de Laravel
+                        return $nextBusinessDay; // Devuelve la fecha del siguiente día hábil
+                    }
+                    return true; // Si el último día del mes es un día hábil, devuelve verdadero para que se ejecute el comando
+                    });
     }
 
     /**

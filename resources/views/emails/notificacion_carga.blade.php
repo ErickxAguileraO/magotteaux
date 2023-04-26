@@ -72,18 +72,16 @@
             </p>
             <br>
             @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Diaria')
-                Sus correos llegarán todos los días de Lunes a Viernes.<br>
-                En el caso que no lo envie de forma manual, se enviará automáticamente a las 23:59Hrs de forma diaria.
+                Esta es una notificacion automatica y se genera de forma diaria de lunes a viernes.<br>
             @endif
             @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Semanal')
-                Sus correos llegaran de todos los lunes a las 08:00 AM <br>
+                Esta es una notificacion automatica y se genera de forma semanal. <br>
             @endif
             @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Quincenal')
-                Sus correos llegaran de forma dos veces al mes el dia 15 si este es fin de semana, llegara el lunes siguiente a las 8:00 AM <br>
-                tambien le llegara el último día hábil del mes a las 8:00 AM<br>
+                Esta es una notificacion automatica y se genera de forma quincenal.<br>
             @endif
             @if ($carga->cliente->frecuencias[0]->fre_frecuencia == 'Mensual')
-                Sus correos llegaran el último día hábil del mes <br>
+                Esta es una notificacion automatica y se genera de forma mensual.<br>
             @endif
 
             <p>
