@@ -124,9 +124,9 @@ class EnviarFormulariosCarga extends Command
 
         $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
         if (
-            ($fechaActual->day === 15 && $fechaActual->isWeekday())
-            || ($fechaActual->day === 16 && $fechaActual->isWeekday() && !$fechaActual->subDay()->isWeekday())
-            || ($fechaActual->day === 17 && $fechaActual->isWeekday() && !$fechaActual->subDays(2)->isWeekday() && !$fechaActual->subDays(1)->isWeekday())
+            (date('H:i') === '08:00' && $fechaActual->day === 15 && $fechaActual->isWeekday())
+            || (date('H:i') === '08:00' && $fechaActual->day === 16 && $fechaActual->isWeekday() && !$fechaActual->subDay()->isWeekday())
+            || (date('H:i') === '08:00' && $fechaActual->day === 17 && $fechaActual->isWeekday() && !$fechaActual->subDays(2)->isWeekday() && !$fechaActual->subDays(1)->isWeekday())
         ) {
             $cargas = Carga::where('car_email_enviado', 0)
                 ->whereDate('car_fecha_salida', '<=', today())
@@ -171,9 +171,9 @@ class EnviarFormulariosCarga extends Command
 
         // Verifica si es el último día del mes, el primer o segundo día del mes
         if (
-            ($fechaActual->day === $ultimoDiaMes && $fechaActual->isWeekday()) ||
-            ($fechaActual->day === $primerDiaMes && $fechaActual->isWeekday() && !$fechaActual->subDay()->isWeekday()) ||
-            ($fechaActual->day === $segundoDiaMes && $fechaActual->isWeekday() && !$fechaActual->subDay(2)->isWeekday() && !$fechaActual->subDays(1)->isWeekday())
+            (date('H:i') === '08:00' && $fechaActual->day === $ultimoDiaMes && $fechaActual->isWeekday()) ||
+            (date('H:i') === '08:00' && $fechaActual->day === $primerDiaMes && $fechaActual->isWeekday() && !$fechaActual->subDay()->isWeekday()) ||
+            (date('H:i') === '08:00' && $fechaActual->day === $segundoDiaMes && $fechaActual->isWeekday() && !$fechaActual->subDay(2)->isWeekday() && !$fechaActual->subDays(1)->isWeekday())
         ) {
             $cargas = Carga::where('car_email_enviado', 0)
                 ->whereDate('car_fecha_salida', '<=', today())
