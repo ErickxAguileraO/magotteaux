@@ -25,42 +25,27 @@ class Kernel extends ConsoleKernel
                     ->weekdays()
                     ->dailyAt('23:59');
 
-                // Enviar correo semanalmente los lunes a las 8:00 am
                 $schedule->command('enviar:formularios-carga')
-                ->weeklyOn(1, '8:00');
+                ->weeklyOn(1, '08:00');
 
-                // Enviar correo quincenalmente los días 15 y último día hábil del mes
                 $schedule->command('enviar:formularios-carga')
-                ->monthlyOn(15, '08:00')
-                ->when(function () {
-                   $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
+                        ->monthlyOn(15, '08:00');
 
-                   // Verifica si es el 15 o un día hábil posterior al 15
-                   if ($fechaActual->day >= 15 && $fechaActual->isWeekday()) {
-                       return true;
-                   } elseif ($fechaActual->day < 15) {
-                       $siguienteDiaHabil = $fechaActual->nextWeekday();
-                       if ($siguienteDiaHabil->day === 15) {
-                           return true;
-                       }
-                   }
-                   return false;
-               });
-                // Enviar correo mensualmente el último día hábil del mes a las 8:00 am si este último día cae en un día no hábil se enviará el día hábil siguiente al último día del mes
                 $schedule->command('enviar:formularios-carga')
-                ->monthlyOn('L', '08:00')
-                ->when(function () {
-                    $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
-                    $ultimoDiaMes = $fechaActual->endOfMonth()->dayOfWeek === CarbonImmutable::SUNDAY
-                        ? $fechaActual->endOfMonth()->nextWeekday()
-                        : $fechaActual->endOfMonth();
+                        ->monthlyOn(16, '08:00');
 
-                    // Verifica si es el último día del mes o un día hábil posterior al último día del mes
-                    if ($fechaActual->equalTo($ultimoDiaMes) || $fechaActual->isAfter($ultimoDiaMes)) {
-                        return true;
-                    }
-                    return false;
-                });
+                $schedule->command('enviar:formularios-carga')
+                        ->monthlyOn(17, '08:00');
+
+                $schedule->command('enviar:formularios-carga')
+                        ->monthlyOn(CarbonImmutable::now()->endOfMonth()
+                        ->day, '08:00');
+
+                $schedule->command('enviar:formularios-carga')
+                        ->monthlyOn(1, '08:00');
+
+                $schedule->command('enviar:formularios-carga')
+                        ->monthlyOn(2, '08:00');
     }
 
     /**

@@ -163,14 +163,18 @@ class EnviarFormulariosCarga extends Command
             }
         }
 
-        $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
-        $ultimoDiaMes = $fechaActual->endOfMonth()->dayOfWeek === CarbonImmutable::SUNDAY
-            ? $fechaActual->endOfMonth()->nextWeekday()
-            : $fechaActual->endOfMonth();
 
-        // Verifica si es el último día del mes o un día hábil posterior al último día del mes
-        if ($fechaActual->equalTo($ultimoDiaMes) || $fechaActual->isAfter($ultimoDiaMes)) {
-            // Código a ejecutar en caso de que se cumpla la condición
+        $fechaActual = CarbonImmutable::now(); // Obtiene la fecha y hora actual
+        $ultimoDiaMes = $fechaActual->endOfMonth()->day;
+        $primerDiaMes = $fechaActual->startOfMonth()->day;
+        $segundoDiaMes = $fechaActual->startOfMonth()->addDay()->day;
+
+        // Verifica si es el último día del mes, el primer o segundo día del mes
+        if (
+            ($fechaActual->day === $ultimoDiaMes && $fechaActual->isWeekday()) ||
+            ($fechaActual->day === $primerDiaMes && $fechaActual->isWeekday() && !$fechaActual->subDay()->isWeekday()) ||
+            ($fechaActual->day === $segundoDiaMes && $fechaActual->isWeekday() && !$fechaActual->subDay(2)->isWeekday() && !$fechaActual->subDays(1)->isWeekday())
+        ) {
             $cargas = Carga::where('car_email_enviado', 0)
                 ->whereDate('car_fecha_salida', '<=', today())
                 ->whereHas('cliente.frecuencias', function ($query) {
