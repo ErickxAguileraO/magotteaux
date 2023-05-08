@@ -21,7 +21,7 @@ class AuthController extends Controller
         $usuario = User::where('usu_email', $request->post('email'))->first();
         $isValidPassword = Hash::check($request->post('password'), $usuario->usu_password);
 
-        if ($usuario && !$isValidPassword) return redirect()->back()->with(['message' => 'Correo o contraseña incorrecto', 'type' => 'error'])->withInput();
+        if ($usuario && !$isValidPassword) return redirect()->back()->with(['message' => 'Contraseña incorrecta', 'type' => 'error'])->withInput();
         if (!$usuario->usu_estado) return redirect()->back()->with(['message' => 'La cuenta esta inactiva, por favor comuniquese con el administrador.', 'type' => 'error'])->withInput();
 
         Auth::login($usuario);

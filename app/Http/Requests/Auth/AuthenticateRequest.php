@@ -24,7 +24,7 @@ class AuthenticateRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email:filter'],
+            'email' => ['required', 'email:filter','exists:usuarios,usu_email'],
             'password' => ['required'],
         ];
     }
