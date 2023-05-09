@@ -6,24 +6,19 @@
 trigger:
 - release
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+- group: credenciales
 
-- task: CopyFilesOverSSH@0
-  inputs:
-    sshEndpoint: 'Produccion'
-    contents:  |
-      **
-      !.git/**
-      !.env
-    targetFolder: '/home/magotteauxtestin/public_html/'
-    readyTimeout: '20000'
+steps:
+- script: |
+    rsync -auv -e 'sshpass -p "$(password_produccion)" ssh -o StrictHostKeyChecking=no' --chown=magotteauxtestin:magotteauxtestin  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@45.33.42.95:/home/magotteauxtestin/public_html/
+  displayName: 'Rsync a servidor de AMBIENTE'
+
 
 - task: SSH@0
   inputs:
-    sshEndpoint: 'Produccion'
+    sshEndpoint: 'AMBIENTE'
     runOptions: 'commands'
     commands: |
-      cd /home/magotteauxtestin/public_html/ && chown -fR magotteauxtestin:magotteauxtestin . && php artisan migrate
+      cd /home/magotteauxtestin/public_html/ && composer update && php artisan migrate
     readyTimeout: '20000'
