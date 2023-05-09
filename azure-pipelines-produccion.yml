@@ -19,5 +19,5 @@ steps:
     sshEndpoint: 'produccion'
     runOptions: 'commands'
     commands: |
-      cd /home/magotteauxplataf/public_html/ && composer update && php artisan migrate
+      cd /home/magotteauxplataf/public_html/ && php artisan migrate
     readyTimeout: '20000'
