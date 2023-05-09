@@ -5,25 +5,19 @@
 
 trigger:
 - produccion
+variables:
+- group: credenciales
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+    rsync -auv -e 'sshpass -p "$(password_produccion)" ssh -o StrictHostKeyChecking=no' --chown=magotteauxplataf:magotteauxplataf  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@209.126.108.6:/home/magotteauxplataf/public_html/
+  displayName: 'Rsync a servidor de Produccion'
 
-- task: CopyFilesOverSSH@0
-  inputs:
-    sshEndpoint: 'Produccion'
-    contents:  |
-      **
-      !.git/**
-      !.env
-    targetFolder: '/home/magotteauxplataf/public_html/'
-    readyTimeout: '20000'
 
 - task: SSH@0
   inputs:
-    sshEndpoint: 'Produccion'
+    sshEndpoint: 'produccion'
     runOptions: 'commands'
     commands: |
-      cd /home/magotteauxplataf/public_html/ && chown -fR magotteauxplataf:magotteauxplataf . && php artisan migrate
+      cd /home/magotteauxplataf/public_html/ && composer update && php artisan migrate
     readyTimeout: '20000'
