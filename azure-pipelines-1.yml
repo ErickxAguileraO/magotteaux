@@ -20,5 +20,5 @@ steps:
     sshEndpoint: 'produccion'
     runOptions: 'commands'
     commands: |
-      cd /home/magotteauxtestin/public_html/ && php artisan migrate
+      cd /home/magotteauxtestin/public_html/ && php artisan migrate --force
     readyTimeout: '20000'
