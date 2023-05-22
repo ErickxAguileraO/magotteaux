@@ -27,7 +27,7 @@
                   <a href="/"><img src="{{ asset('web/imagenes/i-atras.svg') }}" alt=""></a>
                   <h3>Resumen de carga</h3>
                </div>
-               @if (auth()->user()->hasRole('Logistica') && !$carga->car_email_enviado && $carga->cliente->frecuencias[0]->fre_frecuencia == 'Diaria')
+               @if (auth()->user()->hasRole('Logistica') && !$carga->car_email_enviado && !$carga->cliente->frecuencias->isEmpty() && $carga->cliente->frecuencias[0]->fre_frecuencia == 'Diaria')
                   <div>
                      <a href="{{ route('carga.send.email', ['id' => $carga->car_id]) }}" class="btn-enviar-correo">
                         <p style="width:90px;">Enviar correo</p>
